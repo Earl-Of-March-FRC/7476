@@ -6,10 +6,19 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
-public class ExampleSubsystem extends SubsystemBase {
+import frc.robot.Constants.DriveTrainConstants;
+
+public class DriveTrainSubsystem extends SubsystemBase {
+  private WPI_TalonFX frontLeft = new WPI_TalonFX(DriveTrainConstants.frontLeftMotorPort);
+  private WPI_TalonFX frontRight = new WPI_TalonFX(DriveTrainConstants.frontRightMotorPort);
+  private WPI_TalonFX backLeft = new WPI_TalonFX(DriveTrainConstants.backLeftMotorPort);
+  private WPI_TalonFX backRight = new WPI_TalonFX(DriveTrainConstants.backRightMotorPort);
   /** Creates a new ExampleSubsystem. */
-  public ExampleSubsystem() {}
+  public DriveTrainSubsystem() {}
 
   /**
    * Example command factory method.
