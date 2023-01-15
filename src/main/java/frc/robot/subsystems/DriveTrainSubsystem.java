@@ -11,7 +11,6 @@ public class DriveTrainSubsystem extends SubsystemBase {
   private WPI_TalonFX backLeft = new WPI_TalonFX(DriveTrainConstants.backLeftMotorPort);
   private WPI_TalonFX backRight = new WPI_TalonFX(DriveTrainConstants.backRightMotorPort);
   public DriveTrainSubsystem() {}
-
   @Override
   public void periodic() {}
 }
