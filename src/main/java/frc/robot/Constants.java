@@ -13,14 +13,148 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  public static class OperatorConstants {
-    public static final int kDriverControllerPort = 0;
+
+  public static class DrivetrainConstants {
+    public static final int frontLeftTalonPort = 1;
+    public static final int frontRightTalonPort = 3;
+    public static final int backLeftTalonPort = 2;
+    public static final int backRightTalonPort = 4;
+
+    public static final double distanceTolerance = 1;
+
+    public static final double kP = 0;
+    public static final double kI = 0;
+    public static final double kD = 0;
+
+    // kp 0.2
+    public static final double kPVerticalDrive = 0.02;
+    public static final double kIVerticalDrive = 0;
+    public static final double kDVerticalDrive = 0.0002;
+
+    public static final double kPHorizontalDrive = 0.01;
+    public static final double kIHorizontalDrive = 0;
+    public static final double kDHorizontalDrive = 0;
+
+    public static final double balanceTolerance = 10;
+
+    public static final double kPBalance = 0.1;
+    public static final double kIBalance = 0;
+    public static final double kDBalance = 0;
   }
 
-  public static class DriveTrainConstants {
-    public static final int frontLeftMotorPort = 0;
-    public static final int frontRightMotorPort = 0;
-    public static final int backLeftMotorPort = 0;
-    public static final int backRightMotorPort = 0;
+  public class ArmConstants {
+
+    public static final int extension1 = 6; // left
+    public static final int extension2 = 7; // right
+
+    public static final int incline1 = 5;
+    public static final int incline2 = 6;
+
+    public static final int claw = 4;
+
+    public static final int fullUpAngle = 70;
+    public static final int anglePerTick = 500/24616;
+
+    public static final int angleEncoderChannelA = 3;
+    public static final int angleEncoderChannelB = 4;
+
+    public static final double kPIncline = 0;
+    public static final double kIIncline = 0;
+    public static final double kDIncline = 1;
+
+    public static final double kPExtension = 0;
+    public static final double kIExtension = 0;
+    public static final double kDExtension = 0;
+
+    public static final double armInclineTarget = -12000;
+
+    public static final double armExtensionTolerance = 0;
+    public static final double armInclineTolerance = 0;
+    public static final double inclineMaxVelocity=0;
+    public static final double inclineMaxAcceleration=0;
+
+    public static final double extensionMaxVelocity = 0;
+    public static final double extensionMaxAcceleration = 0;
+
+    public static final double armDefaultIncline = 0;
+    public static final double armLowestPositionIncline = 0;
+
+    public static final int clawOpen = 0;
+    public static final int clawCloseCube = 1;
+    public static final int clawCloseCone = 2;
   }
+
+  public static class OperatorConstants {
+
+    public static final int kDriverControllerPort = 0;
+    public static final int forwardAxis = 1;
+    public static final int sideAxis = 0;
+    public static final int rotationAxis = 3;
+    public static final int cubePickUpButton = 3;
+    public static final int conePickUpButton = 3;
+    public static final int cubePlaceTopButton = 3;
+    public static final int conePlaceTopButton = 3;
+    public static final int cubeLineUpButton = 3;
+    public static final int coneLineUpButton = 3;
+  }
+
+  public static class VisionConstants {
+    public static final double topTapeHeight = 106; // this is in cm
+    public static final double aprilTagHeight = 69; // this is in cm
+
+    public static final double cameraAngle = 0;
+
+    public static final double cameraHeight = 0;
+
+    public static final double distanceTarget = 20;
+
+    public static final int conePipeline = 0;
+    public static final int cubePipeline = 1;
+  }
+
+  public static class GyroConstants {
+    public static final double kPGyro = 0.0085;
+    public static final double kIGyro = 0.005;
+    public static final double kDGyro = 0.0001;
+
+    public static final double gyroTurnTolerance = 1;
+  }
+
+  public static class ScaleFactorConstants {
+    public static final double driveScaleFactor = 0.3;
+    public static final double turnScaleFactor = 0.15;
+    public static final double driveDeadzone = 0.05;
+    public static final double rotateDeadzone = 0.1;
+  }
+
+  public static class GridConstants {
+    public static final int conePlaceTopIncline =
+        39; // this is in degrees, this value is from the math we did and it shoud be mostly correct
+    public static final int conePlaceTopExtension = 0;
+
+    public static final int cubePlaceTopIncline = 0;
+    public static final int cubePlaceTopExtension = 0;
+
+    public static final int drop = 0;
+  }
+
+  public static class DriverStationConstants{
+
+    public static final int DriverStationController = 1;
+
+    public static final int leftPinky = 2;
+    public static final int leftRing = 6;
+    public static final int leftMiddle = 5;
+    public static final int leftIndex = 10;
+    public static final int leftThumb = 9;
+
+    public static final int rightThumb = 0;
+    public static final int rightIndex = 1;
+    public static final int rightMiddle = 0;
+    public static final int rightRing = 3;
+    public static final int rightPinky = 4;
+  }
+
+
+
 }
