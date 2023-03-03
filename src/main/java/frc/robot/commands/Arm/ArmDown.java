@@ -9,6 +9,7 @@ import frc.robot.subsystems.Arm;
 
 public class ArmDown extends CommandBase {
   Arm armMotors;
+  double time = 0;
   /** Creates a new ArmDown. */
   public ArmDown(Arm armMotors) {
     this.armMotors = armMotors;
@@ -20,15 +21,12 @@ public class ArmDown extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    // armMotors.armDown();
-    armMotors.armIncline(-0.3);
-  }
+  public void execute() {armMotors.armIncline(-0.3);}
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    armMotors.armStop2();
+    armMotors.inclineStop();
   }
 
   // Returns true when the command should end.

@@ -40,6 +40,7 @@ public final class Constants {
     public static final double kPBalance = 0.1;
     public static final double kIBalance = 0;
     public static final double kDBalance = 0;
+    public static final double dropAndLeaveSetpoint = 12;
   }
 
   public class ArmConstants {

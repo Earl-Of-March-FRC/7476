@@ -1,10 +1,9 @@
-package frc.robot.commandgroups.AutoCmds.ScoreCmds;
+package frc.robot.commandgroups.AutoCmds;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.ArmConstants;
-import frc.robot.commandgroups.BalanceStation;
-import frc.robot.commandgroups.TeleopHelperCmds.ClawControlGroup;
-import frc.robot.commands.Arm.AutoArmIncline;
+import frc.robot.commands.Arm.ArmDownAuto;
+import frc.robot.commands.Arm.ClawOpenAuto;
 import frc.robot.commands.Drivetrain.VerticalDrivePID;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
@@ -17,10 +16,9 @@ public class ScoreFloorAndBalance extends SequentialCommandGroup {
   /** Creates a new ScoreFloorAndBalance. */
   public ScoreFloorAndBalance(Arm armMotors, Claw claw, DrivetrainSubsystem drivetrainSubsystem) {
     addCommands(
-        new AutoArmIncline(armMotors, ArmConstants.armLowestPositionIncline),
-        new ClawControlGroup(claw, 0),
-        new AutoArmIncline(armMotors, ArmConstants.armLowestPositionIncline),
-        new VerticalDrivePID(drivetrainSubsystem, -156),
-        new BalanceStation(drivetrainSubsystem));
+        new ArmDownAuto(armMotors),
+        new ClawOpenAuto(claw),
+        new VerticalDrivePID(drivetrainSubsystem, -156));
+        //new BalanceStation(drivetrainSubsystem));
   }
 }

@@ -29,7 +29,7 @@ public class ArmOut extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    armMotors.armStop();
+    armMotors.extendStop();
   }
 
   // Returns true when the command should end.

@@ -3,11 +3,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.Constants.ArmConstants;
+import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commandgroups.PickUp;
-import frc.robot.commandgroups.PlaceConeTop.ConePlaceTop;
-import frc.robot.commandgroups.PlaceCubeTop.CubePlaceTop;
+import frc.robot.commands.ClawControl;
+import frc.robot.commands.Arm.ArmDown;
+import frc.robot.commands.Arm.ArmIn;
+import frc.robot.commands.Arm.ArmOut;
+import frc.robot.commands.Arm.ArmUp;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
@@ -24,8 +26,8 @@ public class RobotContainer {
 
   public final Joystick controller =
       new Joystick(Constants.OperatorConstants.kDriverControllerPort);
-  public final JoystickButton clawOpen = new JoystickButton(controller, 2);
-  public JoystickButton clawClose = new JoystickButton(controller, 1);
+
+  public final Joystick driverStation = new Joystick(DriverStationConstants.DriverStationController);
 
   public RobotContainer() {
 
@@ -40,10 +42,13 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    new JoystickButton(controller, OperatorConstants.cubePickUpButton).whileTrue(new PickUp(armMotors, claw, ArmConstants.clawCloseCube, vision));
-    new JoystickButton(controller, OperatorConstants.conePickUpButton).whileTrue(new PickUp(armMotors,claw,ArmConstants.clawCloseCone, vision));
-    new JoystickButton(controller, OperatorConstants.cubePlaceTopButton).whileTrue(new CubePlaceTop(claw, armMotors));
-    new JoystickButton(controller, OperatorConstants.conePlaceTopButton).whileTrue(new ConePlaceTop(claw, armMotors));
+    new JoystickButton(driverStation, DriverStationConstants.leftThumb).whileTrue(new ArmDown(armMotors));
+    new JoystickButton(driverStation, DriverStationConstants.leftIndex).whileTrue(new ArmIn(armMotors));
+    new JoystickButton(driverStation, DriverStationConstants.leftMiddle).whileTrue(new ClawControl(claw, -1));
+
+    new JoystickButton(driverStation, DriverStationConstants.rightThumb).whileTrue(new ArmUp(armMotors));
+    new JoystickButton(driverStation, DriverStationConstants.rightIndex).whileTrue(new ArmOut(armMotors));
+    new JoystickButton(driverStation, DriverStationConstants.rightMiddle).whileTrue(new ClawControl(claw, 1));
   }
 
   public Command getAutonomousCommand(int cycle) {

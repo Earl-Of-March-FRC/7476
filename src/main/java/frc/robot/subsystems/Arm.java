@@ -76,11 +76,11 @@ public class Arm extends SubsystemBase {
   // incline1.set(speed/3);
   // }
 
-  public void armStop() {
+  public void extendStop() {
     extension1.set(0);
   }
 
-  public void armStop2() {
+  public void inclineStop() {
     incline1.set(0);
   }
 

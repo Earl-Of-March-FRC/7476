@@ -29,7 +29,7 @@ public class ArmUp extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    armMotors.armStop2();
+    armMotors.inclineStop();
   }
 
   // Returns true when the command should end.
