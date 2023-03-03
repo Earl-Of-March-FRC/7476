@@ -45,13 +45,12 @@ public final class Constants {
 
   public class ArmConstants {
 
-    public static final int extension1 = 6; // left
-    public static final int extension2 = 7; // right
+    public static final int extension1 = 9; // left
 
     public static final int incline1 = 5;
     public static final int incline2 = 6;
 
-    public static final int claw = 4;
+    public static final int claw = 7;
 
     public static final int fullUpAngle = 70;
     public static final int anglePerTick = 500 / 24616;
@@ -87,7 +86,7 @@ public final class Constants {
 
   public static class OperatorConstants {
 
-    public static final int kDriverControllerPort = 3;
+    public static final int kDriverControllerPort = 0;
     public static final int forwardAxis = 1;
     public static final int sideAxis = 0;
     public static final int rotationAxis = 3;
@@ -143,16 +142,16 @@ public final class Constants {
 
     public static final int DriverStationController = 1;
 
-    public static final int leftPinky = 2;
+    public static final int leftPinky = 0;
     public static final int leftRing = 6;
     public static final int leftMiddle = 5;
     public static final int leftIndex = 10;
     public static final int leftThumb = 9;
 
-    public static final int rightThumb = 0;
+    public static final int rightThumb = 4;
     public static final int rightIndex = 1;
-    public static final int rightMiddle = 0;
+    public static final int rightMiddle = 2;
     public static final int rightRing = 3;
-    public static final int rightPinky = 4;
+    public static final int rightPinky = 0;
   }
 }

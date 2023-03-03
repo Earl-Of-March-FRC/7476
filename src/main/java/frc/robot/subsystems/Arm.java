@@ -3,6 +3,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -10,7 +12,7 @@ import frc.robot.Constants.ArmConstants;
 
 public class Arm extends SubsystemBase {
 
-  private WPI_TalonSRX extension1 = new WPI_TalonSRX(ArmConstants.extension1);
+  private WPI_VictorSPX extension1 = new WPI_VictorSPX(ArmConstants.extension1);
   // private WPI_TalonSRX extension2 = new WPI_TalonSRX(ArmConstants.extension2);
 
   private WPI_TalonSRX incline1 = new WPI_TalonSRX(ArmConstants.incline1);
@@ -18,7 +20,7 @@ public class Arm extends SubsystemBase {
 
   // private MotorControllerGroup extension = new MotorControllerGroup(extension1, extension2);
 
-  //private Encoder extensionEncoder = new Encoder(0, 1); // sample pin numbers
+  // private Encoder extensionEncoder = new Encoder(0, 1); // sample pin numbers
 
   private Encoder angleEncoder =
       new Encoder(
@@ -26,6 +28,7 @@ public class Arm extends SubsystemBase {
 
   public Arm() {
     angleEncoder.setDistancePerPulse(Constants.ArmConstants.anglePerTick);
+    incline2.setInverted(true);
   }
 
   public double getAngleEncoderDistance() {
@@ -70,6 +73,7 @@ public class Arm extends SubsystemBase {
 
   public void armIncline(double speed) {
     incline1.set(speed);
+    incline2.set(speed);
   }
 
   // public void armDown(double speed){
@@ -82,6 +86,7 @@ public class Arm extends SubsystemBase {
 
   public void inclineStop() {
     incline1.set(0);
+    incline2.set(0);
   }
 
   @Override

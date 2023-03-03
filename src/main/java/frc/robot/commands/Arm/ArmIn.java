@@ -24,7 +24,7 @@ public class ArmIn extends CommandBase {
   @Override
   public void execute() {
     // armMotors.armIn();
-    armMotors.armExtension(0.1);
+    armMotors.armExtension(-0.2);//TODO: Lower speed
   }
 
   // Called once the command ends or is interrupted.

@@ -6,13 +6,15 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmConstants;
 
 public class Claw extends SubsystemBase {
   public final DigitalInput hallEffect = new DigitalInput(0);
-  private final WPI_TalonSRX claw = new WPI_TalonSRX(ArmConstants.claw);
+  private final WPI_VictorSPX claw = new WPI_VictorSPX(ArmConstants.claw);
   public int currentMagnet = 0;
 
   public Claw() {
