@@ -18,7 +18,7 @@ public class Arm extends SubsystemBase {
 
   // private MotorControllerGroup extension = new MotorControllerGroup(extension1, extension2);
 
-  private Encoder extensionEncoder = new Encoder(0, 1); // sample pin numbers
+  //private Encoder extensionEncoder = new Encoder(0, 1); // sample pin numbers
 
   private Encoder angleEncoder =
       new Encoder(
@@ -46,13 +46,13 @@ public class Arm extends SubsystemBase {
     extension1.setVoltage(voltage);
   }
 
-  public void resetExtensionEncoder() {
-    extensionEncoder.reset();
-  }
+  // public void resetExtensionEncoder() {
+  //   extensionEncoder.reset();
+  // }
 
-  public double getExtensionEncoder() {
-    return extensionEncoder.getRaw();
-  }
+  // public double getExtensionEncoder() {
+  //   return extensionEncoder.getRaw();
+  // }
 
   public void armExtension(double speed) {
     extension1.set(speed);

@@ -24,7 +24,7 @@ public class GyroTurnAnglePID extends PIDCommand {
         () -> setpoint,
         // This uses the output
         output -> {
-          driveTrain.setMecanum(0,0, output);
+          driveTrain.setMecanum(0, 0, output);
         });
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.

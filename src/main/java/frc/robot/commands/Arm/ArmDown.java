@@ -21,7 +21,9 @@ public class ArmDown extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {armMotors.armIncline(-0.3);}
+  public void execute() {
+    armMotors.armIncline(-0.3);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

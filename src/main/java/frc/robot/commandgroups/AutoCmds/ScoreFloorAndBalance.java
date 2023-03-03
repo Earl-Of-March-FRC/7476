@@ -1,7 +1,6 @@
 package frc.robot.commandgroups.AutoCmds;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.Constants.ArmConstants;
 import frc.robot.commands.Arm.ArmDownAuto;
 import frc.robot.commands.Arm.ClawOpenAuto;
 import frc.robot.commands.Drivetrain.VerticalDrivePID;
@@ -19,6 +18,6 @@ public class ScoreFloorAndBalance extends SequentialCommandGroup {
         new ArmDownAuto(armMotors),
         new ClawOpenAuto(claw),
         new VerticalDrivePID(drivetrainSubsystem, -156));
-        //new BalanceStation(drivetrainSubsystem));
+    // new BalanceStation(drivetrainSubsystem));
   }
 }

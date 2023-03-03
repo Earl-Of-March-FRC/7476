@@ -13,6 +13,7 @@ import frc.robot.subsystems.Arm;
 public class ArmDownAuto extends InstantCommand {
 
   Arm armMotors;
+
   public ArmDownAuto(Arm armMotors) {
     this.armMotors = armMotors;
   }
@@ -27,7 +28,7 @@ public class ArmDownAuto extends InstantCommand {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    
+
     armMotors.armIncline(0);
   }
 }

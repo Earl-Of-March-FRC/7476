@@ -17,11 +17,17 @@ public class ClawControl extends CommandBase {
   public void initialize() {}
 
   @Override
-  public void execute() {claw.setClawSpeed(speed);}
+  public void execute() {
+    claw.setClawSpeed(speed);
+  }
 
   @Override
-  public void end(boolean interrupted) {claw.stopClaw();}
+  public void end(boolean interrupted) {
+    claw.stopClaw();
+  }
 
   @Override
-  public boolean isFinished() {return false;}
+  public boolean isFinished() {
+    return false;
+  }
 }

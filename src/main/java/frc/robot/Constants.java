@@ -54,7 +54,7 @@ public final class Constants {
     public static final int claw = 4;
 
     public static final int fullUpAngle = 70;
-    public static final int anglePerTick = 500/24616;
+    public static final int anglePerTick = 500 / 24616;
 
     public static final int angleEncoderChannelA = 3;
     public static final int angleEncoderChannelB = 4;
@@ -71,8 +71,8 @@ public final class Constants {
 
     public static final double armExtensionTolerance = 0;
     public static final double armInclineTolerance = 0;
-    public static final double inclineMaxVelocity=0;
-    public static final double inclineMaxAcceleration=0;
+    public static final double inclineMaxVelocity = 0;
+    public static final double inclineMaxAcceleration = 0;
 
     public static final double extensionMaxVelocity = 0;
     public static final double extensionMaxAcceleration = 0;
@@ -87,7 +87,7 @@ public final class Constants {
 
   public static class OperatorConstants {
 
-    public static final int kDriverControllerPort = 0;
+    public static final int kDriverControllerPort = 3;
     public static final int forwardAxis = 1;
     public static final int sideAxis = 0;
     public static final int rotationAxis = 3;
@@ -139,7 +139,7 @@ public final class Constants {
     public static final int drop = 0;
   }
 
-  public static class DriverStationConstants{
+  public static class DriverStationConstants {
 
     public static final int DriverStationController = 1;
 
@@ -155,7 +155,4 @@ public final class Constants {
     public static final int rightRing = 3;
     public static final int rightPinky = 4;
   }
-
-
-
 }

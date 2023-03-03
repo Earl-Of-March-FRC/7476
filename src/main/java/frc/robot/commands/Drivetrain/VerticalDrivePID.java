@@ -17,7 +17,10 @@ public class VerticalDrivePID extends PIDCommand {
   public VerticalDrivePID(DrivetrainSubsystem drive, double setpoint) {
     super(
         // The controller that the command will use
-        new PIDController(DrivetrainConstants.kPVerticalDrive, DrivetrainConstants.kIVerticalDrive, DrivetrainConstants.kDVerticalDrive),
+        new PIDController(
+            DrivetrainConstants.kPVerticalDrive,
+            DrivetrainConstants.kIVerticalDrive,
+            DrivetrainConstants.kDVerticalDrive),
         // This should return the measurement
         () -> drive.getDistance(),
         // This should return the setpoint (can also be a constant)

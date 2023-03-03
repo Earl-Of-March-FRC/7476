@@ -5,7 +5,6 @@
 package frc.robot.commands.Arm;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.commands.ClawControl;
 import frc.robot.subsystems.Claw;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -14,11 +13,11 @@ import frc.robot.subsystems.Claw;
 public class ClawOpenAuto extends InstantCommand {
 
   Claw claw;
+
   public ClawOpenAuto(Claw claw) {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.claw=claw;
+    this.claw = claw;
   }
-
 
   // Called when the command is initially scheduled.
   @Override

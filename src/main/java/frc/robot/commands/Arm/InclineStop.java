@@ -13,8 +13,13 @@ import frc.robot.subsystems.Arm;
 public class InclineStop extends InstantCommand {
 
   Arm arm;
-  public InclineStop(Arm arm) {this.arm = arm;}
+
+  public InclineStop(Arm arm) {
+    this.arm = arm;
+  }
 
   @Override
-  public void initialize() {arm.inclineStop();}
+  public void initialize() {
+    arm.inclineStop();
+  }
 }

@@ -10,9 +10,14 @@ import frc.robot.subsystems.Arm;
 public class ExtendStop extends InstantCommand {
 
   Arm arm;
-  public ExtendStop(Arm arm) {this.arm = arm;}
+
+  public ExtendStop(Arm arm) {
+    this.arm = arm;
+  }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {arm.inclineStop();}
+  public void initialize() {
+    arm.inclineStop();
+  }
 }

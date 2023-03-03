@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -11,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DrivetrainConstants;
 
 public class DrivetrainSubsystem extends SubsystemBase {
+
   private WPI_TalonFX frontLeft = new WPI_TalonFX(DrivetrainConstants.frontLeftTalonPort);
   private WPI_TalonFX frontRight = new WPI_TalonFX(DrivetrainConstants.frontRightTalonPort);
   private WPI_TalonFX backLeft = new WPI_TalonFX(DrivetrainConstants.backLeftTalonPort);
@@ -37,7 +37,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     backRight.setSelectedSensorPosition(0);
   }
 
-  public double getHeading(){
+  public double getHeading() {
     return ahrs.getYaw();
   }
 
@@ -45,15 +45,15 @@ public class DrivetrainSubsystem extends SubsystemBase {
     return ahrs.getAngle();
   }
 
-  public void resetGyro(){
+  public void resetGyro() {
     ahrs.reset();
   }
 
-  public double getGyroRoll(){
+  public double getGyroRoll() {
     return ahrs.getRoll();
   }
 
-  public void resetEncoders(){
+  public void resetEncoders() {
     frontLeft.setSelectedSensorPosition(0);
     frontRight.setSelectedSensorPosition(0);
     backLeft.setSelectedSensorPosition(0);
@@ -86,8 +86,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {
-  }
+  public void periodic() {}
 
   @Override
   public void simulationPeriodic() {}
