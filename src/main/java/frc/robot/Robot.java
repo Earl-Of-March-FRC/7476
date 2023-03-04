@@ -23,8 +23,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     m_robotContainer.armMotors.armExtensionBrake();
 
-    auto_chooser.setDefaultOption("Drop and Stop", 1);
-    auto_chooser.addOption("Drop and Leave", 2);
+    auto_chooser.setDefaultOption("Leave", 1);
 
     SmartDashboard.putData(auto_chooser);
   }

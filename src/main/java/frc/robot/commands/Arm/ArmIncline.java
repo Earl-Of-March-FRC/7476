@@ -33,12 +33,13 @@ public class ArmIncline extends CommandBase {
       armMotors.armIncline(-speed*0.3);
     }
 
-  //   if(armMotors.getInclineEncoder() / (23000 / ArmConstants.armMaxAngle) < ArmConstants.minAngleAtMaxArmOut){
-  //     armMotors.armExtension(-0.125);
-  //     new WaitCommand(2);
-  //     ArmConstants.extendPause = true;
-  // }
-  //   armMotors.armExtension(0.6);
+    // if(armMotors.getInclineEncoder() / (25220 / ArmConstants.armMaxAngle) <= 28){
+    //   new ArmExtend(armMotors, () -> -1);
+    //   new WaitCommand(2).schedule();;
+    //   ArmConstants.extendPause = true;
+    // }else{
+    //   ArmConstants.extendPause = false;
+    // }
   }
 
   @Override

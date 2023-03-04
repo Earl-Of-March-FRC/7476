@@ -12,8 +12,6 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 public class DropAndLeave extends SequentialCommandGroup {
   public DropAndLeave(Claw claw, DrivetrainSubsystem driveTrain, Arm arm) {
     addCommands(
-        new ArmDownAuto(arm),
-        new ClawOpenAuto(claw),
         new VerticalDrivePID(driveTrain, DrivetrainConstants.dropAndLeaveSetpoint));
   }
 }

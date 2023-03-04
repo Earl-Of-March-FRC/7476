@@ -7,6 +7,7 @@ import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Arm.ArmControl;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
+import frc.robot.commands.Drivetrain.ScaleButtonCmd;
 import frc.robot.commands.ClawControl;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
@@ -29,12 +30,12 @@ public class RobotContainer {
 
   public RobotContainer() {
 
-    // driveSubsystem.setDefaultCommand(
-    //     new MecanumDriveCmd(
-    //         driveSubsystem,
-    //         () -> controller.getRawAxis(OperatorConstants.forwardAxis),
-    //         () -> controller.getRawAxis(OperatorConstants.sideAxis),
-    //         () -> controller.getRawAxis(OperatorConstants.rotationAxis)));
+    driveSubsystem.setDefaultCommand(
+        new MecanumDriveCmd(
+            driveSubsystem,
+            () -> controller.getRawAxis(OperatorConstants.forwardAxis),
+            () -> controller.getRawAxis(OperatorConstants.sideAxis),
+            () -> controller.getRawAxis(OperatorConstants.rotationAxis)));
 
     armMotors.setDefaultCommand(
         new ArmControl(armMotors, 
@@ -51,19 +52,22 @@ public class RobotContainer {
     new JoystickButton(driverStation, DriverStationConstants.ClawCloseButton)
         .whileTrue(new ClawControl(claw, 1));
 
+    new JoystickButton(controller, 8).toggleOnTrue(new ScaleButtonCmd());
+
     // new JoystickButton(controller, 1).onTrue(new VerticalDrivePID(driveSubsystem, 60));
   }
 
   public Command getAutonomousCommand(int cycle) {
     // switch(cycle){
     //   case 1:
-    //     return new DropAndStop(armMotors, claw);
-    //   case 2:
-    //     return new DropAndLeave();
+    //     driveSubsystem.setMecanum(-1.0,0.0,0.0);
+    //     new WaitCommand(1.5);
+    //     driveSubsystem.setMecanum(0,0,0);
     //   default:
-    //     return new DropAndStop(armMotors, claw);
+    //     break;
     // }
 
     return null;
+    // among us
   }
 }
