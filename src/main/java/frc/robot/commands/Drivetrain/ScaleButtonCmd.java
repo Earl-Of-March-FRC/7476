@@ -15,7 +15,7 @@ public class ScaleButtonCmd extends CommandBase {
   @Override
   public void initialize() {
     DrivetrainConstants.moveScaleFactor = 0.45;
-    DrivetrainConstants.turnScaleFactor = 0.25;
+    DrivetrainConstants.turnScaleFactor = 0.35;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -24,7 +24,7 @@ public class ScaleButtonCmd extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {DrivetrainConstants.moveScaleFactor = 0.7;}
+  public void end(boolean interrupted) {DrivetrainConstants.moveScaleFactor = 1; DrivetrainConstants.turnScaleFactor = 0.7;}
 
   // Returns true when the command should end.
   @Override
