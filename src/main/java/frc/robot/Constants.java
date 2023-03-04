@@ -27,7 +27,7 @@ public final class Constants {
     public static final double kD = 0;
 
     // kp 0.2
-    public static final double kPVerticalDrive = 0.02;
+    public static final double kPVerticalDrive = 0.005;
     public static final double kIVerticalDrive = 0;
     public static final double kDVerticalDrive = 0.0002;
 
@@ -86,7 +86,7 @@ public final class Constants {
 
   public static class OperatorConstants {
 
-    public static final int kDriverControllerPort = 0;
+    public static final int kDriverControllerPort = 3;
     public static final int forwardAxis = 1;
     public static final int sideAxis = 0;
     public static final int rotationAxis = 3;
@@ -121,8 +121,8 @@ public final class Constants {
   }
 
   public static class ScaleFactorConstants {
-    public static final double driveScaleFactor = 0.3;
-    public static final double turnScaleFactor = 0.15;
+    public static final double driveScaleFactor = 0.7;
+    public static final double turnScaleFactor = 0.5;
     public static final double driveDeadzone = 0.05;
     public static final double rotateDeadzone = 0.1;
   }
@@ -142,16 +142,13 @@ public final class Constants {
 
     public static final int DriverStationController = 1;
 
-    public static final int leftPinky = 0;
-    public static final int leftRing = 6;
-    public static final int leftMiddle = 5;
-    public static final int leftIndex = 10;
-    public static final int leftThumb = 9;
+    public static final int ArmInButton = 5;
+    public static final int ArmOutButton = 6;
 
-    public static final int rightThumb = 4;
-    public static final int rightIndex = 1;
-    public static final int rightMiddle = 2;
-    public static final int rightRing = 3;
-    public static final int rightPinky = 0;
+    public static final int ArmDownButton = 9;
+    public static final int ArmUpButton = 10;
+
+    public static final int ClawCloseButton = 2;
+    public static final int ClawOpenButton = 3;
   }
 }

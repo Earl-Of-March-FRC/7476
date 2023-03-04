@@ -82,7 +82,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public double getDistance() {
-    return (frontLeft.getSelectedSensorPosition() * 6 * Math.PI / 2048) / 10.71;
+    return (frontLeft.getSelectedSensorPosition() * 3.55 * Math.PI / 2048) / -10.71;
   }
 
   @Override

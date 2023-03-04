@@ -11,6 +11,7 @@ import frc.robot.commands.Arm.ArmOut;
 import frc.robot.commands.Arm.ArmUp;
 import frc.robot.commands.ClawControl;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
+import frc.robot.commands.Drivetrain.VerticalDrivePID;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DrivetrainSubsystem;
@@ -25,37 +26,39 @@ public class RobotContainer {
   public final VisionSubsystem vision = new VisionSubsystem();
 
   public final Joystick controller =
-      new Joystick(Constants.OperatorConstants.kDriverControllerPort);
+      new Joystick(3);
 
   public final Joystick driverStation =
       new Joystick(DriverStationConstants.DriverStationController);
 
   public RobotContainer() {
 
-    driveSubsystem.setDefaultCommand(
-        new MecanumDriveCmd(
-            driveSubsystem,
-            () -> controller.getRawAxis(OperatorConstants.forwardAxis),
-            () -> controller.getRawAxis(OperatorConstants.sideAxis),
-            () -> controller.getRawAxis(OperatorConstants.rotationAxis)));
+    // driveSubsystem.setDefaultCommand(
+    //     new MecanumDriveCmd(
+    //         driveSubsystem,
+    //         () -> controller.getRawAxis(OperatorConstants.forwardAxis),
+    //         () -> controller.getRawAxis(OperatorConstants.sideAxis),
+    //         () -> controller.getRawAxis(OperatorConstants.rotationAxis)));
 
     configureBindings();
   }
 
   private void configureBindings() {
-    new JoystickButton(driverStation, DriverStationConstants.leftThumb)
+    new JoystickButton(driverStation, DriverStationConstants.ArmDownButton)
         .whileTrue(new ArmDown(armMotors));
-    new JoystickButton(driverStation, DriverStationConstants.leftIndex)
+    new JoystickButton(driverStation, DriverStationConstants.ArmInButton)
         .whileTrue(new ArmIn(armMotors));
-    new JoystickButton(driverStation, DriverStationConstants.leftMiddle)
+    new JoystickButton(driverStation, DriverStationConstants.ClawOpenButton)
         .whileTrue(new ClawControl(claw, -1));
 
-    new JoystickButton(driverStation, DriverStationConstants.rightThumb)
+    new JoystickButton(driverStation, DriverStationConstants.ArmUpButton)
         .whileTrue(new ArmUp(armMotors));
-    new JoystickButton(driverStation, DriverStationConstants.rightIndex)
+    new JoystickButton(driverStation, DriverStationConstants.ArmOutButton)
         .whileTrue(new ArmOut(armMotors));
-    new JoystickButton(driverStation, DriverStationConstants.rightMiddle)
+    new JoystickButton(driverStation, DriverStationConstants.ClawCloseButton)
         .whileTrue(new ClawControl(claw, 1));
+
+    // new JoystickButton(controller, 1).onTrue(new VerticalDrivePID(driveSubsystem, 60));
   }
 
   public Command getAutonomousCommand(int cycle) {

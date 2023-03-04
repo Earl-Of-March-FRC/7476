@@ -29,13 +29,11 @@ public class VerticalDrivePID extends PIDCommand {
         output -> {
           drive.setMecanum(output, 0, 0);
         });
-    // Use addRequirements() here to declare subsystem dependencies.
-    // Configure additional PID options by calling `getController` here.
-  }
+      getController().setTolerance(5);  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return getController().atSetpoint();
   }
 }

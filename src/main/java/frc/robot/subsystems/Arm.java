@@ -28,7 +28,7 @@ public class Arm extends SubsystemBase {
 
   public Arm() {
     angleEncoder.setDistancePerPulse(Constants.ArmConstants.anglePerTick);
-    incline2.setInverted(true);
+    // incline2.setInverted(true);
   }
 
   public double getAngleEncoderDistance() {
@@ -58,7 +58,7 @@ public class Arm extends SubsystemBase {
   // }
 
   public void armExtension(double speed) {
-    extension1.set(speed);
+    extension1.set(-speed);
   }
 
   // public void armIn(double speed){
@@ -73,7 +73,7 @@ public class Arm extends SubsystemBase {
 
   public void armIncline(double speed) {
     incline1.set(speed);
-    incline2.set(speed);
+    incline2.set(-speed);
   }
 
   // public void armDown(double speed){

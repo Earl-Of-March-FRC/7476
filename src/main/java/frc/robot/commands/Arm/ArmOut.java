@@ -24,7 +24,7 @@ public class ArmOut extends CommandBase {
   @Override
   public void execute() {
     // armMotors.armOut();
-    armMotors.armExtension(0.2);
+    armMotors.armExtension(0.6);
   }
 
   @Override
