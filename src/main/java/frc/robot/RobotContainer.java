@@ -5,13 +5,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Arm.ArmDown;
-import frc.robot.commands.Arm.ArmIn;
-import frc.robot.commands.Arm.ArmOut;
-import frc.robot.commands.Arm.ArmUp;
-import frc.robot.commands.ClawControl;
+import frc.robot.commands.Arm.ArmControl;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
-import frc.robot.commands.Drivetrain.VerticalDrivePID;
+import frc.robot.commands.ClawControl;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DrivetrainSubsystem;
@@ -40,21 +36,18 @@ public class RobotContainer {
     //         () -> controller.getRawAxis(OperatorConstants.sideAxis),
     //         () -> controller.getRawAxis(OperatorConstants.rotationAxis)));
 
+    armMotors.setDefaultCommand(
+        new ArmControl(armMotors, 
+        () -> driverStation.getRawAxis(DriverStationConstants.ArmExtendAxis), 
+        () -> driverStation.getRawAxis(DriverStationConstants.ArmInclineAxis)));
+
     configureBindings();
   }
 
   private void configureBindings() {
-    new JoystickButton(driverStation, DriverStationConstants.ArmDownButton)
-        .whileTrue(new ArmDown(armMotors));
-    new JoystickButton(driverStation, DriverStationConstants.ArmInButton)
-        .whileTrue(new ArmIn(armMotors));
+
     new JoystickButton(driverStation, DriverStationConstants.ClawOpenButton)
         .whileTrue(new ClawControl(claw, -1));
-
-    new JoystickButton(driverStation, DriverStationConstants.ArmUpButton)
-        .whileTrue(new ArmUp(armMotors));
-    new JoystickButton(driverStation, DriverStationConstants.ArmOutButton)
-        .whileTrue(new ArmOut(armMotors));
     new JoystickButton(driverStation, DriverStationConstants.ClawCloseButton)
         .whileTrue(new ClawControl(claw, 1));
 

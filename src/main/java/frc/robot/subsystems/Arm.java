@@ -5,34 +5,24 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import frc.robot.Constants.ArmConstants;
 
 public class Arm extends SubsystemBase {
 
   private WPI_VictorSPX extension1 = new WPI_VictorSPX(ArmConstants.extension1);
-  // private WPI_TalonSRX extension2 = new WPI_TalonSRX(ArmConstants.extension2);
 
   private WPI_TalonSRX incline1 = new WPI_TalonSRX(ArmConstants.incline1);
   private WPI_TalonSRX incline2 = new WPI_TalonSRX(ArmConstants.incline2);
 
-  // private MotorControllerGroup extension = new MotorControllerGroup(extension1, extension2);
-
-  // private Encoder extensionEncoder = new Encoder(0, 1); // sample pin numbers
-
-  private Encoder angleEncoder =
-      new Encoder(
-          Constants.ArmConstants.angleEncoderChannelA, Constants.ArmConstants.angleEncoderChannelB);
-
   public Arm() {
-    angleEncoder.setDistancePerPulse(Constants.ArmConstants.anglePerTick);
-    // incline2.setInverted(true);
+    incline1.setSelectedSensorPosition(23000);
+    incline2.setSelectedSensorPosition(23000);
   }
 
-  public double getAngleEncoderDistance() {
-    return angleEncoder.getDistance();
+  public double getInclineEncoder() {
+    return incline1.getSelectedSensorPosition();
   }
 
   public void setEncoderValueIncline(double ticks) {
@@ -49,21 +39,9 @@ public class Arm extends SubsystemBase {
     extension1.setVoltage(voltage);
   }
 
-  // public void resetExtensionEncoder() {
-  //   extensionEncoder.reset();
-  // }
-
-  // public double getExtensionEncoder() {
-  //   return extensionEncoder.getRaw();
-  // }
-
   public void armExtension(double speed) {
     extension1.set(-speed);
   }
-
-  // public void armIn(double speed){
-  // extension1.set(0.1);
-  // }
 
   public void armExtensionBrake() {
     extension1.setNeutralMode(NeutralMode.Brake);
@@ -76,10 +54,6 @@ public class Arm extends SubsystemBase {
     incline2.set(-speed);
   }
 
-  // public void armDown(double speed){
-  // incline1.set(speed/3);
-  // }
-
   public void extendStop() {
     extension1.set(0);
   }
@@ -90,5 +64,9 @@ public class Arm extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {}
+  public void periodic() {
+    SmartDashboard.putNumber("Incline 1", incline1.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Incline 2", incline2.getSelectedSensorPosition());
+    
+  }
 }

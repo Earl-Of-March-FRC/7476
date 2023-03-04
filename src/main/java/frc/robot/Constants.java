@@ -43,7 +43,13 @@ public final class Constants {
     public static final double dropAndLeaveSetpoint = 12;
   }
 
-  public class ArmConstants {
+  public static class ArmConstants {
+
+    public static final int armMaxAngle = 50;
+
+    public static boolean extendPause = false;
+
+    public static final int minAngleAtMaxArmOut = 30;
 
     public static final int extension1 = 9; // left
 
@@ -142,13 +148,10 @@ public final class Constants {
 
     public static final int DriverStationController = 1;
 
-    public static final int ArmInButton = 5;
-    public static final int ArmOutButton = 6;
+    public static final int ArmExtendAxis = 5;
+    public static final int ArmInclineAxis = 1;
 
-    public static final int ArmDownButton = 9;
-    public static final int ArmUpButton = 10;
-
-    public static final int ClawCloseButton = 2;
-    public static final int ClawOpenButton = 3;
+    public static final int ClawCloseButton = 6;
+    public static final int ClawOpenButton = 5;
   }
 }
