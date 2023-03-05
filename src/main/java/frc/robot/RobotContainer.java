@@ -5,10 +5,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commandgroups.AutoCmds.Leave;
 import frc.robot.commands.Arm.ArmControl;
+import frc.robot.commands.ClawControl;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.commands.Drivetrain.ScaleButtonCmd;
-import frc.robot.commands.ClawControl;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DrivetrainSubsystem;
@@ -22,8 +23,7 @@ public class RobotContainer {
 
   public final VisionSubsystem vision = new VisionSubsystem();
 
-  public final Joystick controller =
-      new Joystick(3);
+  public final Joystick controller = new Joystick(3);
 
   public final Joystick driverStation =
       new Joystick(DriverStationConstants.DriverStationController);
@@ -38,9 +38,10 @@ public class RobotContainer {
             () -> controller.getRawAxis(OperatorConstants.rotationAxis)));
 
     armMotors.setDefaultCommand(
-        new ArmControl(armMotors, 
-        () -> driverStation.getRawAxis(DriverStationConstants.ArmExtendAxis), 
-        () -> driverStation.getRawAxis(DriverStationConstants.ArmInclineAxis)));
+        new ArmControl(
+            armMotors,
+            () -> driverStation.getRawAxis(DriverStationConstants.ArmExtendAxis),
+            () -> driverStation.getRawAxis(DriverStationConstants.ArmInclineAxis)));
 
     configureBindings();
   }
@@ -67,7 +68,7 @@ public class RobotContainer {
     //     break;
     // }
 
-    return null;
+    return new Leave(driveSubsystem);
     // among us
   }
 }

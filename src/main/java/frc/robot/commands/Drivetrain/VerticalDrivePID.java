@@ -29,7 +29,8 @@ public class VerticalDrivePID extends PIDCommand {
         output -> {
           drive.setMecanum(output, 0, 0);
         });
-      getController().setTolerance(5);  }
+    getController().setTolerance(5);
+  }
 
   // Returns true when the command should end.
   @Override

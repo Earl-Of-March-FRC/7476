@@ -4,23 +4,18 @@
 
 package frc.robot.commands.Arm;
 
-import java.util.function.DoubleSupplier;
-import java.util.function.Supplier;
-
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.subsystems.Arm;
+import java.util.function.DoubleSupplier;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ArmControl extends ParallelCommandGroup {
-  public ArmControl(Arm armMotors, DoubleSupplier extendSpeed, DoubleSupplier inclineSpeed ) {
+  public ArmControl(Arm armMotors, DoubleSupplier extendSpeed, DoubleSupplier inclineSpeed) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(
-      new ArmIncline(armMotors, inclineSpeed),
-      new ArmExtend(armMotors, extendSpeed)
-    );
+    addCommands(new ArmIncline(armMotors, inclineSpeed), new ArmExtend(armMotors, extendSpeed));
     addRequirements(armMotors);
   }
 }

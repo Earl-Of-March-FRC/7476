@@ -21,7 +21,7 @@ public final class Constants {
     public static final int backRightTalonPort = 4;
 
     public static double moveScaleFactor = 1;
-    public static double turnScaleFactor = 0.8;
+    public static double turnScaleFactor = 0.5;
 
     public static final double distanceTolerance = 1;
 
@@ -48,6 +48,8 @@ public final class Constants {
 
   public static class ArmConstants {
 
+    public static double maxExtendEncoder = 00;
+
     public static final int armMaxAngle = 50;
 
     public static boolean extendPause = false;
@@ -56,7 +58,7 @@ public final class Constants {
 
     public static final int extension1 = 9; // left
 
-    public static final int incline1 = 5;
+    public static final int incline1 = 0;
     public static final int incline2 = 6;
 
     public static final int claw = 7;

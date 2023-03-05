@@ -68,8 +68,18 @@ public class DrivetrainSubsystem extends SubsystemBase {
     return (distanceInches / 6 * Math.PI) * 2048;
   }
 
+  public void setMecanumPermanent(double y, double x, double rx) {
+    frontLeft.set(y + x + rx);
+    backLeft.set(y - x + rx);
+    frontRight.set(y - x - rx);
+    backRight.set(y + x - rx);
+  }
+
   public void setMecanum(double y, double x, double rx) {
-    mecDrive.driveCartesian(y*DrivetrainConstants.moveScaleFactor, x*DrivetrainConstants.moveScaleFactor, rx*DrivetrainConstants.turnScaleFactor);
+    mecDrive.driveCartesian(
+        y * DrivetrainConstants.moveScaleFactor,
+        x * DrivetrainConstants.moveScaleFactor,
+        rx * DrivetrainConstants.turnScaleFactor, ahrs.getRotation2d().times(-1));
 
     // frontLeft.set(y + x + rx);
     // backLeft.set(y - x + rx);

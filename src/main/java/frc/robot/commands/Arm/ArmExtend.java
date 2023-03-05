@@ -4,16 +4,16 @@
 
 package frc.robot.commands.Arm;
 
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.ArmConstants;
 import frc.robot.subsystems.Arm;
+import java.util.function.DoubleSupplier;
 
 public class ArmExtend extends CommandBase {
   Arm armMotors;
   DoubleSupplier speedSupplier;
   double speed;
+
   public ArmExtend(Arm armMotors, DoubleSupplier speedSupplier) {
     this.armMotors = armMotors;
     this.speedSupplier = speedSupplier;
@@ -25,17 +25,21 @@ public class ArmExtend extends CommandBase {
   @Override
   public void execute() {
     speed = speedSupplier.getAsDouble();
-    if(!ArmConstants.extendPause){
-      if(speed > 0){
-        armMotors.armExtension(speed * 0.125);
-      }else{
-        armMotors.armExtension(speed * 0.6);
+
+    if (!ArmConstants.extendPause) {
+      if (speed > 0) {
+        armMotors.armExtension(speed * 0.14);
+      } else {
+        armMotors.armExtension(speed * 0.65);
       }
     }
+    
   }
 
   @Override
-  public void end(boolean interrupted) {armMotors.extendStop();}
+  public void end(boolean interrupted) {
+    armMotors.extendStop();
+  }
 
   @Override
   public boolean isFinished() {

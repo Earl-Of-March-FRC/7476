@@ -1,11 +1,11 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,6 +18,8 @@ public class Arm extends SubsystemBase {
   private WPI_TalonSRX incline1 = new WPI_TalonSRX(ArmConstants.incline1);
   private WPI_TalonSRX incline2 = new WPI_TalonSRX(ArmConstants.incline2);
 
+  private final Encoder encoder = new Encoder(0, 1);
+
   AHRS gyro = new AHRS(Port.kOnboard);
 
   public Arm() {
@@ -26,8 +28,12 @@ public class Arm extends SubsystemBase {
     gyro.calibrate();
   }
 
-  public double getInclineEncoder() {
-    return incline2.getSelectedSensorPosition();
+  public double getInclineAngle() {
+    return incline2.getSelectedSensorPosition() / (25220 / ArmConstants.armMaxAngle);
+  }
+
+  public double getExtensionInches() {
+    return encoder.getRaw() / (25220 / 88); // change 25220 to num ticks per full extension
   }
 
   public void setEncoderValueIncline(double ticks) {
@@ -72,8 +78,8 @@ public class Arm extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Incline 1", incline1.getSelectedSensorPosition());
     SmartDashboard.putNumber("Incline 2", incline2.getSelectedSensorPosition());
-    
 
-    SmartDashboard.putNumber("Encoder Based Angle", getInclineEncoder() / (25220 / ArmConstants.armMaxAngle));
+    SmartDashboard.putNumber(
+        "Encoder Based Angle", getInclineAngle());
   }
 }
