@@ -27,10 +27,11 @@ public class ArmIncline extends CommandBase {
       armMotors.armIncline(-speed * 0.3);
     }
 
-    if(armMotors.getInclineAngle() <= 28){
-      new ArmExtend(armMotors, () -> 0.14).until(() -> armMotors.getExtensionInches() <= 78 / Math.cos(armMotors.getInclineAngle()));
+    if (armMotors.getInclineAngle() <= 28) {
+      new ArmExtend(armMotors, () -> 0.14)
+          .until(
+              () -> armMotors.getExtensionInches() <= 78 / Math.cos(armMotors.getInclineAngle()));
     }
-
   }
 
   @Override
@@ -42,5 +43,4 @@ public class ArmIncline extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-
 }

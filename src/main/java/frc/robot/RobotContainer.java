@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commandgroups.AutoCmds.Leave;
+import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
+import frc.robot.commandgroups.AutoCmds.ScoreFloorLeave;
 import frc.robot.commands.Arm.ArmControl;
 import frc.robot.commands.ClawControl;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
@@ -55,20 +57,20 @@ public class RobotContainer {
 
     new JoystickButton(controller, 8).toggleOnTrue(new ScaleButtonCmd());
 
-    // new JoystickButton(controller, 1).onTrue(new VerticalDrivePID(driveSubsystem, 60));
+    // new JoystickButton(controller, 1).onTrue(new ScoreFloorLeave(armMotors, driveSubsystem, claw));
   }
 
   public Command getAutonomousCommand(int cycle) {
     // switch(cycle){
     //   case 1:
-    //     driveSubsystem.setMecanum(-1.0,0.0,0.0);
-    //     new WaitCommand(1.5);
-    //     driveSubsystem.setMecanum(0,0,0);
+    //     new Leave(driveSubsystem);
+    //   case 2:
+    //     new ScoreFloorLeave(armMotors, driveSubsystem, claw);
     //   default:
     //     break;
     // }
-
-    return new Leave(driveSubsystem);
-    // among us
+    
+    return new ScoreFloorLeave(armMotors, driveSubsystem, claw);
   }
+
 }

@@ -23,8 +23,8 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     m_robotContainer.armMotors.armExtensionBrake();
 
-    auto_chooser.setDefaultOption("Leave", 1);
-    auto_chooser.addOption("Score and Leave", 2);
+    auto_chooser.setDefaultOption("Score Floor and Leave", 1);
+    // auto_chooser.addOption("Score Floor and Leave", 2);
 
     SmartDashboard.putData(auto_chooser);
   }

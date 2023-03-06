@@ -33,7 +33,6 @@ public class ArmExtend extends CommandBase {
         armMotors.armExtension(speed * 0.65);
       }
     }
-    
   }
 
   @Override

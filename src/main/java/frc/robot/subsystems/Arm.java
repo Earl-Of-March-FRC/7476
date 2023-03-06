@@ -1,12 +1,10 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Encoder;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.I2C.Port;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmConstants;
@@ -20,12 +18,11 @@ public class Arm extends SubsystemBase {
 
   private final Encoder encoder = new Encoder(0, 1);
 
-  AHRS gyro = new AHRS(Port.kOnboard);
-
   public Arm() {
     incline2.setSelectedSensorPosition(25220);
-    gyro.reset();
-    gyro.calibrate();
+    incline1.setNeutralMode(NeutralMode.Brake);
+    incline2.setNeutralMode(NeutralMode.Brake);
+    extension1.setNeutralMode(NeutralMode.Brake);
   }
 
   public double getInclineAngle() {
@@ -79,7 +76,6 @@ public class Arm extends SubsystemBase {
     SmartDashboard.putNumber("Incline 1", incline1.getSelectedSensorPosition());
     SmartDashboard.putNumber("Incline 2", incline2.getSelectedSensorPosition());
 
-    SmartDashboard.putNumber(
-        "Encoder Based Angle", getInclineAngle());
+    SmartDashboard.putNumber("Encoder Extension", encoder.getRaw());
   }
 }

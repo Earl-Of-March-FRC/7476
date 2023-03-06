@@ -79,7 +79,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     mecDrive.driveCartesian(
         y * DrivetrainConstants.moveScaleFactor,
         x * DrivetrainConstants.moveScaleFactor,
-        rx * DrivetrainConstants.turnScaleFactor, ahrs.getRotation2d().times(-1));
+        rx * DrivetrainConstants.turnScaleFactor
+        );
 
     // frontLeft.set(y + x + rx);
     // backLeft.set(y - x + rx);
