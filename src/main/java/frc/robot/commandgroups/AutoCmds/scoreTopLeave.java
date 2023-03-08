@@ -17,10 +17,9 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 public class scoreTopLeave extends SequentialCommandGroup {
   public scoreTopLeave(DrivetrainSubsystem driveTrain, Arm armMotors, Claw Claw) {
     addCommands(
-        // new ArmIncline(armMotors, () -> 0.8).withTimeout(3.9),
         new ArmExtend(armMotors, () -> 0.8).until( () -> armMotors.getExtensionInches() >=75 ),
         new ClawOpenAuto(Claw),
-        new ArmExtend(armMotors, () -> 0.8).until(() -> -armMotors.getExtensionInches() >=75),
+        new ArmExtend(armMotors, () -> 0.8).until(() -> armMotors.getExtensionInches() >=-75),
         new WaitCommand(0.5),
         new MecanumDriveCmd(driveTrain, () -> -0.35, () -> 0.0, () -> 0.0).withTimeout(2.7));
   }

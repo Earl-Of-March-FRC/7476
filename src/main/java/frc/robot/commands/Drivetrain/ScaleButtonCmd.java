@@ -25,8 +25,8 @@ public class ScaleButtonCmd extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    DrivetrainConstants.moveScaleFactor = 0.9;
-    DrivetrainConstants.turnScaleFactor = 0.65;
+    DrivetrainConstants.moveScaleFactor = 1.00;
+    DrivetrainConstants.turnScaleFactor = 0.80;
   }
 
   @Override
