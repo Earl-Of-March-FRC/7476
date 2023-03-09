@@ -20,8 +20,8 @@ public final class Constants {
     public static final int backLeftTalonPort = 2;
     public static final int backRightTalonPort = 4;
 
-    public static double moveScaleFactor = 0.9;
-    public static double turnScaleFactor = 0.65;
+    public static double moveScaleFactor = 1.00;
+    public static double turnScaleFactor = 0.80;
 
     public static final double distanceTolerance = 1;
 
