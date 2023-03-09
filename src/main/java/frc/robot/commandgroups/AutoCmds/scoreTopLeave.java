@@ -6,21 +6,28 @@ package frc.robot.commandgroups.AutoCmds;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.commands.Arm.ArmExtend;
-import frc.robot.commands.Arm.ArmIncline;
+import frc.robot.commands.Arm.ArmControl;
 import frc.robot.commands.Arm.ClawOpenAuto;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.Drivetrain;
 
-public class scoreTopLeave extends SequentialCommandGroup {
-  public scoreTopLeave(DrivetrainSubsystem driveTrain, Arm armMotors, Claw Claw) {
+public class ScoreTopLeave extends SequentialCommandGroup {
+  public ScoreTopLeave(Drivetrain driveTrain, Arm armMotors, Claw Claw) {
     addCommands(
-        new ArmExtend(armMotors, () -> 0.8).until( () -> armMotors.getExtensionInches() >=75 ),
+        // new ArmIncline(armMotors, () -> 0.8).until( () -> armMotors.getInclineAngle() >=50),
+        // new ArmExtend(armMotors, () -> 0.8).until( () -> armMotors.getExtensionInches() >=75),
+        new ArmControl(armMotors, () -> 0.8, () -> 0.8)
+            .until(() -> armMotors.getInclineAngle() >= 50)
+            .until(() -> armMotors.getExtensionInches() >= 61),
         new ClawOpenAuto(Claw),
-        new ArmExtend(armMotors, () -> 0.8).until(() -> armMotors.getExtensionInches() >=-75),
+        // new ArmExtend(armMotors, () -> 0.8).until(() -> armMotors.getExtensionInches() >=-75),
+        new ArmControl(armMotors, () -> 0.8, () -> 0.8)
+            .until(() -> armMotors.getInclineAngle() >= -50)
+            .until(() -> armMotors.getExtensionInches() >= -61),
         new WaitCommand(0.5),
-        new MecanumDriveCmd(driveTrain, () -> -0.35, () -> 0.0, () -> 0.0).withTimeout(2.7));
+        new MecanumDriveCmd(driveTrain, () -> -0.35, () -> 0.0, () -> 0.0)
+            .until(() -> driveTrain.getDistance() >= 13));
   }
 }
