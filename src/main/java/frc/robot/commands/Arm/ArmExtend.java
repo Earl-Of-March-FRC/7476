@@ -25,13 +25,11 @@ public class ArmExtend extends CommandBase {
   @Override
   public void execute() {
     speed = speedSupplier.getAsDouble();
-
-    if (!ArmConstants.extendPause) {
-      if (speed > 0) {
-        armMotors.armExtension(speed * 0.14);
-      } else {
-        armMotors.armExtension(speed * 0.65);
-      }
+    
+    if (speed > 0) {
+      armMotors.armExtension(-speed * 0.35);
+    } else {
+      armMotors.armExtension(-speed * 0.50);
     }
   }
 

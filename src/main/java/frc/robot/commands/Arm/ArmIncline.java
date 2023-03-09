@@ -22,16 +22,16 @@ public class ArmIncline extends CommandBase {
     speed = speedSupplier.getAsDouble();
 
     if (speed > 0) {
-      armMotors.armIncline(-speed * 0.2);
+      armMotors.armIncline(speed * -0.65);
     } else {
-      armMotors.armIncline(-speed * 0.3);
+      armMotors.armIncline(speed * -1);
     }
 
-    if (armMotors.getInclineAngle() <= 28) {
-      new ArmExtend(armMotors, () -> 0.14)
-          .until(
-              () -> armMotors.getExtensionInches() <= 78 / Math.cos(armMotors.getInclineAngle()));
-    }
+    // if (armMotors.getInclineAngle() <= 28) {
+    //   new ArmExtend(armMotors, () -> 0.14)
+    //       .until(
+    //           () -> armMotors.getExtensionInches() <= 78 / Math.cos(armMotors.getInclineAngle()));
+    // }
   }
 
   @Override

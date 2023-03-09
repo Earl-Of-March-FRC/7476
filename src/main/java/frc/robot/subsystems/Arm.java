@@ -19,18 +19,18 @@ public class Arm extends SubsystemBase {
   private final Encoder encoder = new Encoder(0, 1);
 
   public Arm() {
-    incline2.setSelectedSensorPosition(25220);
+    incline2.setSelectedSensorPosition(25000);
     incline1.setNeutralMode(NeutralMode.Brake);
     incline2.setNeutralMode(NeutralMode.Brake);
     extension1.setNeutralMode(NeutralMode.Brake);
   }
 
   public double getInclineAngle() {
-    return incline2.getSelectedSensorPosition() / (25220 / ArmConstants.armMaxAngle);
+    return incline2.getSelectedSensorPosition() / (25000 / ArmConstants.armMaxAngle);
   }
 
   public double getExtensionInches() {
-    return encoder.getRaw() / (25220 / 88); // change 25220 to num ticks per full extension
+    return 37+ (encoder.getRaw() / (-4100 / 51)); // change 25220 to num ticks per full extension
   }
 
   public void setEncoderValueIncline(double ticks) {
@@ -38,9 +38,10 @@ public class Arm extends SubsystemBase {
     incline2.set(ControlMode.Position, ticks);
   }
 
-  public void resetInclineEncoders() {
+  public void resetEncoders() {
     incline1.setSelectedSensorPosition(0);
-    incline2.setSelectedSensorPosition(0);
+    incline2.setSelectedSensorPosition(25000);
+    encoder.reset();
   }
 
   public void setVoltageExtension(double voltage) {
@@ -74,8 +75,8 @@ public class Arm extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Incline 1", incline1.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Incline 2", incline2.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Incline Angle", getInclineAngle());
 
-    SmartDashboard.putNumber("Encoder Extension", encoder.getRaw());
+    SmartDashboard.putNumber("Encoder Extension", getExtensionInches());
   }
 }

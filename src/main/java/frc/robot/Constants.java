@@ -50,7 +50,7 @@ public final class Constants {
 
     public static double maxExtendEncoder = 00;
 
-    public static final int armMaxAngle = 50;
+    public static final int armMaxAngle = 43;
 
     public static boolean extendPause = false;
 

@@ -5,10 +5,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineAuto;
 import frc.robot.commandgroups.AutoCmds.Leave;
-import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
+//import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
 import frc.robot.commandgroups.AutoCmds.ScoreFloorLeave;
 import frc.robot.commands.Arm.ArmControl;
+import frc.robot.commands.Arm.ArmExtendTop;
+import frc.robot.commands.Arm.ArmIncline;
+import frc.robot.commands.Arm.ArmInclineTop;
 import frc.robot.commands.ClawControl;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.commands.Drivetrain.ScaleButtonCmd;
@@ -32,12 +36,12 @@ public class RobotContainer {
 
   public RobotContainer() {
 
-    driveSubsystem.setDefaultCommand(
-        new MecanumDriveCmd(
-            driveSubsystem,
-            () -> controller.getRawAxis(OperatorConstants.forwardAxis),
-            () -> controller.getRawAxis(OperatorConstants.sideAxis),
-            () -> controller.getRawAxis(OperatorConstants.rotationAxis)));
+    // driveSubsystem.setDefaultCommand(
+    //     new MecanumDriveCmd(
+    //         driveSubsystem,
+    //         () -> controller.getRawAxis(OperatorConstants.forwardAxis),
+    //         () -> controller.getRawAxis(OperatorConstants.sideAxis),
+    //         () -> controller.getRawAxis(OperatorConstants.rotationAxis)));
 
     armMotors.setDefaultCommand(
         new ArmControl(
@@ -57,7 +61,7 @@ public class RobotContainer {
 
     new JoystickButton(controller, 8).toggleOnTrue(new ScaleButtonCmd());
 
-    // new JoystickButton(controller, 1).onTrue(new ScoreFloorLeave(armMotors, driveSubsystem, claw));
+    new JoystickButton(driverStation, 1).onTrue(new ArmExtensionAndInclineAuto(armMotors, 38, 64));
   }
 
   public Command getAutonomousCommand(int cycle) {
@@ -69,8 +73,8 @@ public class RobotContainer {
     //   default:
     //     break;
     // }
-    
-    return new ScoreFloorLeave(armMotors, driveSubsystem, claw);
+    return null;
+    //return new ScoreFloorLeave(armMotors, driveSubsystem, claw);
   }
 
 }
