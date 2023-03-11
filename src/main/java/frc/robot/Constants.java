@@ -20,9 +20,6 @@ public final class Constants {
     public static final int backLeftTalonPort = 2;
     public static final int backRightTalonPort = 4;
 
-    public static double moveScaleFactor = 1.00;
-    public static double turnScaleFactor = 0.80;
-
     public static final double distanceTolerance = 1;
 
     public static final double kP = 0;
@@ -48,51 +45,23 @@ public final class Constants {
 
   public static class ArmConstants {
 
-    public static double maxExtendEncoder = 00;
-
-    public static final int armMaxAngle = 43;
-
-    public static boolean extendPause = false;
-
-    public static final int minAngleAtMaxArmOut = 30;
-
     public static final int extension1 = 9; // left
-
     public static final int incline1 = 0;
     public static final int incline2 = 6;
-
     public static final int claw = 7;
 
-    public static final int fullUpAngle = 70;
-    public static final int anglePerTick = 500 / 24616;
+    public static final int conePlaceTopExtend = 85;
+    public static final int conePlaceTopIncline = 38;
 
-    public static final int angleEncoderChannelA = 3;
-    public static final int angleEncoderChannelB = 4;
+    public static final int conePlaceMidExtend = 85;
+    public static final int conePlaceMidIncline = 38;
 
-    public static final double kPIncline = 0;
-    public static final double kIIncline = 0;
-    public static final double kDIncline = 1;
+    public static final int conePlaceLowExtend = 85;
+    public static final int conePlaceLowIncline = 38;
 
-    public static final double kPExtension = 0;
-    public static final double kIExtension = 0;
-    public static final double kDExtension = 0;
+    public static final int armMaxAngle = 43;
+    public static final int minAngleAtMaxArmOut = 30;
 
-    public static final double armInclineTarget = -12000;
-
-    public static final double armExtensionTolerance = 0;
-    public static final double armInclineTolerance = 0;
-    public static final double inclineMaxVelocity = 0;
-    public static final double inclineMaxAcceleration = 0;
-
-    public static final double extensionMaxVelocity = 0;
-    public static final double extensionMaxAcceleration = 0;
-
-    public static final double armDefaultIncline = 0;
-    public static final double armLowestPositionIncline = 0;
-
-    public static final int clawOpen = 0;
-    public static final int clawCloseCube = 1;
-    public static final int clawCloseCone = 2;
   }
 
   public static class OperatorConstants {
@@ -132,8 +101,9 @@ public final class Constants {
   }
 
   public static class ScaleFactorConstants {
-    public static final double driveScaleFactor = 0.7;
-    public static final double turnScaleFactor = 0.5;
+    public static double driveScaleFactor = 1;
+    public static double turnScaleFactor = 0.8;
+    
     public static final double driveDeadzone = 0.05;
     public static final double rotateDeadzone = 0.1;
   }

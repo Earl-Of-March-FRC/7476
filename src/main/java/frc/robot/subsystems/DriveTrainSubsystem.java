@@ -76,11 +76,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
   }
 
   public void setMecanum(double y, double x, double rx) {
-    mecDrive.driveCartesian(
-        y * DrivetrainConstants.moveScaleFactor,
-        x * DrivetrainConstants.moveScaleFactor,
-        rx * DrivetrainConstants.turnScaleFactor
-        );
+    mecDrive.driveCartesian(y, x, rx);
 
     // frontLeft.set(y + x + rx);
     // backLeft.set(y - x + rx);

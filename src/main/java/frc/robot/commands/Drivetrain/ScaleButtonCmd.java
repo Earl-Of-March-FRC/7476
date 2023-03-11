@@ -6,6 +6,7 @@ package frc.robot.commands.Drivetrain;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DrivetrainConstants;
+import frc.robot.Constants.ScaleFactorConstants;
 
 public class ScaleButtonCmd extends CommandBase {
   /** Creates a new ScaleButtonCmd. */
@@ -14,8 +15,8 @@ public class ScaleButtonCmd extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    DrivetrainConstants.moveScaleFactor = 0.45;
-    DrivetrainConstants.turnScaleFactor = 0.3;
+    ScaleFactorConstants.driveScaleFactor = 0.45;
+    ScaleFactorConstants.turnScaleFactor = 0.3;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -25,8 +26,8 @@ public class ScaleButtonCmd extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    DrivetrainConstants.moveScaleFactor = 1.00;
-    DrivetrainConstants.turnScaleFactor = 0.80;
+    ScaleFactorConstants.driveScaleFactor = 1.00;
+    ScaleFactorConstants.turnScaleFactor = 0.80;
   }
 
   @Override
