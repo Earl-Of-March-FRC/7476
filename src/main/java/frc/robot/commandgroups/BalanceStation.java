@@ -8,7 +8,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 public class BalanceStation extends SequentialCommandGroup {
   public BalanceStation(DrivetrainSubsystem drive) {
     addCommands(
-        (new MecanumDriveCmd(drive, () -> 0.2, () -> 0.0, () -> 0.0)
+        (new MecanumDriveCmd(drive, () -> 0.2, () -> 0.0, () -> 0.0, () -> 1.0)
                 .until(() -> drive.getGyroPitch() > 10))
             .andThen(new BalanceChargeStation(drive)));
   }

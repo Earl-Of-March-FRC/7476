@@ -38,7 +38,8 @@ public class RobotContainer {
             driveSubsystem,
             () -> controller.getRawAxis(OperatorConstants.forwardAxis),
             () -> controller.getRawAxis(OperatorConstants.sideAxis),
-            () -> controller.getRawAxis(OperatorConstants.rotationAxis)));
+            () -> controller.getRawAxis(OperatorConstants.rotationAxis),
+            () -> controller.getRawAxis(OperatorConstants.scaleAxis)));
 
     armMotors.setDefaultCommand(
         new ArmControl(

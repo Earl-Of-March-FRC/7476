@@ -41,6 +41,9 @@ public final class Constants {
     public static final double kIBalance = 0;
     public static final double kDBalance = 0;
     public static final double dropAndLeaveSetpoint = 12;
+    
+    public static double maxDriveSpeed = 1;
+    public static double maxTurnSpeed = 0.8;
   }
 
   public static class ArmConstants {
@@ -75,6 +78,8 @@ public final class Constants {
     public static final int conePlaceTopButton = 3;
     public static final int cubeLineUpButton = 3;
     public static final int coneLineUpButton = 3;
+
+    public static int scaleAxis = 2;
   }
 
   public static class VisionConstants {
