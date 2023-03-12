@@ -6,9 +6,9 @@ package frc.robot.commandgroups.AutoCmds;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.commands.ClawControl;
 import frc.robot.commands.Arm.ArmExtend;
 import frc.robot.commands.Arm.ArmIncline;
+import frc.robot.commands.ClawControl;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
@@ -21,13 +21,13 @@ public class ScoreFloorLeave extends SequentialCommandGroup {
   /** Creates a new ScoreFloorLeave. */
   public ScoreFloorLeave(Arm armMotors, DrivetrainSubsystem drivetrain, Claw claw) {
     addCommands(
-      new ArmIncline(armMotors, () -> 2).withTimeout(1.25),
-      new ArmExtend(armMotors, () -> -0.65).withTimeout(0.65),
-      new ClawControl(claw, 1).withTimeout(1),
-      new ArmIncline(armMotors, () -> -1.5).withTimeout(1),
-      new ArmExtend(armMotors, () -> 0.65).withTimeout(1),
-      new WaitCommand(0.5),
+        new ArmIncline(armMotors, () -> 2).withTimeout(1.25),
+        new ArmExtend(armMotors, () -> -0.65).withTimeout(0.65),
+        new ClawControl(claw, 1).withTimeout(1),
+        new ArmIncline(armMotors, () -> -1.5).withTimeout(1),
+        new ArmExtend(armMotors, () -> 0.65).withTimeout(1),
+        new WaitCommand(0.5),
         new MecanumDriveCmd(drivetrain, () -> 0.5, () -> 0.0, () -> 0.0).withTimeout(3.25),
-      new WaitCommand(1));
+        new WaitCommand(1));
   }
 }

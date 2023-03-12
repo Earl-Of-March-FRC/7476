@@ -40,7 +40,7 @@ public class MecanumDriveCmd extends CommandBase {
     speedRotate = -1 * ScaleFactorConstants.turnScaleFactor * rotateFunction.get();
 
     if (Math.abs(speedRotate) < ScaleFactorConstants.rotateDeadzone) speedRotate = 0;
-    
+
     driveSubsystem.setMecanum(speedForward, speedSide, speedRotate);
   }
 
@@ -48,5 +48,7 @@ public class MecanumDriveCmd extends CommandBase {
   public void end(boolean interrupted) {}
 
   @Override
-  public boolean isFinished() {return false;}
+  public boolean isFinished() {
+    return false;
+  }
 }

@@ -3,13 +3,13 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DrivetrainConstants;
 
-public class DrivetrainSubsystem extends SubsystemBase{
+public class DrivetrainSubsystem extends SubsystemBase {
 
   private WPI_TalonFX frontLeft = new WPI_TalonFX(DrivetrainConstants.frontLeftTalonPort);
   private WPI_TalonFX frontRight = new WPI_TalonFX(DrivetrainConstants.frontRightTalonPort);
@@ -18,7 +18,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
   public MecanumDrive mecDrive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
-  private AHRS ahrs = new AHRS(I2C.Port.kOnboard);
+  private AHRS ahrs = new AHRS(Port.kUSB1);
 
   public DrivetrainSubsystem() {
     frontLeft.setNeutralMode(NeutralMode.Brake);
@@ -77,7 +77,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
 
   public void setMecanum(double y, double x, double rx) {
     mecDrive.driveCartesian(y, x, rx);
-
+    // , ahrs.getRotation2d().rotateBy(Rotation2d.fromDegrees(-90))
     // frontLeft.set(y + x + rx);
     // backLeft.set(y - x + rx);
     // frontRight.set(y - x - rx);
@@ -89,11 +89,14 @@ public class DrivetrainSubsystem extends SubsystemBase{
   }
 
   public double getDistance() {
-    return (frontLeft.getSelectedSensorPosition() * 3.55 * Math.PI / 2048) / -10.71;
+    return (frontLeft.getSelectedSensorPosition() * 3.55 * Math.PI / 2048) / 10.71;
   }
 
   @Override
-  public void periodic() {}
+  public void periodic() {
+    SmartDashboard.putNumber("Front Left Encoder Distance", getDistance());
+    SmartDashboard.putNumber("Gyro Get Angle", ahrs.getAngle());
+  }
 
   @Override
   public void simulationPeriodic() {}

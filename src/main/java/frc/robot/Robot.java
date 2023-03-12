@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commandgroups.AutoCmds.ScoreTopLeave;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
@@ -55,7 +56,10 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand(auto_chooser.getSelected());
+    m_robotContainer.armMotors.resetEncoders();
+    m_robotContainer.driveSubsystem.resetEncoders();
+
+    m_autonomousCommand = new ScoreTopLeave(m_robotContainer.driveSubsystem, m_robotContainer.armMotors, m_robotContainer.claw);
 
     // // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -70,6 +74,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     m_robotContainer.armMotors.resetEncoders();
+    m_robotContainer.driveSubsystem.resetEncoders();
 
     m_robotContainer.armMotors.armExtensionBrake();
     if (m_autonomousCommand != null) {

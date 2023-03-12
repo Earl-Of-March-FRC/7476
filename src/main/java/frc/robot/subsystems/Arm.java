@@ -30,7 +30,7 @@ public class Arm extends SubsystemBase {
   }
 
   public double getExtensionInches() {
-    return 37+ (encoder.getRaw() / (-4100 / 51)); // change 25220 to num ticks per full extension
+    return 37 + (encoder.getRaw() / (-4100 / 51)); // change 25220 to num ticks per full extension
   }
 
   public void setEncoderValueIncline(double ticks) {

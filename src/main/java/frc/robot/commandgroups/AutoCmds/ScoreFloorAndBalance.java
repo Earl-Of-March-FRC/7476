@@ -13,7 +13,8 @@
 
 // public class ScoreFloorAndBalance extends SequentialCommandGroup {
 //   /** Creates a new ScoreFloorAndBalance. */
-//   public ScoreFloorAndBalance(Arm armMotors, Claw claw, DrivetrainSubsystem drivetrainSubsystem) {
+//   public ScoreFloorAndBalance(Arm armMotors, Claw claw, DrivetrainSubsystem drivetrainSubsystem)
+// {
 //     addCommands(
 //         new ArmDownAuto(armMotors),
 //         new ClawOpenAuto(claw),

@@ -9,25 +9,29 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
 import frc.robot.subsystems.Arm;
 
-public class ArmInclineTop extends ProfiledPIDCommand {
-  public ArmInclineTop(Arm armMotors, double angleSetpoint) {
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// information, see:
+// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
+public class ArmRetract extends ProfiledPIDCommand {
+  public ArmRetract(Arm armMotors, double extensionSetpoint) {
     super(
         new ProfiledPIDController(
             // The PID gains
-            0.55,
+            0.2,
             0,
             0,
             // The motion profile constraints
-            new TrapezoidProfile.Constraints(60, 90)),
+            new TrapezoidProfile.Constraints(50, 20)),
         // This should return the measurement
-        () -> armMotors.getInclineAngle(),
+        () -> armMotors.getExtensionInches(),
         // This should return the goal (can also be a constant)
-        () -> angleSetpoint,
+        () -> extensionSetpoint,
         // This uses the output
-        (output, setpoint) -> armMotors.armIncline(output),
-        armMotors);
-
-    getController().setTolerance(1);
+        (output, setpoint) -> {
+          armMotors.armExtension(output);
+        });
+    addRequirements(armMotors);
+    getController().setTolerance(1.5);
   }
 
   // Returns true when the command should end.

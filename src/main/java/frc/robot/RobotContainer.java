@@ -6,15 +6,13 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineAuto;
-import frc.robot.commandgroups.AutoCmds.Leave;
-//import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
-import frc.robot.commandgroups.AutoCmds.ScoreFloorLeave;
+import frc.robot.commandgroups.AutoCmds.ScoreTopLeave;
+// import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
 import frc.robot.commands.Arm.ArmControl;
-import frc.robot.commands.Arm.ArmExtendTop;
-import frc.robot.commands.Arm.ArmIncline;
-import frc.robot.commands.Arm.ArmInclineTop;
 import frc.robot.commands.ClawControl;
 import frc.robot.commands.Drivetrain.ScaleButtonCmd;
+import frc.robot.commands.Drivetrain.VerticalPID;
+import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DrivetrainSubsystem;
@@ -22,7 +20,7 @@ import frc.robot.subsystems.VisionSubsystem;
 
 public class RobotContainer {
 
-  private final DrivetrainSubsystem driveSubsystem = new DrivetrainSubsystem();
+  final DrivetrainSubsystem driveSubsystem = new DrivetrainSubsystem();
   public final Arm armMotors = new Arm();
   public final Claw claw = new Claw();
 
@@ -35,12 +33,12 @@ public class RobotContainer {
 
   public RobotContainer() {
 
-    // driveSubsystem.setDefaultCommand(
-    //     new MecanumDriveCmd(
-    //         driveSubsystem,
-    //         () -> controller.getRawAxis(OperatorConstants.forwardAxis),
-    //         () -> controller.getRawAxis(OperatorConstants.sideAxis),
-    //         () -> controller.getRawAxis(OperatorConstants.rotationAxis)));
+    driveSubsystem.setDefaultCommand(
+        new MecanumDriveCmd(
+            driveSubsystem,
+            () -> controller.getRawAxis(OperatorConstants.forwardAxis),
+            () -> controller.getRawAxis(OperatorConstants.sideAxis),
+            () -> controller.getRawAxis(OperatorConstants.rotationAxis)));
 
     armMotors.setDefaultCommand(
         new ArmControl(
@@ -60,10 +58,13 @@ public class RobotContainer {
 
     new JoystickButton(controller, 8).toggleOnTrue(new ScaleButtonCmd());
 
-    new JoystickButton(driverStation, 1).onTrue(new ArmExtensionAndInclineAuto(armMotors, 38, 64));
+    new JoystickButton(driverStation, 1).onTrue(new ArmExtensionAndInclineAuto(armMotors, 38, 85));
+    new JoystickButton(driverStation, 2).onTrue(new ScoreTopLeave(driveSubsystem, armMotors, claw));
+
+    new JoystickButton(controller, 1).onTrue(new VerticalPID(driveSubsystem, -10));
   }
 
-  public Command getAutonomousCommand(int cycle) {
+  public Command getAutonomousCommand() {
     // switch(cycle){
     //   case 1:
     //     new Leave(driveSubsystem);
@@ -72,8 +73,7 @@ public class RobotContainer {
     //   default:
     //     break;
     // }
-    return null;
-    //return new ScoreFloorLeave(armMotors, driveSubsystem, claw);
+    // return null;
+    return new ScoreTopLeave(driveSubsystem, armMotors, claw);
   }
-
 }

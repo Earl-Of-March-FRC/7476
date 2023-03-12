@@ -6,19 +6,19 @@ package frc.robot.commandgroups.AutoArm;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.commands.Arm.ArmExtendTop;
 import frc.robot.commands.Arm.ArmInclineTop;
+import frc.robot.commands.Arm.ArmRetract;
 import frc.robot.subsystems.Arm;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ArmExtensionAndInclineAuto extends SequentialCommandGroup {
+public class ArmExtensionAndInclineLow extends SequentialCommandGroup {
   /** Creates a new ArmExtensionAndInclineAuto. */
-  public ArmExtensionAndInclineAuto(Arm arm, double angleSetpoint, double extensionSetpoint) {
+  public ArmExtensionAndInclineLow(Arm arm, double angleSetpoint, double extensionSetpoint) {
     addCommands(
         new ArmInclineTop(arm, angleSetpoint),
         new WaitCommand(0.5),
-        new ArmExtendTop(arm, extensionSetpoint));
+        new ArmRetract(arm, extensionSetpoint));
   }
 }

@@ -5,7 +5,6 @@
 package frc.robot.commands.Arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.ArmConstants;
 import frc.robot.subsystems.Arm;
 import java.util.function.DoubleSupplier;
 
@@ -25,7 +24,7 @@ public class ArmExtend extends CommandBase {
   @Override
   public void execute() {
     speed = speedSupplier.getAsDouble();
-    
+
     if (speed > 0) {
       armMotors.armExtension(-speed * 0.35);
     } else {

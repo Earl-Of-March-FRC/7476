@@ -8,9 +8,9 @@ import frc.robot.subsystems.Arm;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ArmExtendTop extends ProfiledPIDCommand {
+public class ArmExtendTopCopy extends ProfiledPIDCommand {
   /** Creates a new ArmMoveTop. */
-  public ArmExtendTop(Arm armMotors, double extensionSetpoint) {
+  public ArmExtendTopCopy(Arm armMotors, double extensionSetpoint) {
     super(
         // The ProfiledPIDController used by the command
         new ProfiledPIDController(
