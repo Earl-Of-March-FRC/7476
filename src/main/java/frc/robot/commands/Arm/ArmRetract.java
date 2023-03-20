@@ -37,6 +37,9 @@ public class ArmRetract extends ProfiledPIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(getController().atGoal()){
+      System.out.println("Retract Ended");
+    }
     return getController().atGoal();
   }
 }

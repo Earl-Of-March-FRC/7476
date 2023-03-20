@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineAuto;
+import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineLow;
 import frc.robot.commandgroups.AutoCmds.ScoreTopLeave;
 // import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
 import frc.robot.commands.Arm.ArmControl;
@@ -13,6 +14,7 @@ import frc.robot.commands.ClawControl;
 import frc.robot.commands.Drivetrain.ScaleButtonCmd;
 import frc.robot.commands.Drivetrain.VerticalPID;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
+import frc.robot.commands.Drivetrain.ResetCalibrateGyro;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DrivetrainSubsystem;
@@ -59,9 +61,11 @@ public class RobotContainer {
     new JoystickButton(controller, 8).toggleOnTrue(new ScaleButtonCmd());
 
     new JoystickButton(driverStation, 1).onTrue(new ArmExtensionAndInclineAuto(armMotors, 38, 85));
+    new JoystickButton(driverStation, 3).onTrue(new ArmExtensionAndInclineLow(armMotors, 20, 50));
     new JoystickButton(driverStation, 2).onTrue(new ScoreTopLeave(driveSubsystem, armMotors, claw));
 
     new JoystickButton(controller, 1).onTrue(new VerticalPID(driveSubsystem, -10));
+    new JoystickButton(controller, 10).onTrue(new ResetCalibrateGyro(driveSubsystem));
   }
 
   public Command getAutonomousCommand() {

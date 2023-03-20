@@ -17,8 +17,9 @@ public class ArmExtensionAndInclineLow extends SequentialCommandGroup {
   /** Creates a new ArmExtensionAndInclineAuto. */
   public ArmExtensionAndInclineLow(Arm arm, double angleSetpoint, double extensionSetpoint) {
     addCommands(
-        new ArmInclineTop(arm, angleSetpoint),
+        new ArmRetract(arm, extensionSetpoint),
         new WaitCommand(0.5),
-        new ArmRetract(arm, extensionSetpoint));
+        new ArmInclineTop(arm, angleSetpoint));
+        
   }
 }

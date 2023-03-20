@@ -3,6 +3,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -49,6 +51,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
     ahrs.reset();
   }
 
+  public void calibrateGyro(){
+    ahrs.calibrate();
+  }
   public double getGyroRoll() {
     return ahrs.getRoll();
   }
@@ -76,7 +81,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public void setMecanum(double y, double x, double rx) {
-    mecDrive.driveCartesian(y, x, rx);
+    mecDrive.driveCartesian(y, x, rx, ahrs.getRotation2d());
+    
     // , ahrs.getRotation2d().rotateBy(Rotation2d.fromDegrees(-90))
     // frontLeft.set(y + x + rx);
     // backLeft.set(y - x + rx);

@@ -33,6 +33,9 @@ public class ArmInclineTop extends ProfiledPIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(getController().atGoal()){
+      System.out.println("Incline Top Ended");
+    }
     return getController().atGoal();
   }
 }
