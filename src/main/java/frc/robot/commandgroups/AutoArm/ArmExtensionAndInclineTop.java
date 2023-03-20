@@ -13,9 +13,9 @@ import frc.robot.subsystems.Arm;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ArmExtensionAndInclineAuto extends SequentialCommandGroup {
+public class ArmExtensionAndInclineTop extends SequentialCommandGroup {
   /** Creates a new ArmExtensionAndInclineAuto. */
-  public ArmExtensionAndInclineAuto(Arm arm, double angleSetpoint, double extensionSetpoint) {
+  public ArmExtensionAndInclineTop(Arm arm, double angleSetpoint, double extensionSetpoint) {
     addCommands(
         new ArmInclineTop(arm, angleSetpoint),
         new WaitCommand(0.5),

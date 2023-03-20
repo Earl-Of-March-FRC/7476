@@ -7,7 +7,7 @@ package frc.robot.commandgroups.AutoCmds;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.ArmConstants;
-import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineAuto;
+import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineTop;
 import frc.robot.commands.Arm.ArmExtend;
 import frc.robot.commands.Arm.ArmRetract;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
@@ -22,7 +22,7 @@ public class ScoreTopLeave extends SequentialCommandGroup {
     addCommands(
         // new ArmIncline(armMotors, () -> 0.8).until( () -> armMotors.getInclineAngle() >=50),
         // new ArmExtend(armMotors, () -> 0.8).until( () -> armMotors.getExtensionInches() >=75),
-        new ArmExtensionAndInclineAuto(
+        new ArmExtensionAndInclineTop(
             armMotors, ArmConstants.conePlaceTopIncline, ArmConstants.conePlaceTopExtend),
         new ClawControl(claw, -1).withTimeout(0.5).raceWith(new ArmExtend(armMotors, () -> -0.10)),
         // new ArmExtend(armMotors, () -> 0.8).until(() -> armMotors.getExtensionInches() >=-75),

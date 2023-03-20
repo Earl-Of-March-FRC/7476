@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineAuto;
+import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineTop;
 import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineLow;
 import frc.robot.commandgroups.AutoCmds.ScoreTopLeave;
 // import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
@@ -61,7 +61,7 @@ public class RobotContainer {
 
     new JoystickButton(controller, 8).toggleOnTrue(new ScaleButtonCmd());
 
-    new JoystickButton(driverStation, 1).onTrue(new ArmExtensionAndInclineAuto(armMotors, 38, 85));
+    new JoystickButton(driverStation, 1).onTrue(new ArmExtensionAndInclineTop(armMotors, 38, 85));
     new JoystickButton(driverStation, 3).onTrue(new ArmExtensionAndInclineLow(armMotors, 20, 50));
     new JoystickButton(driverStation, 2).onTrue(new ScoreTopLeave(driveSubsystem, armMotors, claw));
 
