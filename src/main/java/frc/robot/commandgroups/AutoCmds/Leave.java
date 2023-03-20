@@ -12,9 +12,9 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 public class Leave extends SequentialCommandGroup {
   public Leave(DrivetrainSubsystem driveTrain) {
     addCommands(
-        new MecanumDriveCmd(driveTrain, () -> 0.35, () -> 0.0, () -> 0.0).withTimeout(2.7),
+        new MecanumDriveCmd(driveTrain, () -> 0.35, () -> 0.0, () -> 0.0, () -> 1.0).withTimeout(2.7),
         new WaitCommand(1),
-        new MecanumDriveCmd(driveTrain, () -> -0.35, () -> 0.0, () -> 0.0).withTimeout(2.7),
+        new MecanumDriveCmd(driveTrain, () -> -0.35, () -> 0.0, () -> 0.0, () -> 1.0).withTimeout(2.7),
         new WaitCommand(1));
   }
 }
