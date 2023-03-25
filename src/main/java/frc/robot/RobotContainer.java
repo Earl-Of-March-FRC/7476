@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriverStationConstants;
@@ -19,6 +20,7 @@ import frc.robot.commands.Arm.ArmControl;
 import frc.robot.commands.Arm.ArmRetract;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.commands.ClawControl;
+import frc.robot.commands.GyroReset;
 // import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
@@ -31,6 +33,7 @@ public class RobotContainer {
   final DrivetrainSubsystem driveSubsystem = new DrivetrainSubsystem();
   public final Arm armMotors = new Arm();
   public final Claw claw = new Claw();
+
 
   public final VisionSubsystem vision = new VisionSubsystem();
   public final LEDSubsystem led = new LEDSubsystem();
@@ -73,18 +76,18 @@ public class RobotContainer {
     // new JoystickButton(driverStation, 2).onTrue(new ArmRetract(armMotors, 38.0));
 
     // top position
-    new JoystickButton(driverStation, 4).onTrue(new ArmPlaceTop(armMotors));
+    new JoystickButton(driverStation, 4).onTrue(new ArmPlaceTop(armMotors, led));
 
     // middle position
-    new JoystickButton(driverStation, 2).onTrue(new ArmPlaceMid(armMotors));
+    new JoystickButton(driverStation, 2).onTrue(new ArmPlaceMid(armMotors, led));
 
     // Low position
-    new JoystickButton(driverStation, 1).onTrue(new ArmPlaceLow(armMotors));
+    new JoystickButton(driverStation, 1).onTrue(new ArmPlaceLow(armMotors, led));
 
     // default position
-    new JoystickButton(driverStation, 7).onTrue(new ArmDefaultPosition(armMotors));
+    new JoystickButton(driverStation, 7).onTrue(new ArmDefaultPosition(armMotors, led));
 
-    // new JoystickButton(controller, 1).onTrue(new LeaveClose(driveSubsystem));
+    new JoystickButton(controller, 7).onTrue(new GyroReset(driveSubsystem));
 
 
     // new JoystickButton(driverStation, 2).onTrue(new ScoreTopLeaveClose(driveSubsystem, armMotors,

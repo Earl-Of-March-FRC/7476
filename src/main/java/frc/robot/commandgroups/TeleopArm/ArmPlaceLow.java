@@ -6,17 +6,22 @@ package frc.robot.commandgroups.TeleopArm;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.LEDGold;
+import frc.robot.commands.LEDRainbow;
 import frc.robot.commands.Arm.ArmExtendTop;
 import frc.robot.commands.Arm.ArmInclineTop;
 import frc.robot.commands.Arm.ArmRetract;
 import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.LEDSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ArmPlaceLow extends SequentialCommandGroup {
   /** Creates a new ArmPlaceTop. */
-  public ArmPlaceLow(Arm arm) {
+  public ArmPlaceLow(Arm arm, LEDSubsystem led) {
+
+    addCommands(new LEDGold(led));
 
     if(arm.getExtensionInches() > 41){
       addCommands(
@@ -30,7 +35,10 @@ public class ArmPlaceLow extends SequentialCommandGroup {
     }
 
     addCommands(
-      new ArmInclineTop(arm, 10));
+      new ArmInclineTop(arm, 10),
+      new LEDRainbow(led)
+      
+      );
     
   }
 }

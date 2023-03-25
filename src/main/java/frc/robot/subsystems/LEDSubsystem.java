@@ -7,23 +7,29 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.LEDConstants;
+import edu.wpi.first.wpilibj.PWM;
 
 public class LEDSubsystem extends SubsystemBase {
 
   private Spark LEDController = new Spark(LEDConstants.LEDTalonPort);
+  private PWM LED=new PWM(9);
   
-  public void setLEDHeartbeatSlow() {
-    LEDController.set(0.03);
+  public void setPresetGold() {
+    LEDController.set(0.33);
+    LED.setRaw(125);
+     
+  }
+
+  public void setRainbow() {
+    LEDController.set(-0.99); // 0.89 is green
   }
   
   /** Creates a new LEDSubsystem. */
-  public LEDSubsystem() {}
+  public LEDSubsystem() {
+    setRainbow();
+  }
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
-
-    setLEDHeartbeatSlow();
-    
   }
 }

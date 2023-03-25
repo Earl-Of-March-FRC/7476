@@ -17,11 +17,11 @@ public class ArmRetract extends ProfiledPIDCommand {
     super(
         new ProfiledPIDController(
             // The PID gains
-            0.15,
+            0.12,
             0,
             0,
             // The motion profile constraints
-            new TrapezoidProfile.Constraints(60, 30)),
+            new TrapezoidProfile.Constraints(30, 30)),
         // This should return the measurement
         () -> armMotors.getExtensionInches(),
         // This should return the goal (can also be a constant)

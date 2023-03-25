@@ -17,5 +17,14 @@ public class ArmControl extends ParallelCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new ArmIncline(armMotors, inclineSpeed), new ArmExtend(armMotors, extendSpeed));
     addRequirements(armMotors);
+    // double inclineSpeed2 = inclineSpeed.getAsDouble();
+    // double horizDistance=Math.cos();
+    // if(inclineSpeed2<0){
+
+    // }
+
+    // if(armMotors.getInclineAngle() < 30 ){
+    //   addCommands(new ArmRetract(armMotors, 50));
+    // }
   }
 }

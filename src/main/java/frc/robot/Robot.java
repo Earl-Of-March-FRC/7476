@@ -23,8 +23,12 @@ public class Robot extends TimedRobot {
     CameraServer.startAutomaticCapture();
     m_robotContainer = new RobotContainer();
     m_robotContainer.armMotors.armExtensionBrake();
+    m_robotContainer.armMotors.resetEncoders();
+    m_robotContainer.driveSubsystem.resetEncoders();
+    m_robotContainer.driveSubsystem.resetGyro();
+    m_robotContainer.driveSubsystem.calibrateGyro();
 
-    
+
 
     auto_chooser.setDefaultOption("Score Floor and Leave", 1);
 
@@ -71,6 +75,11 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    m_robotContainer.armMotors.resetEncoders();
+    m_robotContainer.driveSubsystem.resetEncoders();
+    m_robotContainer.driveSubsystem.resetGyro();
+    m_robotContainer.driveSubsystem.calibrateGyro();
   
   }
 
@@ -79,6 +88,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testInit() {
+    // m_robotContainer.armMotors.resetEncoders();
+    // m_robotContainer.driveSubsystem.resetEncoders();
+    // m_robotContainer.driveSubsystem.resetGyro();
+    // m_robotContainer.driveSubsystem.calibrateGyro();
+
     CommandScheduler.getInstance().cancelAll();
   }
 
