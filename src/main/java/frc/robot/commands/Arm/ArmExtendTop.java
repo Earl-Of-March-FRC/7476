@@ -19,7 +19,7 @@ public class ArmExtendTop extends ProfiledPIDCommand {
             0,
             0,
             // The motion profile constraints
-            new TrapezoidProfile.Constraints(110, 100)),
+            new TrapezoidProfile.Constraints(90, 100)),
         // This should return the measurement
         () -> armMotors.getExtensionInches(),
         // This should return the goal (can also be a constant)
@@ -35,7 +35,7 @@ public class ArmExtendTop extends ProfiledPIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(getController().atGoal()){
+    if (getController().atGoal()) {
       System.out.println("Extend Top Ended");
     }
     return getController().atGoal();

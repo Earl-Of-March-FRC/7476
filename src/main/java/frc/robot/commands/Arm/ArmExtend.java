@@ -28,7 +28,7 @@ public class ArmExtend extends CommandBase {
     if (speed > 0) {
       armMotors.armExtension(-speed * 0.35);
     } else {
-      armMotors.armExtension(-speed * 0.50);
+      armMotors.armExtension(-speed * 0.70);
     }
   }
 

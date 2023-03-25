@@ -4,8 +4,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DrivetrainConstants;
 import frc.robot.Constants.ScaleFactorConstants;
 import frc.robot.subsystems.DrivetrainSubsystem;
-
-import java.util.function.DoubleSupplier;
 import java.util.function.Supplier;
 
 public class MecanumDriveCmd extends CommandBase {
@@ -36,13 +34,20 @@ public class MecanumDriveCmd extends CommandBase {
   public void execute() {
 
     double speedForward, speedSide, speedRotate;
-    speedForward = (DrivetrainConstants.maxDriveSpeed * (-scaleFactor.get()+1) / 2) * forwardFunction.get();
+    speedForward =
+        (DrivetrainConstants.maxDriveSpeed * (-scaleFactor.get() + 1) / 2) * forwardFunction.get();
 
     if (Math.abs(speedForward) < ScaleFactorConstants.driveDeadzone) speedForward = 0;
-    speedSide = -1 * (DrivetrainConstants.maxDriveSpeed * (-scaleFactor.get()+1) / 2) * sideFunction.get();
+    speedSide =
+        -1
+            * (DrivetrainConstants.maxDriveSpeed * (-scaleFactor.get() + 1) / 2)
+            * sideFunction.get();
 
     if (Math.abs(speedSide) < ScaleFactorConstants.driveDeadzone) speedSide = 0;
-    speedRotate = -1 * (DrivetrainConstants.maxTurnSpeed * (-scaleFactor.get()+1) / 2) * rotateFunction.get();
+    speedRotate =
+        -1
+            * (DrivetrainConstants.maxTurnSpeed * (-scaleFactor.get() + 1) / 2)
+            * rotateFunction.get();
 
     if (Math.abs(speedRotate) < ScaleFactorConstants.rotateDeadzone) speedRotate = 0;
 

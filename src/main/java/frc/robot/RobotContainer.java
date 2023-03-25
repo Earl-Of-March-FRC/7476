@@ -5,19 +5,25 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineTop;
 import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineLow;
-import frc.robot.commandgroups.AutoCmds.ScoreTopLeave;
-// import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
+import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineTop;
+import frc.robot.commandgroups.AutoCmds.LeaveClose;
+import frc.robot.commandgroups.AutoCmds.LeaveFar;
+import frc.robot.commandgroups.AutoCmds.ScoreTopLeaveClose;
+import frc.robot.commandgroups.AutoCmds.ScoreTopLeaveFar;
+import frc.robot.commandgroups.TeleopArm.ArmDefaultPosition;
+import frc.robot.commandgroups.TeleopArm.ArmPlaceMid;
+import frc.robot.commandgroups.TeleopArm.ArmPlaceLow;
+import frc.robot.commandgroups.TeleopArm.ArmPlaceTop;
 import frc.robot.commands.Arm.ArmControl;
-import frc.robot.commands.ClawControl;
-import frc.robot.commands.Drivetrain.ScaleButtonCmd;
-import frc.robot.commands.Drivetrain.VerticalPID;
+import frc.robot.commands.Arm.ArmRetract;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
-import frc.robot.commands.Drivetrain.ResetCalibrateGyro;
+import frc.robot.commands.ClawControl;
+// import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 
 public class RobotContainer {
@@ -27,8 +33,9 @@ public class RobotContainer {
   public final Claw claw = new Claw();
 
   public final VisionSubsystem vision = new VisionSubsystem();
+  public final LEDSubsystem led = new LEDSubsystem();
 
-  public final Joystick controller = new Joystick(3);
+  public final Joystick controller = new Joystick(OperatorConstants.kDriverControllerPort);
 
   public final Joystick driverStation =
       new Joystick(DriverStationConstants.DriverStationController);
@@ -38,8 +45,8 @@ public class RobotContainer {
     driveSubsystem.setDefaultCommand(
         new MecanumDriveCmd(
             driveSubsystem,
-            () -> controller.getRawAxis(OperatorConstants.forwardAxis),
             () -> controller.getRawAxis(OperatorConstants.sideAxis),
+            () -> controller.getRawAxis(OperatorConstants.forwardAxis),
             () -> controller.getRawAxis(OperatorConstants.rotationAxis),
             () -> controller.getRawAxis(OperatorConstants.scaleAxis)));
 
@@ -59,14 +66,32 @@ public class RobotContainer {
     new JoystickButton(driverStation, DriverStationConstants.ClawCloseButton)
         .whileTrue(new ClawControl(claw, 1));
 
-    new JoystickButton(controller, 8).toggleOnTrue(new ScaleButtonCmd());
+    // new JoystickButton(controller, 8).toggleOnTrue(new ScaleButtonCmd());
 
-    new JoystickButton(driverStation, 1).onTrue(new ArmExtensionAndInclineTop(armMotors, 38, 85));
-    new JoystickButton(driverStation, 3).onTrue(new ArmExtensionAndInclineLow(armMotors, 20, 50));
-    new JoystickButton(driverStation, 2).onTrue(new ScoreTopLeave(driveSubsystem, armMotors, claw));
+    //among us
 
-    new JoystickButton(controller, 1).onTrue(new VerticalPID(driveSubsystem, -10));
-    new JoystickButton(controller, 10).onTrue(new ResetCalibrateGyro(driveSubsystem));
+    // new JoystickButton(driverStation, 2).onTrue(new ArmRetract(armMotors, 38.0));
+
+    // top position
+    new JoystickButton(driverStation, 4).onTrue(new ArmPlaceTop(armMotors));
+
+    // middle position
+    new JoystickButton(driverStation, 2).onTrue(new ArmPlaceMid(armMotors));
+
+    // Low position
+    new JoystickButton(driverStation, 1).onTrue(new ArmPlaceLow(armMotors));
+
+    // default position
+    new JoystickButton(driverStation, 7).onTrue(new ArmDefaultPosition(armMotors));
+
+    // new JoystickButton(controller, 1).onTrue(new LeaveClose(driveSubsystem));
+
+
+    // new JoystickButton(driverStation, 2).onTrue(new ScoreTopLeaveClose(driveSubsystem, armMotors,
+    // claw));
+
+    // new JoystickButton(controller, 1).onTrue(new VerticalPID(driveSubsystem, -10));
+    // new JoystickButton(controller, 10).onTrue(new ResetCalibrateGyro(driveSubsystem));
   }
 
   public Command getAutonomousCommand() {
@@ -79,6 +104,6 @@ public class RobotContainer {
     //     break;
     // }
     // return null;
-    return new ScoreTopLeave(driveSubsystem, armMotors, claw);
+    return new ScoreTopLeaveClose(driveSubsystem, armMotors, claw);
   }
 }

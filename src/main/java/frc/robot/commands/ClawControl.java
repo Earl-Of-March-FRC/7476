@@ -11,6 +11,8 @@ public class ClawControl extends CommandBase {
   public ClawControl(Claw claw, double speed) {
     this.claw = claw;
     this.speed = speed;
+
+    addRequirements(claw);
   }
 
   @Override

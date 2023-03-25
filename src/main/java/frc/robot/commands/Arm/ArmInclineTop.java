@@ -24,8 +24,8 @@ public class ArmInclineTop extends ProfiledPIDCommand {
         // This should return the goal (can also be a constant)
         () -> angleSetpoint,
         // This uses the output
-        (output, setpoint) -> armMotors.armIncline(output),
-        armMotors);
+        (output, setpoint) -> armMotors.armIncline(output));
+        addRequirements(armMotors);
 
     getController().setTolerance(1);
   }
@@ -33,7 +33,7 @@ public class ArmInclineTop extends ProfiledPIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(getController().atGoal()){
+    if (getController().atGoal()) {
       System.out.println("Incline Top Ended");
     }
     return getController().atGoal();

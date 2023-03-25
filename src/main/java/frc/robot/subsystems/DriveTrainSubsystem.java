@@ -4,9 +4,10 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DrivetrainConstants;
@@ -20,7 +21,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public MecanumDrive mecDrive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
-  private AHRS ahrs = new AHRS(Port.kUSB1);
+  private ADXRS450_Gyro ahrs = new ADXRS450_Gyro();
 
   public DrivetrainSubsystem() {
     frontLeft.setNeutralMode(NeutralMode.Brake);
@@ -39,10 +40,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
     backRight.setSelectedSensorPosition(0);
   }
 
-  public double getHeading() {
-    return ahrs.getYaw();
-  }
-
   public double getGyroAngle() {
     return ahrs.getAngle();
   }
@@ -51,12 +48,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
     ahrs.reset();
   }
 
-  public void calibrateGyro(){
+  public void calibrateGyro() {
     ahrs.calibrate();
   }
-  public double getGyroRoll() {
-    return ahrs.getRoll();
-  }
+
+
 
   public void resetEncoders() {
     frontLeft.setSelectedSensorPosition(0);
@@ -65,9 +61,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     backRight.setSelectedSensorPosition(0);
   }
 
-  public double getGyroPitch() {
-    return ahrs.getPitch();
-  }
+
 
   public double distanceToTicks(double distanceInches) {
     return (distanceInches / 6 * Math.PI) * 2048;
@@ -81,8 +75,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public void setMecanum(double y, double x, double rx) {
-    mecDrive.driveCartesian(y, x, rx, ahrs.getRotation2d());
-    
+    mecDrive.driveCartesian(x, y, rx, ahrs.getRotation2d().times(-1));
+
+    // mecDrive.driveCartesian(x, y, rx);
+
     // , ahrs.getRotation2d().rotateBy(Rotation2d.fromDegrees(-90))
     // frontLeft.set(y + x + rx);
     // backLeft.set(y - x + rx);

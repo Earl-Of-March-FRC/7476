@@ -9,12 +9,14 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
-public class Leave extends SequentialCommandGroup {
-  public Leave(DrivetrainSubsystem driveTrain) {
+public class LeaveClose extends SequentialCommandGroup {
+  public LeaveClose(DrivetrainSubsystem driveTrain) {
     addCommands(
-        new MecanumDriveCmd(driveTrain, () -> 0.35, () -> 0.0, () -> 0.0, () -> 1.0).withTimeout(2.7),
+        new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 0.25, () -> 0.0, () -> 3.0)
+            .withTimeout(2.7),
         new WaitCommand(1),
-        new MecanumDriveCmd(driveTrain, () -> -0.35, () -> 0.0, () -> 0.0, () -> 1.0).withTimeout(2.7),
+        new MecanumDriveCmd(driveTrain, () -> -0.0, () -> -0.25, () -> 0.0, () -> 3.0)
+            .withTimeout(2.7),
         new WaitCommand(1));
   }
 }

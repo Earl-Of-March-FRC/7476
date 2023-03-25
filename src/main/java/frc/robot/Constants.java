@@ -41,7 +41,7 @@ public final class Constants {
     public static final double kIBalance = 0;
     public static final double kDBalance = 0;
     public static final double dropAndLeaveSetpoint = 12;
-    
+
     public static double maxDriveSpeed = 1;
     public static double maxTurnSpeed = 0.8;
   }
@@ -53,7 +53,7 @@ public final class Constants {
     public static final int incline2 = 6;
     public static final int claw = 7;
 
-    public static final int conePlaceTopExtend = 89;
+    public static final int conePlaceTopExtend = 30;
     public static final double conePlaceTopIncline = 34;
 
     public static final int conePlaceMidExtend = 85;
@@ -71,7 +71,7 @@ public final class Constants {
     public static final int kDriverControllerPort = 3;
     public static final int forwardAxis = 1;
     public static final int sideAxis = 0;
-    public static final int rotationAxis = 3;
+    public static final int rotationAxis = 2;
     public static final int cubePickUpButton = 3;
     public static final int conePickUpButton = 3;
     public static final int cubePlaceTopButton = 3;
@@ -79,7 +79,7 @@ public final class Constants {
     public static final int cubeLineUpButton = 3;
     public static final int coneLineUpButton = 3;
 
-    public static int scaleAxis = 2;
+    public static int scaleAxis = 3;
   }
 
   public static class VisionConstants {
@@ -126,12 +126,16 @@ public final class Constants {
 
   public static class DriverStationConstants {
 
-    public static final int DriverStationController = 1;
+    public static final int DriverStationController = 0;
 
-    public static final int ArmExtendAxis = 5;
+    public static final int ArmExtendAxis = 5;//5 for xbox
     public static final int ArmInclineAxis = 1;
 
     public static final int ClawCloseButton = 6;
     public static final int ClawOpenButton = 5;
+  }
+
+  public static class LEDConstants {
+    public static final int LEDTalonPort = 0;
   }
 }

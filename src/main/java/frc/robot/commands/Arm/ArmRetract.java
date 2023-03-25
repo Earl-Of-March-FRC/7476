@@ -17,11 +17,11 @@ public class ArmRetract extends ProfiledPIDCommand {
     super(
         new ProfiledPIDController(
             // The PID gains
-            0.2,
+            0.15,
             0,
             0,
             // The motion profile constraints
-            new TrapezoidProfile.Constraints(50, 20)),
+            new TrapezoidProfile.Constraints(60, 30)),
         // This should return the measurement
         () -> armMotors.getExtensionInches(),
         // This should return the goal (can also be a constant)
@@ -37,7 +37,7 @@ public class ArmRetract extends ProfiledPIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(getController().atGoal()){
+    if (getController().atGoal()) {
       System.out.println("Retract Ended");
     }
     return getController().atGoal();

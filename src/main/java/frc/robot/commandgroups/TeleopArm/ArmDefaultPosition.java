@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commandgroups.AutoArm;
+package frc.robot.commandgroups.TeleopArm;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -13,12 +13,13 @@ import frc.robot.subsystems.Arm;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ArmExtensionAndInclineLow extends SequentialCommandGroup {
-  /** Creates a new ArmExtensionAndInclineAuto. */
-  public ArmExtensionAndInclineLow(Arm arm, double angleSetpoint, double extensionSetpoint) {
+public class ArmDefaultPosition extends SequentialCommandGroup {
+  /** Creates a new ArmDefaultPosition. */
+  public ArmDefaultPosition(Arm arm) {
     addCommands(
-        new ArmRetract(arm, extensionSetpoint),
-        new WaitCommand(0.5),
-        new ArmInclineTop(arm, angleSetpoint));
+      new ArmInclineTop(arm, 41),
+      new WaitCommand(0.5),
+      new ArmRetract(arm, 38)
+    );
   }
 }
