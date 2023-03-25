@@ -71,8 +71,6 @@ public class RobotContainer {
 
     // new JoystickButton(controller, 8).toggleOnTrue(new ScaleButtonCmd());
 
-    //among us
-
     // new JoystickButton(driverStation, 2).onTrue(new ArmRetract(armMotors, 38.0));
 
     // top position
