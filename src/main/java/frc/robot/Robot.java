@@ -16,7 +16,6 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
 
-  public static SendableChooser<Integer> auto_chooser = new SendableChooser<>();
 
   @Override
   public void robotInit() {
@@ -28,11 +27,6 @@ public class Robot extends TimedRobot {
     m_robotContainer.driveSubsystem.resetGyro();
     m_robotContainer.driveSubsystem.calibrateGyro();
 
-
-
-    auto_chooser.setDefaultOption("Score Floor and Leave", 1);
-
-    SmartDashboard.putData(auto_chooser);
   }
 
   @Override
@@ -76,10 +70,10 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    m_robotContainer.armMotors.resetEncoders();
-    m_robotContainer.driveSubsystem.resetEncoders();
-    m_robotContainer.driveSubsystem.resetGyro();
-    m_robotContainer.driveSubsystem.calibrateGyro();
+    // m_robotContainer.armMotors.resetEncoders();
+    // m_robotContainer.driveSubsystem.resetEncoders();
+    // m_robotContainer.driveSubsystem.resetGyro();
+    // m_robotContainer.driveSubsystem.calibrateGyro();
   
   }
 

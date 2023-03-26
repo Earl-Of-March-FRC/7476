@@ -22,6 +22,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public MecanumDrive mecDrive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
   private ADXRS450_Gyro ahrs = new ADXRS450_Gyro();
+  private AHRS gyro = new AHRS(Port.kUSB);
 
   public DrivetrainSubsystem() {
     frontLeft.setNeutralMode(NeutralMode.Brake);
@@ -38,6 +39,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
     frontRight.setSelectedSensorPosition(0);
     backLeft.setSelectedSensorPosition(0);
     backRight.setSelectedSensorPosition(0);
+
+    gyro.reset();
+    gyro.calibrate();
   }
 
   public double getGyroAngle() {
@@ -46,10 +50,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public void resetGyro() {
     ahrs.reset();
+    gyro.reset();
   }
 
   public void calibrateGyro() {
     ahrs.calibrate();
+    gyro.calibrate();
   }
 
 
@@ -59,6 +65,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
     frontRight.setSelectedSensorPosition(0);
     backLeft.setSelectedSensorPosition(0);
     backRight.setSelectedSensorPosition(0);
+  }
+
+  public double getPitch(){
+    return gyro.getPitch();
   }
 
 
@@ -98,6 +108,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Front Left Encoder Distance", getDistance());
     SmartDashboard.putNumber("Gyro Get Angle", ahrs.getAngle());
+    SmartDashboard.putNumber("Gyro Get Pitch", getPitch());
   }
 
   @Override

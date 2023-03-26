@@ -28,7 +28,7 @@ public class ArmIncline extends CommandBase {
       }
       else{armMotors.armIncline(speed * -0.4);}
     } else {
-      if(armMotors.getInclineAngle() < 43){
+      if(armMotors.getInclineAngle() <= 41){
         armMotors.armIncline(speed * -0.65);
       }
       else{armMotors.armIncline(0);}
