@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commandgroups.AutoCmds.Balance;
+import frc.robot.commandgroups.AutoCmds.ScoreTopBalance;
 import frc.robot.commandgroups.AutoCmds.ScoreTopLeaveFar;
 import edu.wpi.first.cameraserver.CameraServer;
 
@@ -15,6 +17,8 @@ public class Robot extends TimedRobot {
 
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
+
+  SendableChooser<Command> auto = new SendableChooser<Command>();
 
 
   @Override
@@ -26,6 +30,18 @@ public class Robot extends TimedRobot {
     m_robotContainer.driveSubsystem.resetEncoders();
     m_robotContainer.driveSubsystem.resetGyro();
     m_robotContainer.driveSubsystem.calibrateGyro();
+
+    auto.setDefaultOption("ScoreTopLeaveFar", new ScoreTopLeaveFar(
+      m_robotContainer.driveSubsystem,
+      m_robotContainer.armMotors, 
+      m_robotContainer.claw, 35, 80));
+    
+    auto.addOption("ScoreTopBalance", new ScoreTopBalance(
+      m_robotContainer.driveSubsystem, 
+      m_robotContainer.armMotors, 
+      m_robotContainer.claw, 
+      35, 
+      80));
 
   }
 
@@ -48,7 +64,9 @@ public class Robot extends TimedRobot {
     m_robotContainer.driveSubsystem.resetGyro();
     m_robotContainer.driveSubsystem.calibrateGyro();
 
-    m_autonomousCommand =
+
+
+    m_autonomousCommand = 
         new ScoreTopLeaveFar(
             m_robotContainer.driveSubsystem, m_robotContainer.armMotors, m_robotContainer.claw, 35, 80);
 
