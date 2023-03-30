@@ -8,11 +8,13 @@ import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineLow;
 import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineTop;
+import frc.robot.commandgroups.AutoCmds.Balance;
 import frc.robot.commandgroups.AutoCmds.LeaveClose;
 import frc.robot.commandgroups.AutoCmds.LeaveFar;
 import frc.robot.commandgroups.AutoCmds.ScoreTopLeaveClose;
 import frc.robot.commandgroups.AutoCmds.ScoreTopLeaveFar;
 import frc.robot.commandgroups.TeleopArm.ArmDefaultPosition;
+import frc.robot.commandgroups.TeleopArm.ArmLoadPieces;
 import frc.robot.commandgroups.TeleopArm.ArmPlaceMid;
 import frc.robot.commandgroups.TeleopArm.ArmPlaceLow;
 import frc.robot.commandgroups.TeleopArm.ArmPlaceTop;
@@ -48,6 +50,7 @@ public class RobotContainer {
   public Command armPlaceMidCommand = new ArmPlaceMid(armMotors, led);
   public Command armPlaceLowCommand = new ArmPlaceLow(armMotors, led);
   public Command armdefaultCommand = new ArmDefaultPosition(armMotors, led);
+  public Command armLoadCmd = new ArmLoadPieces(armMotors, led);
 
   public RobotContainer() {
 
@@ -70,14 +73,13 @@ public class RobotContainer {
 
   private void configureBindings() {
 
+    // Open Claw
     new JoystickButton(driverStation, DriverStationConstants.ClawOpenButton)
         .whileTrue(new ClawControl(claw, -1));
+
+    // Close Claw
     new JoystickButton(driverStation, DriverStationConstants.ClawCloseButton)
         .whileTrue(new ClawControl(claw, 1));
-
-    // new JoystickButton(controller, 8).toggleOnTrue(new ScaleButtonCmd());
-
-    // new JoystickButton(driverStation, 2).onTrue(new ArmRetract(armMotors, 38.0));
 
     // top position
     new JoystickButton(driverStation, 4).onTrue(armPlaceTopCommand);
@@ -91,16 +93,26 @@ public class RobotContainer {
     // default position
     new JoystickButton(driverStation, 7).onTrue(armdefaultCommand);
 
+    // reset gyro
     new JoystickButton(controller, 7).onTrue(new GyroReset(driveSubsystem));
 
-    new JoystickButton(driverStation, 8).onTrue(new CancelAutomation(armMotors, led, armPlaceTopCommand, armPlaceMidCommand, armPlaceLowCommand, armdefaultCommand));
+    // cancel automation
+    new JoystickButton(driverStation, 8).onTrue(
+      new CancelAutomation(
+        armMotors, 
+        led, 
+        armPlaceTopCommand, 
+        armPlaceMidCommand, 
+        armPlaceLowCommand, 
+        armdefaultCommand, 
+        armLoadCmd));
+    
+    // Loading position arm
+    new JoystickButton(driverStation, 3).onTrue(armLoadCmd);
 
-    new JoystickButton(controller, 2).onTrue(new LeaveFar(driveSubsystem));
-    // new JoystickButton(driverStation, 2).onTrue(new ScoreTopLeaveClose(driveSubsystem, armMotors,
-    // claw));
-
-    // new JoystickButton(controller, 1).onTrue(new VerticalPID(driveSubsystem, -10));
-    // new JoystickButton(controller, 10).onTrue(new ResetCalibrateGyro(driveSubsystem));
+    // Balance testing
+    new JoystickButton(controller, 2).onTrue(new Balance(driveSubsystem));
+  
   }
 
   public Command getAutonomousCommand() {

@@ -23,7 +23,6 @@ public class ResetCalibrateGyro extends InstantCommand {
   @Override
   public void initialize() {
     dSub.resetGyro();
-    dSub.calibrateGyro();
     System.out.println("Reset and Calibrate Gyro");
     System.out.println(dSub.getGyroAngle());
   }

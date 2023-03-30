@@ -21,6 +21,5 @@ public class GyroReset extends InstantCommand {
   @Override
   public void initialize() {
     driveTrainSubsystem.resetGyro();
-    driveTrainSubsystem.calibrateGyro();
   }
 }

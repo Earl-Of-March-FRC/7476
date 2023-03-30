@@ -15,7 +15,7 @@ public class Balance extends SequentialCommandGroup {
       new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 1.0, () -> 0.0, () -> 3.0)
         .withTimeout(1.6),//1.3
       new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 0.15, () -> 0.0, () -> 3.0)
-        .until(() -> driveTrain.getPitch() < 5),
+        .withTimeout(2),
       new WaitCommand(1));
 
 

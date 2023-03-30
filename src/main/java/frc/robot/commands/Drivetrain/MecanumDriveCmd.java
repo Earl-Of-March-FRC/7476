@@ -1,5 +1,6 @@
 package frc.robot.commands.Drivetrain;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DrivetrainConstants;
 import frc.robot.Constants.ScaleFactorConstants;
@@ -36,6 +37,7 @@ public class MecanumDriveCmd extends CommandBase {
     double speedForward, speedSide, speedRotate;
     speedForward =
         (DrivetrainConstants.maxDriveSpeed * (-scaleFactor.get() + 1) / 2) * forwardFunction.get();
+        SmartDashboard.putNumber("Side speed", speedForward);
 
     if (Math.abs(speedForward) < ScaleFactorConstants.driveDeadzone) speedForward = 0;
     speedSide =

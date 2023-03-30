@@ -4,13 +4,8 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.commandgroups.TeleopArm.ArmDefaultPosition;
-import frc.robot.commandgroups.TeleopArm.ArmPlaceLow;
-import frc.robot.commandgroups.TeleopArm.ArmPlaceMid;
-import frc.robot.commandgroups.TeleopArm.ArmPlaceTop;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.LEDSubsystem;
 
@@ -25,14 +20,17 @@ public class CancelAutomation extends InstantCommand {
   public Command armPlaceMidCommand;
   public Command armPlaceLowCommand;
   public Command armdefaultCommand;
+  public Command armLoad;
 
-  public CancelAutomation(Arm arm, LEDSubsystem led, Command armPlaceTop, Command armPlaceMid, Command armPlaceLow, Command armDefault) {
+  public CancelAutomation(Arm arm, LEDSubsystem led, Command armPlaceTop, Command armPlaceMid, Command armPlaceLow, Command armDefault, Command armLoad) {
+    
     this.arm = arm;
     this.led = led;
     armPlaceTopCommand = armPlaceTop;
     armPlaceLowCommand = armPlaceLow;
     armPlaceMidCommand = armPlaceMid;
     armdefaultCommand = armDefault;
+    this.armLoad = armLoad;
 
     addRequirements(arm, led);
   }
@@ -44,6 +42,7 @@ public class CancelAutomation extends InstantCommand {
     armPlaceLowCommand.cancel();
     armPlaceMidCommand.cancel();
     armdefaultCommand.cancel();
+    armLoad.cancel();
 
     led.setRainbow();
   }

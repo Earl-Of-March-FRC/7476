@@ -18,7 +18,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
 
-  SendableChooser<Command> auto = new SendableChooser<Command>();
+  // SendableChooser<Command> auto = new SendableChooser<Command>();
 
 
   @Override
@@ -28,20 +28,18 @@ public class Robot extends TimedRobot {
     m_robotContainer.armMotors.armExtensionBrake();
     m_robotContainer.armMotors.resetEncoders();
     m_robotContainer.driveSubsystem.resetEncoders();
-    m_robotContainer.driveSubsystem.resetGyro();
-    m_robotContainer.driveSubsystem.calibrateGyro();
 
-    auto.setDefaultOption("ScoreTopLeaveFar", new ScoreTopLeaveFar(
-      m_robotContainer.driveSubsystem,
-      m_robotContainer.armMotors, 
-      m_robotContainer.claw, 35, 80));
+    // auto.setDefaultOption("ScoreTopLeaveFar", new ScoreTopLeaveFar(
+    //   m_robotContainer.driveSubsystem,
+    //   m_robotContainer.armMotors, 
+    //   m_robotContainer.claw, 35, 80));
     
-    auto.addOption("ScoreTopBalance", new ScoreTopBalance(
-      m_robotContainer.driveSubsystem, 
-      m_robotContainer.armMotors, 
-      m_robotContainer.claw, 
-      35, 
-      80));
+    // auto.addOption("ScoreTopBalance", new ScoreTopBalance(
+    //   m_robotContainer.driveSubsystem, 
+    //   m_robotContainer.armMotors, 
+    //   m_robotContainer.claw, 
+    //   35, 
+    //   80));
 
   }
 
@@ -62,7 +60,6 @@ public class Robot extends TimedRobot {
     m_robotContainer.armMotors.resetEncoders();
     m_robotContainer.driveSubsystem.resetEncoders();
     m_robotContainer.driveSubsystem.resetGyro();
-    m_robotContainer.driveSubsystem.calibrateGyro();
 
 
 
@@ -70,7 +67,7 @@ public class Robot extends TimedRobot {
         new ScoreTopLeaveFar(
             m_robotContainer.driveSubsystem, m_robotContainer.armMotors, m_robotContainer.claw, 35, 80);
 
-    // // schedule the autonomous command (example)
+    // // schedule the autonomous co mmand (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }

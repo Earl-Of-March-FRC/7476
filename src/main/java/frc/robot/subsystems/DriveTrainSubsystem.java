@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -14,6 +15,9 @@ import frc.robot.Constants.DrivetrainConstants;
 
 public class DrivetrainSubsystem extends SubsystemBase {
 
+  private double startTime;
+  private double driftPerSecond;
+
   private WPI_TalonFX frontLeft = new WPI_TalonFX(DrivetrainConstants.frontLeftTalonPort);
   private WPI_TalonFX frontRight = new WPI_TalonFX(DrivetrainConstants.frontRightTalonPort);
   private WPI_TalonFX backLeft = new WPI_TalonFX(DrivetrainConstants.backLeftTalonPort);
@@ -21,8 +25,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public MecanumDrive mecDrive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
-  private ADXRS450_Gyro ahrs = new ADXRS450_Gyro();
-  private AHRS gyro = new AHRS(Port.kUSB);
+  private AHRS ahrs = new AHRS(Port.kUSB);
 
   public DrivetrainSubsystem() {
     frontLeft.setNeutralMode(NeutralMode.Brake);
@@ -40,24 +43,35 @@ public class DrivetrainSubsystem extends SubsystemBase {
     backLeft.setSelectedSensorPosition(0);
     backRight.setSelectedSensorPosition(0);
 
-    gyro.reset();
-    gyro.calibrate();
+    resetGyro();
+    calibrate();
   }
 
   public double getGyroAngle() {
-    return ahrs.getAngle();
+    double runTime = Timer.getFPGATimestamp() - startTime;
+    double drift = runTime * driftPerSecond;
+    return ahrs.getAngle() - drift;
+  }
+
+  public double getGyroRate() {
+    return ahrs.getRate();
   }
 
   public void resetGyro() {
     ahrs.reset();
-    gyro.reset();
+    this.startTime = Timer.getFPGATimestamp();
   }
 
-  public void calibrateGyro() {
-    ahrs.calibrate();
-    gyro.calibrate();
+  public void calibrate() {
+    this.startTime = Timer.getFPGATimestamp();
+    double startAngle = ahrs.getAngle();
+    try {
+      Thread.sleep(5000);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    this.driftPerSecond = (ahrs.getAngle() - startAngle) / (Timer.getFPGATimestamp() - startTime);
   }
-
 
 
   public void resetEncoders() {
@@ -68,7 +82,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public double getPitch(){
-    return gyro.getPitch();
+    return ahrs.getPitch();
   }
 
 
