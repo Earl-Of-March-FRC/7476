@@ -6,10 +6,10 @@ package frc.robot.commandgroups.TeleopArm;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.commands.LEDGold;
-import frc.robot.commands.LEDRainbow;
 import frc.robot.commands.Arm.ArmExtendTop;
 import frc.robot.commands.Arm.ArmInclineTop;
+import frc.robot.commands.LEDGold;
+import frc.robot.commands.LEDRainbow;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.LEDSubsystem;
 
@@ -26,7 +26,6 @@ public class ArmPlaceTop extends SequentialCommandGroup {
         new ArmInclineTop(arm, 37),
         new WaitCommand(0.5),
         new ArmExtendTop(arm, 78),
-        new LEDRainbow(led)
-    );
+        new LEDRainbow(led));
   }
 }

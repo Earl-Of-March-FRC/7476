@@ -25,7 +25,7 @@ public class ArmInclineTop extends ProfiledPIDCommand {
         () -> angleSetpoint,
         // This uses the output
         (output, setpoint) -> armMotors.armIncline(output));
-        addRequirements(armMotors);
+    addRequirements(armMotors);
 
     getController().setTolerance(1);
   }

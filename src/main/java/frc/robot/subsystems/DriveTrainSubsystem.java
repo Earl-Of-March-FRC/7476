@@ -3,12 +3,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
-
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.SerialPort.Port;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DrivetrainConstants;
@@ -73,7 +70,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
     this.driftPerSecond = (ahrs.getAngle() - startAngle) / (Timer.getFPGATimestamp() - startTime);
   }
 
-
   public void resetEncoders() {
     frontLeft.setSelectedSensorPosition(0);
     frontRight.setSelectedSensorPosition(0);
@@ -81,11 +77,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
     backRight.setSelectedSensorPosition(0);
   }
 
-  public double getPitch(){
+  public double getPitch() {
     return ahrs.getPitch();
   }
-
-
 
   public double distanceToTicks(double distanceInches) {
     return (distanceInches / 6 * Math.PI) * 2048;

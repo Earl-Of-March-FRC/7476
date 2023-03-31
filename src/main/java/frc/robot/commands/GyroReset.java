@@ -12,6 +12,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GyroReset extends InstantCommand {
   DrivetrainSubsystem driveTrainSubsystem;
+
   public GyroReset(DrivetrainSubsystem drivetrainSubsystem) {
     this.driveTrainSubsystem = drivetrainSubsystem;
     addRequirements(drivetrainSubsystem);

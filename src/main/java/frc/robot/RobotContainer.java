@@ -1,28 +1,21 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineLow;
-import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineTop;
 import frc.robot.commandgroups.AutoCmds.Balance;
-import frc.robot.commandgroups.AutoCmds.LeaveClose;
-import frc.robot.commandgroups.AutoCmds.LeaveFar;
 import frc.robot.commandgroups.AutoCmds.ScoreTopLeaveClose;
-import frc.robot.commandgroups.AutoCmds.ScoreTopLeaveFar;
 import frc.robot.commandgroups.TeleopArm.ArmDefaultPosition;
 import frc.robot.commandgroups.TeleopArm.ArmLoadPieces;
-import frc.robot.commandgroups.TeleopArm.ArmPlaceMid;
 import frc.robot.commandgroups.TeleopArm.ArmPlaceLow;
+import frc.robot.commandgroups.TeleopArm.ArmPlaceMid;
 import frc.robot.commandgroups.TeleopArm.ArmPlaceTop;
 import frc.robot.commands.Arm.ArmControl;
-import frc.robot.commands.Arm.ArmRetract;
-import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.commands.CancelAutomation;
 import frc.robot.commands.ClawControl;
+import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.commands.GyroReset;
 // import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
 import frc.robot.subsystems.Arm;
@@ -36,7 +29,6 @@ public class RobotContainer {
   final DrivetrainSubsystem driveSubsystem = new DrivetrainSubsystem();
   public final Arm armMotors = new Arm();
   public final Claw claw = new Claw();
-
 
   public final VisionSubsystem vision = new VisionSubsystem();
   public final LEDSubsystem led = new LEDSubsystem();
@@ -97,22 +89,22 @@ public class RobotContainer {
     new JoystickButton(controller, 7).onTrue(new GyroReset(driveSubsystem));
 
     // cancel automation
-    new JoystickButton(driverStation, 8).onTrue(
-      new CancelAutomation(
-        armMotors, 
-        led, 
-        armPlaceTopCommand, 
-        armPlaceMidCommand, 
-        armPlaceLowCommand, 
-        armdefaultCommand, 
-        armLoadCmd));
-    
+    new JoystickButton(driverStation, 8)
+        .onTrue(
+            new CancelAutomation(
+                armMotors,
+                led,
+                armPlaceTopCommand,
+                armPlaceMidCommand,
+                armPlaceLowCommand,
+                armdefaultCommand,
+                armLoadCmd));
+
     // Loading position arm
     new JoystickButton(driverStation, 3).onTrue(armLoadCmd);
 
     // Balance testing
     new JoystickButton(controller, 2).onTrue(new Balance(driveSubsystem));
-  
   }
 
   public Command getAutonomousCommand() {

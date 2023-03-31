@@ -8,21 +8,12 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.subsystems.DrivetrainSubsystem;
- 
+
 public class LeaveFar extends SequentialCommandGroup {
   public LeaveFar(DrivetrainSubsystem driveTrain) {
     addCommands(
-      new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 0.4, () -> 0.0, () -> 3.0)
-        .withTimeout(2.5),//1.3
-      new WaitCommand(1));
-
-
-
-
-
-
-
-
-
+        new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 0.4, () -> 0.0, () -> 3.0)
+            .withTimeout(2.5), // 1.3
+        new WaitCommand(1));
   }
 }

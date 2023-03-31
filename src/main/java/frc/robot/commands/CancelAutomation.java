@@ -22,8 +22,15 @@ public class CancelAutomation extends InstantCommand {
   public Command armdefaultCommand;
   public Command armLoad;
 
-  public CancelAutomation(Arm arm, LEDSubsystem led, Command armPlaceTop, Command armPlaceMid, Command armPlaceLow, Command armDefault, Command armLoad) {
-    
+  public CancelAutomation(
+      Arm arm,
+      LEDSubsystem led,
+      Command armPlaceTop,
+      Command armPlaceMid,
+      Command armPlaceLow,
+      Command armDefault,
+      Command armLoad) {
+
     this.arm = arm;
     this.led = led;
     armPlaceTopCommand = armPlaceTop;

@@ -25,17 +25,18 @@ public class ArmExtend extends CommandBase {
   public void execute() {
     speed = speedSupplier.getAsDouble();
     if (speed > 0) {
-      if(armMotors.getExtensionInches() > 38){
+      if (armMotors.getExtensionInches() > 38) {
         armMotors.armExtension(-speed * 0.25);
-      }else{
+      } else {
         armMotors.armExtension(0);
       }
-      
+
     } else {
-      if(armMotors.getInclineAngle() < 25 && armMotors.getExtensionInches() > 70){
+      if (armMotors.getInclineAngle() < 25 && armMotors.getExtensionInches() > 70) {
         new ArmRetract(armMotors, 60).schedule();
+      } else {
+        armMotors.armExtension(-speed * 0.70);
       }
-      else{armMotors.armExtension(-speed * 0.70);}
     }
   }
 
