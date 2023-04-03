@@ -12,12 +12,16 @@ import edu.wpi.first.wpilibj.PWM;
 public class LEDSubsystem extends SubsystemBase {
 
   private Spark LEDController = new Spark(LEDConstants.LEDTalonPort);
-  private PWM LED=new PWM(9);
+  // private PWM LED=new PWM(9);
   
   public void setPresetGold() {
     LEDController.set(0.33);
-    LED.setRaw(125);
+    // LED.setRaw(125);
      
+  }
+
+  public void setPresetGreen() {
+    LEDController.set(0.89);
   }
 
   public void setRainbow() {

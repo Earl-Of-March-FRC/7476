@@ -12,10 +12,10 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 public class LeaveClose extends SequentialCommandGroup {
   public LeaveClose(DrivetrainSubsystem driveTrain) {
     addCommands(
-        new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 0.25, () -> 0.0, () -> 3.0)
+        new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 0.25, () -> 0.0, () -> 3.0,() -> false)
             .withTimeout(2.7),
         new WaitCommand(1),
-        new MecanumDriveCmd(driveTrain, () -> -0.0, () -> -0.25, () -> 0.0, () -> 3.0)
+        new MecanumDriveCmd(driveTrain, () -> -0.0, () -> -0.25, () -> 0.0, () -> 3.0, () -> false)
             .withTimeout(2.7),
         new WaitCommand(1));
   }

@@ -25,6 +25,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     CameraServer.startAutomaticCapture();
     m_robotContainer = new RobotContainer();
+
     m_robotContainer.armMotors.armExtensionBrake();
     m_robotContainer.armMotors.resetEncoders();
     m_robotContainer.driveSubsystem.resetEncoders();
@@ -47,6 +48,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
 
+
   }
 
   @Override
@@ -65,7 +67,7 @@ public class Robot extends TimedRobot {
 
     m_autonomousCommand = 
         new ScoreTopLeaveFar(
-            m_robotContainer.driveSubsystem, m_robotContainer.armMotors, m_robotContainer.claw, 35, 80);
+            m_robotContainer.driveSubsystem, m_robotContainer.armMotors, m_robotContainer.claw, 35, 76);
 
     // // schedule the autonomous co mmand (example)
     if (m_autonomousCommand != null) {
@@ -93,7 +95,12 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    SmartDashboard.putNumber("TX", m_robotContainer.vision.getTX());
+    SmartDashboard.putNumber("TY", m_robotContainer.vision.getTY());
+    SmartDashboard.putNumber("Yaw", m_robotContainer.driveSubsystem.getYaw());
+    SmartDashboard.putNumber("Pipe", m_robotContainer.vision.getPipeline());
+  }
 
   @Override
   public void testInit() {

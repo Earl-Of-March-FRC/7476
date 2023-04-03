@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.LEDGold;
 import frc.robot.commands.LEDRainbow;
+import frc.robot.commands.Arm.ArmExtend;
 import frc.robot.commands.Arm.ArmExtendTop;
 import frc.robot.commands.Arm.ArmInclineTop;
 import frc.robot.subsystems.Arm;
@@ -23,9 +24,10 @@ public class ArmPlaceTop extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         new LEDGold(led),
-        new ArmInclineTop(arm, 37),
+        new ArmInclineTop(arm, 38),
         new WaitCommand(0.5),
-        new ArmExtendTop(arm, 78),
+        new ArmExtendTop(arm, 76),
+        new ArmInclineTop(arm, 32).raceWith(new ArmExtend(arm, () -> -0.2)),
         new LEDRainbow(led)
     );
   }

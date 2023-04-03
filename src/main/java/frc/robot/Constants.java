@@ -97,11 +97,11 @@ public final class Constants {
   }
 
   public static class GyroConstants {
-    public static final double kPGyro = 0.0085;
-    public static final double kIGyro = 0.005;
-    public static final double kDGyro = 0.0001;
+    public static final double kPGyro = 0.02;
+    public static final double kIGyro = 0.02;
+    public static final double kDGyro = 0.0003;
 
-    public static final double gyroTurnTolerance = 1;
+    public static final double gyroTurnTolerance = 0.6;
   }
 
   public static class ScaleFactorConstants {

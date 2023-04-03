@@ -12,9 +12,9 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 public class Balance extends SequentialCommandGroup {
   public Balance(DrivetrainSubsystem driveTrain) {
     addCommands(
-      new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 1.0, () -> 0.0, () -> 3.0)
+      new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 1.0, () -> 0.0, () -> 3.0, () -> false)
         .withTimeout(1.6),//1.3
-      new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 0.15, () -> 0.0, () -> 3.0)
+      new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 0.15, () -> 0.0, () -> 3.0, () -> false)
         .withTimeout(2),
       new WaitCommand(1));
 

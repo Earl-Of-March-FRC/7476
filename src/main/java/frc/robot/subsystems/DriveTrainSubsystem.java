@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DrivetrainConstants;
+import frc.robot.Constants.ScaleFactorConstants;
 
 public class DrivetrainSubsystem extends SubsystemBase {
 
@@ -91,15 +92,28 @@ public class DrivetrainSubsystem extends SubsystemBase {
     return (distanceInches / 6 * Math.PI) * 2048;
   }
 
-  public void setMecanumPermanent(double y, double x, double rx) {
-    frontLeft.set(y + x + rx);
-    backLeft.set(y - x + rx);
-    frontRight.set(y - x - rx);
-    backRight.set(y + x - rx);
+  public void setMecanumPermanent(double x, double y, double rx) {
+    mecDrive.driveCartesian(x, y, rx);
   }
 
-  public void setMecanum(double y, double x, double rx) {
+  public void setMecanum(double x, double y, double rx) {
+    if (Math.abs(x) < ScaleFactorConstants.driveDeadzone) x = 0;
+    // y =
+    //     -1
+    //         * (DrivetrainConstants.maxDriveSpeed * (-scaleFactor + 1) / 2)
+    //         * y;
+
+    if (Math.abs(y) < ScaleFactorConstants.driveDeadzone) y = 0;
+
+    // rx =
+    //     -1
+    //         * (DrivetrainConstants.maxTurnSpeed * (-scaleFactor + 1) / 2)
+    //         * rx;
+
+    if (Math.abs(rx) < ScaleFactorConstants.rotateDeadzone) rx = 0;
+
     mecDrive.driveCartesian(x, y, rx, ahrs.getRotation2d().times(-1));
+
 
     // mecDrive.driveCartesian(x, y, rx);
 
@@ -116,6 +130,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public double getDistance() {
     return (frontLeft.getSelectedSensorPosition() * 3.55 * Math.PI / 2048) / 10.71;
+  }
+
+  public double getYaw(){
+    return ahrs.getYaw();
   }
 
   @Override

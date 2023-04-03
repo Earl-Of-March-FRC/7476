@@ -13,18 +13,19 @@ import frc.robot.Constants.VisionConstants;
 public class VisionSubsystem extends SubsystemBase {
   public int currentPipeline = 0;
 
-  NetworkTableInstance inst = NetworkTableInstance.create();
-  NetworkTable table = inst.getTable("limelight");
+  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 
   NetworkTableEntry tyEntry = table.getEntry("ty");
   NetworkTableEntry txEntry = table.getEntry("tx");
   NetworkTableEntry tvEntry = table.getEntry("tv");
   NetworkTableEntry pipelineEntry = table.getEntry("pipeline");
 
-  public VisionSubsystem() {}
+  public VisionSubsystem() {
+    limeLEDOff();
+  }
 
   public void setPipeline(int pipeline) {
-    pipelineEntry.setInteger(pipeline);
+    pipelineEntry.setNumber(pipeline);
     currentPipeline = pipeline;
   }
 
@@ -42,6 +43,12 @@ public class VisionSubsystem extends SubsystemBase {
 
   public double getTV() {
     return tvEntry.getDouble(-1);
+  }
+  public void limeLEDOff(){
+    table.getEntry("ledMode").setNumber(1);
+  }
+  public void limeLEDOn(){
+    table.getEntry("ledMode").setNumber(3);
   }
 
   public double getDistance() {
