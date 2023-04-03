@@ -5,12 +5,11 @@
 package frc.robot.commandgroups.TeleopArm;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.commands.LEDGold;
-import frc.robot.commands.LEDRainbow;
 import frc.robot.commands.Arm.ArmExtendTop;
 import frc.robot.commands.Arm.ArmInclineTop;
 import frc.robot.commands.Arm.ArmRetract;
+import frc.robot.commands.LEDGold;
+import frc.robot.commands.LEDRainbow;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.LEDSubsystem;
 
@@ -23,22 +22,12 @@ public class ArmPlaceLow extends SequentialCommandGroup {
 
     addCommands(new LEDGold(led));
 
-    if(arm.getExtensionInches() > 41){
-      addCommands(
-        new ArmRetract(arm, 40)
-      );
-    }
-    else if(arm.getExtensionInches() < 39){
-      addCommands(
-        new ArmExtendTop(arm, 40)
-      );
+    if (arm.getExtensionInches() > 41) {
+      addCommands(new ArmRetract(arm, 40));
+    } else if (arm.getExtensionInches() < 39) {
+      addCommands(new ArmExtendTop(arm, 40));
     }
 
-    addCommands(
-      new ArmInclineTop(arm, 10),
-      new LEDRainbow(led)
-      
-      );
-    
+    addCommands(new ArmInclineTop(arm, 10), new LEDRainbow(led));
   }
 }

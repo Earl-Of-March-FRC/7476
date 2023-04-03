@@ -65,7 +65,7 @@ public final class Constants {
     public static final int armMaxAngle = 43;
     public static final int minAngleAtMaxArmOut = 30;
   }
-//among us - Alex Z
+  // among us - Alex Z
   public static class OperatorConstants {
 
     public static final int kDriverControllerPort = 3;
@@ -128,7 +128,7 @@ public final class Constants {
 
     public static final int DriverStationController = 0;
 
-    public static final int ArmExtendAxis = 5;//5 for xbox
+    public static final int ArmExtendAxis = 5; // 5 for xbox
     public static final int ArmInclineAxis = 1;
 
     public static final int ClawCloseButton = 6;

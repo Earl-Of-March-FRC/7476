@@ -27,7 +27,12 @@ public class ScoreFloorLeave extends SequentialCommandGroup {
         new ArmIncline(armMotors, () -> -1.5).withTimeout(1),
         new ArmExtend(armMotors, () -> 0.65).withTimeout(1),
         new WaitCommand(0.5),
+<<<<<<< HEAD
         new MecanumDriveCmd(drivetrain, () -> 0.5, () -> 0.0, () -> 0.0, () -> 1.0, () -> false).withTimeout(3.25),
+=======
+        new MecanumDriveCmd(drivetrain, () -> 0.5, () -> 0.0, () -> 0.0, () -> 1.0)
+            .withTimeout(3.25),
+>>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
         new WaitCommand(1));
   }
 }

@@ -1,17 +1,10 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.AddressableLED;
-import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commandgroups.AutoCmds.Balance;
-import frc.robot.commandgroups.AutoCmds.ScoreTopBalance;
 import frc.robot.commandgroups.AutoCmds.ScoreTopLeaveFar;
-import edu.wpi.first.cameraserver.CameraServer;
-
 
 public class Robot extends TimedRobot {
 
@@ -19,7 +12,6 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   // SendableChooser<Command> auto = new SendableChooser<Command>();
-
 
   @Override
   public void robotInit() {
@@ -32,14 +24,14 @@ public class Robot extends TimedRobot {
 
     // auto.setDefaultOption("ScoreTopLeaveFar", new ScoreTopLeaveFar(
     //   m_robotContainer.driveSubsystem,
-    //   m_robotContainer.armMotors, 
+    //   m_robotContainer.armMotors,
     //   m_robotContainer.claw, 35, 80));
-    
+
     // auto.addOption("ScoreTopBalance", new ScoreTopBalance(
-    //   m_robotContainer.driveSubsystem, 
-    //   m_robotContainer.armMotors, 
-    //   m_robotContainer.claw, 
-    //   35, 
+    //   m_robotContainer.driveSubsystem,
+    //   m_robotContainer.armMotors,
+    //   m_robotContainer.claw,
+    //   35,
     //   80));
 
   }
@@ -47,8 +39,11 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
   }
 
   @Override
@@ -63,11 +58,17 @@ public class Robot extends TimedRobot {
     m_robotContainer.driveSubsystem.resetEncoders();
     m_robotContainer.driveSubsystem.resetGyro();
 
-
-
-    m_autonomousCommand = 
+    m_autonomousCommand =
         new ScoreTopLeaveFar(
+<<<<<<< HEAD
             m_robotContainer.driveSubsystem, m_robotContainer.armMotors, m_robotContainer.claw, 35, 76);
+=======
+            m_robotContainer.driveSubsystem,
+            m_robotContainer.armMotors,
+            m_robotContainer.claw,
+            35,
+            80);
+>>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
 
     // // schedule the autonomous co mmand (example)
     if (m_autonomousCommand != null) {
@@ -91,7 +92,7 @@ public class Robot extends TimedRobot {
     // m_robotContainer.driveSubsystem.resetEncoders();
     // m_robotContainer.driveSubsystem.resetGyro();
     // m_robotContainer.driveSubsystem.calibrateGyro();
-  
+
   }
 
   @Override

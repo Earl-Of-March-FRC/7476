@@ -12,6 +12,7 @@ import frc.robot.subsystems.LEDSubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class LEDGold extends InstantCommand {
   LEDSubsystem led;
+
   public LEDGold(LEDSubsystem led) {
     this.led = led;
     addRequirements(led);

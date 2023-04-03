@@ -6,11 +6,10 @@ package frc.robot.commandgroups.TeleopArm;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.commands.LEDGold;
-import frc.robot.commands.LEDRainbow;
 import frc.robot.commands.Arm.ArmExtendTop;
 import frc.robot.commands.Arm.ArmInclineTop;
-import frc.robot.commands.Arm.ArmRetract;
+import frc.robot.commands.LEDGold;
+import frc.robot.commands.LEDRainbow;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.LEDSubsystem;
 
@@ -23,11 +22,10 @@ public class ArmLoadPieces extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new LEDGold(led),
-      new ArmInclineTop(arm, 37),
-      new WaitCommand(0.5),
-      new ArmExtendTop(arm, 70),
-      new LEDRainbow(led)
-    );
+        new LEDGold(led),
+        new ArmInclineTop(arm, 37),
+        new WaitCommand(0.5),
+        new ArmExtendTop(arm, 70),
+        new LEDRainbow(led));
   }
 }
