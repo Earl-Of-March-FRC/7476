@@ -12,7 +12,6 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 public class LeaveFar extends SequentialCommandGroup {
   public LeaveFar(DrivetrainSubsystem driveTrain) {
     addCommands(
-<<<<<<< HEAD
       new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 0.4, () -> 0.0, () -> 3.0, () -> false)
         .withTimeout(2.5),//1.3
       new WaitCommand(1));
@@ -25,10 +24,5 @@ public class LeaveFar extends SequentialCommandGroup {
 
 
 
-=======
-        new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 0.4, () -> 0.0, () -> 3.0)
-            .withTimeout(2.5), // 1.3
-        new WaitCommand(1));
->>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
   }
 }

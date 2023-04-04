@@ -5,12 +5,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
-<<<<<<< HEAD
 import frc.robot.commandgroups.TeleopAlign;
 import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineLow;
 import frc.robot.commandgroups.AutoArm.ArmExtensionAndInclineTop;
-=======
->>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
 import frc.robot.commandgroups.AutoCmds.Balance;
 import frc.robot.commandgroups.AutoCmds.ScoreTopLeaveClose;
 import frc.robot.commandgroups.TeleopArm.ArmDefaultPosition;
@@ -19,16 +16,12 @@ import frc.robot.commandgroups.TeleopArm.ArmPlaceLow;
 import frc.robot.commandgroups.TeleopArm.ArmPlaceMid;
 import frc.robot.commandgroups.TeleopArm.ArmPlaceTop;
 import frc.robot.commands.Arm.ArmControl;
-<<<<<<< HEAD
 import frc.robot.commands.Arm.ArmRetract;
 import frc.robot.commands.Arm.CancelArmAutomation;
 import frc.robot.commands.Drivetrain.CancelDriveAutomation;
 import frc.robot.commands.Drivetrain.GyroTurnAnglePID;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.commands.Limelight.LimelightLEDControl;
-=======
-import frc.robot.commands.CancelAutomation;
->>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
 import frc.robot.commands.ClawControl;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.commands.GyroReset;
@@ -112,7 +105,6 @@ public class RobotContainer {
     new JoystickButton(controller, 7).onTrue(new GyroReset(driveSubsystem));
 
     // cancel automation
-<<<<<<< HEAD
     new JoystickButton(driverStation, 8).onTrue(
       new CancelArmAutomation(
         armMotors, 
@@ -123,24 +115,10 @@ public class RobotContainer {
         armdefaultCommand, 
         armLoadCmd));
     
-=======
-    new JoystickButton(driverStation, 8)
-        .onTrue(
-            new CancelAutomation(
-                armMotors,
-                led,
-                armPlaceTopCommand,
-                armPlaceMidCommand,
-                armPlaceLowCommand,
-                armdefaultCommand,
-                armLoadCmd));
-
->>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
     // Loading position arm
     new JoystickButton(driverStation, 3).onTrue(armLoadCmd);
 
     // Balance testing
-<<<<<<< HEAD
     new JoystickButton(controller, 3).onTrue(ConeAlign);
 
     new JoystickButton(controller, 4).onTrue(CubeAlign);
@@ -149,9 +127,6 @@ public class RobotContainer {
   
     new JoystickButton(controller, 11).onTrue(
       new CancelDriveAutomation(driveSubsystem, vision, gyroTurn, ConeAlign, CubeAlign));
-=======
-    new JoystickButton(controller, 2).onTrue(new Balance(driveSubsystem));
->>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
   }
 
   public Command getAutonomousCommand() {

@@ -12,20 +12,12 @@ import frc.robot.Constants.LEDConstants;
 public class LEDSubsystem extends SubsystemBase {
 
   private Spark LEDController = new Spark(LEDConstants.LEDTalonPort);
-<<<<<<< HEAD
   // private PWM LED=new PWM(9);
   
   public void setPresetGold() {
     LEDController.set(0.33);
     // LED.setRaw(125);
      
-=======
-  private PWM LED = new PWM(9);
-
-  public void setPresetGold() {
-    LEDController.set(0.33);
-    LED.setRaw(125);
->>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
   }
 
   public void setPresetGreen() {

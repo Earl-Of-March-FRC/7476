@@ -22,20 +22,8 @@ public class CancelArmAutomation extends InstantCommand {
   public Command armdefaultCommand;
   public Command armLoad;
 
-<<<<<<< HEAD:src/main/java/frc/robot/commands/Arm/CancelArmAutomation.java
   public CancelArmAutomation(Arm arm, LEDSubsystem led, Command armPlaceTop, Command armPlaceMid, Command armPlaceLow, Command armDefault, Command armLoad) {
     
-=======
-  public CancelAutomation(
-      Arm arm,
-      LEDSubsystem led,
-      Command armPlaceTop,
-      Command armPlaceMid,
-      Command armPlaceLow,
-      Command armDefault,
-      Command armLoad) {
-
->>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1:src/main/java/frc/robot/commands/CancelAutomation.java
     this.arm = arm;
     this.led = led;
     armPlaceTopCommand = armPlaceTop;

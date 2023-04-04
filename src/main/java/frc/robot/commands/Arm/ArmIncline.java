@@ -34,19 +34,9 @@ public class ArmIncline extends CommandBase {
       } else {
         armMotors.armIncline(0);
       }
-<<<<<<< HEAD
-      else{armMotors.armIncline(speed * -0.4);}
-    } else {
-      if(armMotors.getInclineAngle() <= 42){
-        armMotors.armIncline(speed * -0.65);
-      }
-      else{armMotors.armIncline(0);}
+    }
       //armMotors.armIncline(speed * -0.65);
       
-=======
-      // armMotors.armIncline(speed * -0.65);
-
->>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
     }
 
     // if (armMotors.getInclineAngle() <= 28) {
@@ -55,7 +45,6 @@ public class ArmIncline extends CommandBase {
     //           () -> armMotors.getExtensionInches() <= 78 /
     // Math.cos(armMotors.getInclineAngle()));
     // }
-  }
 
   @Override
   public void end(boolean interrupted) {

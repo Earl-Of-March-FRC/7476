@@ -39,11 +39,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
   }
 
   @Override
@@ -60,15 +55,7 @@ public class Robot extends TimedRobot {
 
     m_autonomousCommand =
         new ScoreTopLeaveFar(
-<<<<<<< HEAD
             m_robotContainer.driveSubsystem, m_robotContainer.armMotors, m_robotContainer.claw, 35, 76);
-=======
-            m_robotContainer.driveSubsystem,
-            m_robotContainer.armMotors,
-            m_robotContainer.claw,
-            35,
-            80);
->>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
 
     // // schedule the autonomous co mmand (example)
     if (m_autonomousCommand != null) {

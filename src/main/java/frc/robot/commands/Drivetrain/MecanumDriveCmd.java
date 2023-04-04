@@ -43,10 +43,6 @@ public class MecanumDriveCmd extends CommandBase {
     double speedForward, speedSide, speedRotate;
     speedForward =
         (DrivetrainConstants.maxDriveSpeed * (-scaleFactor.get() + 1) / 2) * forwardFunction.get();
-<<<<<<< HEAD
-=======
-    SmartDashboard.putNumber("Side speed", speedForward);
->>>>>>> 72f988e6684c9724fec07effd382f7f934e4e1b1
 
     speedSide =
         -1
