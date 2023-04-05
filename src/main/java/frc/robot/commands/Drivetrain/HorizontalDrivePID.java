@@ -15,7 +15,9 @@ import frc.robot.subsystems.VisionSubsystem;
 public class HorizontalDrivePID extends PIDCommand {
 
   VisionSubsystem visionSubsystem;
-  public HorizontalDrivePID(DrivetrainSubsystem drivetrain, VisionSubsystem vision, double setpoint) {
+
+  public HorizontalDrivePID(
+      DrivetrainSubsystem drivetrain, VisionSubsystem vision, double setpoint) {
     super(
         // The controller that the command will use
         new PIDController(0.03, 0.03, 0.001),
@@ -27,8 +29,8 @@ public class HorizontalDrivePID extends PIDCommand {
         output -> {
           drivetrain.setMecanum(0, -output, 0);
         });
-        addRequirements(drivetrain);
-   getController().setTolerance(0.7);
+    addRequirements(drivetrain);
+    getController().setTolerance(0.7);
   }
 
   // Returns true when the command should end.

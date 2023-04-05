@@ -55,7 +55,11 @@ public class Robot extends TimedRobot {
 
     m_autonomousCommand =
         new ScoreTopLeaveFar(
-            m_robotContainer.driveSubsystem, m_robotContainer.armMotors, m_robotContainer.claw, 35, 76);
+            m_robotContainer.driveSubsystem,
+            m_robotContainer.armMotors,
+            m_robotContainer.claw,
+            35,
+            76);
 
     // // schedule the autonomous co mmand (example)
     if (m_autonomousCommand != null) {

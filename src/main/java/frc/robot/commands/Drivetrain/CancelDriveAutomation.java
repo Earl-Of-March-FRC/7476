@@ -18,8 +18,13 @@ public class CancelDriveAutomation extends InstantCommand {
 
   public Command gyroTurn, coneAlign, cubeAlign;
 
-  public CancelDriveAutomation(DrivetrainSubsystem drive, VisionSubsystem vision, Command gyroTurn, Command coneAlign, Command cubeAlign) {
-    
+  public CancelDriveAutomation(
+      DrivetrainSubsystem drive,
+      VisionSubsystem vision,
+      Command gyroTurn,
+      Command coneAlign,
+      Command cubeAlign) {
+
     this.gyroTurn = gyroTurn;
     this.drive = drive;
     this.coneAlign = coneAlign;

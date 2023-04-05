@@ -13,6 +13,7 @@ import frc.robot.subsystems.VisionSubsystem;
 public class SetPipeline extends InstantCommand {
   VisionSubsystem vision;
   int pipeline;
+
   public SetPipeline(VisionSubsystem vision, int pipeline) {
     this.vision = vision;
     this.pipeline = pipeline;

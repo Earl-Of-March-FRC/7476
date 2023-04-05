@@ -108,7 +108,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     mecDrive.driveCartesian(x, y, rx, ahrs.getRotation2d().times(-1));
 
-
     // mecDrive.driveCartesian(x, y, rx);
 
     // , ahrs.getRotation2d().rotateBy(Rotation2d.fromDegrees(-90))
@@ -126,7 +125,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     return (frontLeft.getSelectedSensorPosition() * 3.55 * Math.PI / 2048) / 10.71;
   }
 
-  public double getYaw(){
+  public double getYaw() {
     return ahrs.getYaw();
   }
 

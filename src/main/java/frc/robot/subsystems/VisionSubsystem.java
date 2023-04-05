@@ -44,10 +44,12 @@ public class VisionSubsystem extends SubsystemBase {
   public double getTV() {
     return tvEntry.getDouble(-1);
   }
-  public void limeLEDOff(){
+
+  public void limeLEDOff() {
     table.getEntry("ledMode").setNumber(1);
   }
-  public void limeLEDOn(){
+
+  public void limeLEDOn() {
     table.getEntry("ledMode").setNumber(3);
   }
 

@@ -4,13 +4,11 @@
 
 package frc.robot.commandgroups;
 
-import edu.wpi.first.vision.VisionRunner;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.LEDGreen;
-import frc.robot.commands.LEDRainbow;
 import frc.robot.commands.Drivetrain.GyroTurnAnglePID;
 import frc.robot.commands.Drivetrain.HorizontalDrivePID;
-import frc.robot.commands.Limelight.LimelightLEDControl;
+import frc.robot.commands.LEDGreen;
+import frc.robot.commands.LEDRainbow;
 import frc.robot.commands.Limelight.SetPipeline;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
@@ -21,32 +19,25 @@ import frc.robot.subsystems.VisionSubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TeleopAlign extends SequentialCommandGroup {
   /** Creates a new TeleopAlign. */
-  public TeleopAlign(VisionSubsystem vision, DrivetrainSubsystem drive, LEDSubsystem led, int pipeline) {
-  
+  public TeleopAlign(
+      VisionSubsystem vision, DrivetrainSubsystem drive, LEDSubsystem led, int pipeline) {
+
     new LEDGreen(led);
-    
 
-    addCommands(
-      new GyroTurnAnglePID(drive, 0),
-      new SetPipeline(vision, pipeline));
+    addCommands(new GyroTurnAnglePID(drive, 0), new SetPipeline(vision, pipeline));
 
-    if(pipeline == 0){
+    if (pipeline == 0) {
       addCommands(
-        new HorizontalDrivePID(drive, vision, -6.5),
-        new GyroTurnAnglePID(drive, 0),
-        new HorizontalDrivePID(drive, vision, -6.5)
-      );
-    }
-    else if(pipeline == 1){
+          new HorizontalDrivePID(drive, vision, -6.5),
+          new GyroTurnAnglePID(drive, 0),
+          new HorizontalDrivePID(drive, vision, -6.5));
+    } else if (pipeline == 1) {
       addCommands(
-        new HorizontalDrivePID(drive, vision, -10),
-        new GyroTurnAnglePID(drive, 0),
-        new HorizontalDrivePID(drive, vision, -10)
-      );
+          new HorizontalDrivePID(drive, vision, -10),
+          new GyroTurnAnglePID(drive, 0),
+          new HorizontalDrivePID(drive, vision, -10));
     }
 
-    addCommands(
-      new LEDRainbow(led));
-
+    addCommands(new LEDRainbow(led));
   }
 }

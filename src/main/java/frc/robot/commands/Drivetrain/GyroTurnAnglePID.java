@@ -22,8 +22,8 @@ public class GyroTurnAnglePID extends PIDCommand {
         output -> {
           driveTrain.setMecanumPermanent(0, 0, -output);
         });
-        getController().setTolerance(GyroConstants.gyroTurnTolerance);
-        getController().enableContinuousInput(-180, 180);
+    getController().setTolerance(GyroConstants.gyroTurnTolerance);
+    getController().enableContinuousInput(-180, 180);
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
   }

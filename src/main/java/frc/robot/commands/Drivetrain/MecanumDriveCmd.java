@@ -1,12 +1,8 @@
 package frc.robot.commands.Drivetrain;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DrivetrainConstants;
-import frc.robot.Constants.ScaleFactorConstants;
 import frc.robot.subsystems.DrivetrainSubsystem;
-
-import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 public class MecanumDriveCmd extends CommandBase {
@@ -39,7 +35,7 @@ public class MecanumDriveCmd extends CommandBase {
 
   @Override
   public void execute() {
-    
+
     double speedForward, speedSide, speedRotate;
     speedForward =
         (DrivetrainConstants.maxDriveSpeed * (-scaleFactor.get() + 1) / 2) * forwardFunction.get();
@@ -54,7 +50,7 @@ public class MecanumDriveCmd extends CommandBase {
             * (DrivetrainConstants.maxTurnSpeed * (-scaleFactor.get() + 1) / 2)
             * rotateFunction.get();
 
-    if(limit.get()){
+    if (limit.get()) {
       speedForward = 0;
       speedRotate = 0;
     }
@@ -64,9 +60,11 @@ public class MecanumDriveCmd extends CommandBase {
     // double speedForward;
 
     // double sideFunction =
-    //     (DrivetrainConstants.maxDriveSpeed * (-scaleFactor.get() + 1) / 2) * this.sideFunction.get();
+    //     (DrivetrainConstants.maxDriveSpeed * (-scaleFactor.get() + 1) / 2) *
+    // this.sideFunction.get();
     //     SmartDashboard.putNumber("Side speed", speedForward);
-    // driveSubsystem.setMecanum(sideFunction, speedForward, rotateFunction.get(), scaleFactor.get());
+    // driveSubsystem.setMecanum(sideFunction, speedForward, rotateFunction.get(),
+    // scaleFactor.get());
   }
 
   @Override
