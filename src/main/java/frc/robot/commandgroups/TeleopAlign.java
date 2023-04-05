@@ -9,6 +9,7 @@ import frc.robot.commands.Drivetrain.GyroTurnAnglePID;
 import frc.robot.commands.Drivetrain.HorizontalDrivePID;
 import frc.robot.commands.LEDGreen;
 import frc.robot.commands.LEDRainbow;
+import frc.robot.commands.LEDTurnOff;
 import frc.robot.commands.Limelight.SetPipeline;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
@@ -21,10 +22,11 @@ public class TeleopAlign extends SequentialCommandGroup {
   /** Creates a new TeleopAlign. */
   public TeleopAlign(
       VisionSubsystem vision, DriveTrainSubsystem drive, LEDSubsystem led, int pipeline) {
-
-    new LEDGreen(led);
-
-    addCommands(new GyroTurnAnglePID(drive, 0), new SetPipeline(vision, pipeline));
+    if(vision.getTY() == -1){
+      addCommands(new LEDTurnOff(led).withTimeout(0.05), new LEDRainbow(led).withTimeout(0.05), new LEDTurnOff(led).withTimeout(0.05), new LEDRainbow(led).withTimeout(0.05), new LEDTurnOff(led).withTimeout(0.05), new LEDRainbow(led).withTimeout(0.05));
+    }
+    else{
+      addCommands(new GyroTurnAnglePID(drive, 0), new SetPipeline(vision, pipeline));
 
     if (pipeline == 0) {
       addCommands(
@@ -39,5 +41,8 @@ public class TeleopAlign extends SequentialCommandGroup {
     }
 
     addCommands(new LEDRainbow(led));
+    }
   }
+
+  
 }

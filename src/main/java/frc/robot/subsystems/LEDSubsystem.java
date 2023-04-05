@@ -27,6 +27,10 @@ public class LEDSubsystem extends SubsystemBase {
     LEDController.set(-0.99); // 0.89 is green
   }
 
+  public void turnOff(){
+    LEDController.set(0);
+  }
+
   /** Creates a new LEDSubsystem. */
   public LEDSubsystem() {
     setRainbow();
