@@ -3,14 +3,14 @@ package frc.robot.commands.Drivetrain;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.Constants.GyroConstants;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DriveTrainSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GyroTurnAnglePID extends PIDCommand {
   /** Creates a new GyroTurnAnglePIDA. */
-  public GyroTurnAnglePID(DrivetrainSubsystem driveTrain, double setpoint) {
+  public GyroTurnAnglePID(DriveTrainSubsystem driveTrain, double setpoint) {
     super(
         // The controller that the command will use
         new PIDController(0.04, 0.04, GyroConstants.kDGyro),

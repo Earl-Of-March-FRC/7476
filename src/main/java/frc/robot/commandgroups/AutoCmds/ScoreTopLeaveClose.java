@@ -12,10 +12,10 @@ import frc.robot.commands.Arm.ArmRetract;
 import frc.robot.commands.ClawControl;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class ScoreTopLeaveClose extends SequentialCommandGroup {
-  public ScoreTopLeaveClose(DrivetrainSubsystem driveTrain, Arm armMotors, Claw claw) {
+  public ScoreTopLeaveClose(DriveTrainSubsystem driveTrain, Arm armMotors, Claw claw) {
     addCommands(
         // new ArmIncline(armMotors, () -> 0.8).until( () -> armMotors.getInclineAngle() >=50),
         // new ArmExtend(armMotors, () -> 0.8).until( () -> armMotors.getExtensionInches() >=75),

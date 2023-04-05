@@ -12,14 +12,14 @@ import frc.robot.commands.ClawControl;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DriveTrainSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ScoreFloorLeave extends SequentialCommandGroup {
   /** Creates a new ScoreFloorLeave. */
-  public ScoreFloorLeave(Arm armMotors, DrivetrainSubsystem drivetrain, Claw claw) {
+  public ScoreFloorLeave(Arm armMotors, DriveTrainSubsystem drivetrain, Claw claw) {
     addCommands(
         new ArmIncline(armMotors, () -> 2).withTimeout(1.25),
         new ArmExtend(armMotors, () -> -0.65).withTimeout(0.65),

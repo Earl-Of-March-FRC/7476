@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DrivetrainConstants;
 import frc.robot.Constants.ScaleFactorConstants;
 
-public class DrivetrainSubsystem extends SubsystemBase {
+public class DriveTrainSubsystem extends SubsystemBase {
 
   private double startTime;
   private double driftPerSecond;
@@ -25,7 +25,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   private AHRS ahrs = new AHRS(Port.kUSB);
 
-  public DrivetrainSubsystem() {
+  public DriveTrainSubsystem() {
     frontLeft.setNeutralMode(NeutralMode.Brake);
     frontRight.setNeutralMode(NeutralMode.Brake);
     backLeft.setNeutralMode(NeutralMode.Brake);

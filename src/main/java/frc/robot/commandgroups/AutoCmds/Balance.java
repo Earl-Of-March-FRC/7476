@@ -7,10 +7,10 @@ package frc.robot.commandgroups.AutoCmds;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class Balance extends SequentialCommandGroup {
-  public Balance(DrivetrainSubsystem driveTrain) {
+  public Balance(DriveTrainSubsystem driveTrain) {
     addCommands(
         new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 1.0, () -> 0.0, () -> 3.0, () -> false)
             .withTimeout(1.6), // 1.3

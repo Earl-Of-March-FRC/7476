@@ -23,13 +23,13 @@ import frc.robot.commands.GyroReset;
 import frc.robot.commands.Limelight.LimelightLEDControl;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 
 public class RobotContainer {
 
-  final DrivetrainSubsystem driveSubsystem = new DrivetrainSubsystem();
+  final DriveTrainSubsystem driveSubsystem = new DriveTrainSubsystem();
   public final Arm armMotors = new Arm();
   public final Claw claw = new Claw();
 

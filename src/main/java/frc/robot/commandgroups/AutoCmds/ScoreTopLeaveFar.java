@@ -13,11 +13,11 @@ import frc.robot.commands.Arm.ArmRetract;
 import frc.robot.commands.ClawControl;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class ScoreTopLeaveFar extends SequentialCommandGroup {
   public ScoreTopLeaveFar(
-      DrivetrainSubsystem drive,
+      DriveTrainSubsystem drive,
       Arm arm,
       Claw claw,
       double angleSetpoint,

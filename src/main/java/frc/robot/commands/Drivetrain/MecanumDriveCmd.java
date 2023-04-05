@@ -2,18 +2,18 @@ package frc.robot.commands.Drivetrain;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DrivetrainConstants;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DriveTrainSubsystem;
 import java.util.function.Supplier;
 
 public class MecanumDriveCmd extends CommandBase {
 
-  private DrivetrainSubsystem driveSubsystem;
+  private DriveTrainSubsystem driveSubsystem;
   private Supplier<Double> forwardFunction, sideFunction, rotateFunction, scaleFactor;
 
   private Supplier<Boolean> limit;
 
   public MecanumDriveCmd(
-      DrivetrainSubsystem driveSubsystem,
+      DriveTrainSubsystem driveSubsystem,
       Supplier<Double> ff,
       Supplier<Double> sf,
       Supplier<Double> rf,

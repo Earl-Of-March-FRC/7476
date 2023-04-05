@@ -7,10 +7,10 @@ package frc.robot.commandgroups.AutoCmds;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class LeaveClose extends SequentialCommandGroup {
-  public LeaveClose(DrivetrainSubsystem driveTrain) {
+  public LeaveClose(DriveTrainSubsystem driveTrain) {
     addCommands(
         new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 0.25, () -> 0.0, () -> 3.0, () -> false)
             .withTimeout(2.7),

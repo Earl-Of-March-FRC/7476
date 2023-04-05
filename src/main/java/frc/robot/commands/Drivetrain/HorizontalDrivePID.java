@@ -6,7 +6,7 @@ package frc.robot.commands.Drivetrain;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -17,7 +17,7 @@ public class HorizontalDrivePID extends PIDCommand {
   VisionSubsystem visionSubsystem;
 
   public HorizontalDrivePID(
-      DrivetrainSubsystem drivetrain, VisionSubsystem vision, double setpoint) {
+      DriveTrainSubsystem drivetrain, VisionSubsystem vision, double setpoint) {
     super(
         // The controller that the command will use
         new PIDController(0.03, 0.03, 0.001),
