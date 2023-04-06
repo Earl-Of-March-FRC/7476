@@ -3,7 +3,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.Constants.DriverStationConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commandgroups.AutoCmds.Balance;
@@ -20,7 +19,6 @@ import frc.robot.commands.ClawControl;
 import frc.robot.commands.Drivetrain.CancelDriveAutomation;
 import frc.robot.commands.Drivetrain.GyroTurnAnglePID;
 import frc.robot.commands.Drivetrain.MecanumDriveCmd;
-import frc.robot.commands.Drivetrain.VerticalDrivePID;
 import frc.robot.commands.GyroReset;
 // import frc.robot.commandgroups.AutoCmds.ScoreFloorAndBalance;
 import frc.robot.commands.Limelight.LimelightLEDControl;
@@ -126,7 +124,7 @@ public class RobotContainer {
 
     new JoystickButton(controller, 11)
         .onTrue(new CancelDriveAutomation(driveSubsystem, vision, gyroTurn, ConeAlign, CubeAlign));
-      
+
     new JoystickButton(controller, 5).onTrue(new Balance(driveSubsystem));
   }
 

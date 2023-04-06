@@ -16,8 +16,7 @@ public class VerticalDrivePID extends PIDCommand {
 
   VisionSubsystem visionSubsystem;
 
-  public VerticalDrivePID(
-      DriveTrainSubsystem drivetrain, double setpoint) {
+  public VerticalDrivePID(DriveTrainSubsystem drivetrain, double setpoint) {
     super(
         // The controller that the command will use
         new PIDController(0.05, 0.05, 0.001), // 0.015

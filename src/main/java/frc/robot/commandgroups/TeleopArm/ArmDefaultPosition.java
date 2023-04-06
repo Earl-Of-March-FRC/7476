@@ -5,7 +5,6 @@
 package frc.robot.commandgroups.TeleopArm;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Arm.ArmInclineTop;
 import frc.robot.commands.Arm.ArmRetract;
 import frc.robot.commands.LEDGold;
@@ -20,9 +19,6 @@ public class ArmDefaultPosition extends SequentialCommandGroup {
   /** Creates a new ArmDefaultPosition. */
   public ArmDefaultPosition(Arm arm, LEDSubsystem led) {
     addCommands(
-        new LEDGold(led),
-        new ArmInclineTop(arm, 41),
-        new ArmRetract(arm, 40),
-        new LEDRainbow(led));
+        new LEDGold(led), new ArmInclineTop(arm, 41), new ArmRetract(arm, 40), new LEDRainbow(led));
   }
 }

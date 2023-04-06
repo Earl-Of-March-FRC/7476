@@ -7,7 +7,6 @@ package frc.robot.commandgroups;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Drivetrain.GyroTurnAnglePID;
 import frc.robot.commands.Drivetrain.HorizontalDrivePID;
-import frc.robot.commands.LEDGreen;
 import frc.robot.commands.LEDRainbow;
 import frc.robot.commands.LEDTurnOff;
 import frc.robot.commands.Limelight.SetPipeline;
@@ -23,29 +22,31 @@ public class TeleopAlign extends SequentialCommandGroup {
   public TeleopAlign(
       VisionSubsystem vision, DriveTrainSubsystem drive, LEDSubsystem led, int pipeline) {
     addCommands(new SetPipeline(vision, pipeline));
-    if(vision.getTY() == 0){
-      for(int i = 0; i <= 25; i++){
-        addCommands(new LEDTurnOff(led).withTimeout(0.3), new LEDRainbow(led).withTimeout(0.3), new LEDRainbow(led).withTimeout(0.15), new LEDTurnOff(led).withTimeout(0.15), new LEDRainbow(led).withTimeout(0.15));   
+    if (vision.getTY() == 0) {
+      for (int i = 0; i <= 25; i++) {
+        addCommands(
+            new LEDTurnOff(led).withTimeout(0.3),
+            new LEDRainbow(led).withTimeout(0.3),
+            new LEDRainbow(led).withTimeout(0.15),
+            new LEDTurnOff(led).withTimeout(0.15),
+            new LEDRainbow(led).withTimeout(0.15));
       }
-    }
-    else{
+    } else {
       addCommands(new GyroTurnAnglePID(drive, 0));
 
-    if (pipeline == 0) {
-      addCommands(
-          new HorizontalDrivePID(drive, vision, -11.5),
-          new GyroTurnAnglePID(drive, 0),
-          new HorizontalDrivePID(drive, vision, -11.5));
-    } else if (pipeline == 1) {
-      addCommands(
-          new HorizontalDrivePID(drive, vision, -10),
-          new GyroTurnAnglePID(drive, 0),
-          new HorizontalDrivePID(drive, vision, -10));
-    }
+      if (pipeline == 0) {
+        addCommands(
+            new HorizontalDrivePID(drive, vision, -11.5),
+            new GyroTurnAnglePID(drive, 0),
+            new HorizontalDrivePID(drive, vision, -11.5));
+      } else if (pipeline == 1) {
+        addCommands(
+            new HorizontalDrivePID(drive, vision, -10),
+            new GyroTurnAnglePID(drive, 0),
+            new HorizontalDrivePID(drive, vision, -10));
+      }
 
-    addCommands(new LEDRainbow(led));
+      addCommands(new LEDRainbow(led));
     }
   }
-
-  
 }
