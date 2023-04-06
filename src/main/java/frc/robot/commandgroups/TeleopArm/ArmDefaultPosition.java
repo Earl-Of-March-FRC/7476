@@ -22,7 +22,6 @@ public class ArmDefaultPosition extends SequentialCommandGroup {
     addCommands(
         new LEDGold(led),
         new ArmInclineTop(arm, 41),
-        new WaitCommand(0.5),
         new ArmRetract(arm, 40),
         new LEDRainbow(led));
   }

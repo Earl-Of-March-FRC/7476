@@ -22,17 +22,20 @@ public class TeleopAlign extends SequentialCommandGroup {
   /** Creates a new TeleopAlign. */
   public TeleopAlign(
       VisionSubsystem vision, DriveTrainSubsystem drive, LEDSubsystem led, int pipeline) {
-    if(vision.getTY() == -1){
-      addCommands(new LEDTurnOff(led).withTimeout(0.05), new LEDRainbow(led).withTimeout(0.05), new LEDTurnOff(led).withTimeout(0.05), new LEDRainbow(led).withTimeout(0.05), new LEDTurnOff(led).withTimeout(0.05), new LEDRainbow(led).withTimeout(0.05));
+    addCommands(new SetPipeline(vision, pipeline));
+    if(vision.getTY() == 0){
+      for(int i = 0; i <= 25; i++){
+        addCommands(new LEDTurnOff(led).withTimeout(0.3), new LEDRainbow(led).withTimeout(0.3), new LEDRainbow(led).withTimeout(0.15), new LEDTurnOff(led).withTimeout(0.15), new LEDRainbow(led).withTimeout(0.15));   
+      }
     }
     else{
-      addCommands(new GyroTurnAnglePID(drive, 0), new SetPipeline(vision, pipeline));
+      addCommands(new GyroTurnAnglePID(drive, 0));
 
     if (pipeline == 0) {
       addCommands(
-          new HorizontalDrivePID(drive, vision, -6.5),
+          new HorizontalDrivePID(drive, vision, -11.5),
           new GyroTurnAnglePID(drive, 0),
-          new HorizontalDrivePID(drive, vision, -6.5));
+          new HorizontalDrivePID(drive, vision, -11.5));
     } else if (pipeline == 1) {
       addCommands(
           new HorizontalDrivePID(drive, vision, -10),

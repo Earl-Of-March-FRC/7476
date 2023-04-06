@@ -23,7 +23,7 @@ public class ArmPlaceMid extends SequentialCommandGroup {
     if (arm.getExtensionInches() > 65) {
       addCommands(new ArmRetract(arm, 64));
     } else if (arm.getExtensionInches() < 63) {
-      addCommands(new ArmInclineTop(arm, 34), new WaitCommand(0.5), new ArmExtendTop(arm, 64));
+      addCommands(new ArmInclineTop(arm, 34), new ArmExtendTop(arm, 64));
     }
     addCommands(new LEDRainbow(led));
   }

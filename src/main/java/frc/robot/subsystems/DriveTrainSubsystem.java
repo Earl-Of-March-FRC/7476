@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort.Port;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,6 +25,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
   public MecanumDrive mecDrive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
   private AHRS ahrs = new AHRS(Port.kUSB);
+  private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
   public DriveTrainSubsystem() {
     frontLeft.setNeutralMode(NeutralMode.Brake);
@@ -57,6 +59,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
   public void resetGyro() {
     ahrs.reset();
+    gyro.reset();
     this.startTime = Timer.getFPGATimestamp();
   }
 
@@ -69,6 +72,12 @@ public class DriveTrainSubsystem extends SubsystemBase {
       e.printStackTrace();
     }
     this.driftPerSecond = (ahrs.getAngle() - startAngle) / (Timer.getFPGATimestamp() - startTime);
+
+    gyro.calibrate();
+  }
+
+  public void gyroOnlyCalibrate(){
+    gyro.calibrate();
   }
 
   public void resetEncoders() {
@@ -106,7 +115,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     if (Math.abs(rx) < ScaleFactorConstants.rotateDeadzone) rx = 0;
 
-    mecDrive.driveCartesian(x, y, rx, ahrs.getRotation2d().times(-1));
+    mecDrive.driveCartesian(x, y, rx, gyro.getRotation2d().times(-1));
 
     // mecDrive.driveCartesian(x, y, rx);
 
@@ -132,7 +141,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Front Left Encoder Distance", getDistance());
-    SmartDashboard.putNumber("Gyro Get Angle", ahrs.getAngle());
+    SmartDashboard.putNumber("Gyro Get Angle", gyro.getAngle());
     SmartDashboard.putNumber("Gyro Get Pitch", getPitch());
   }
 

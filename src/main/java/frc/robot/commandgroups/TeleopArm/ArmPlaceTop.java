@@ -25,9 +25,8 @@ public class ArmPlaceTop extends SequentialCommandGroup {
     addCommands(
         new LEDGold(led),
         new ArmInclineTop(arm, 38),
-        new WaitCommand(0.5),
         new ArmExtendTop(arm, 76),
-        new ArmInclineTop(arm, 32).raceWith(new ArmExtend(arm, () -> -0.2)),
+        // new ArmInclineTop(arm, 32).raceWith(new ArmExtend(arm, () -> -0.2)),
         new LEDRainbow(led));
   }
 }

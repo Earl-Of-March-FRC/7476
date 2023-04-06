@@ -24,7 +24,6 @@ public class ArmLoadPieces extends SequentialCommandGroup {
     addCommands(
         new LEDGold(led),
         new ArmInclineTop(arm, 37),
-        new WaitCommand(0.5),
         new ArmExtendTop(arm, 70),
         new LEDRainbow(led));
   }

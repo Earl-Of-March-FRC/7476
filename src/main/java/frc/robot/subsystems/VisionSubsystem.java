@@ -34,15 +34,15 @@ public class VisionSubsystem extends SubsystemBase {
   }
 
   public double getTY() {
-    return tyEntry.getDouble(-1);
+    return tyEntry.getDouble(0);
   }
 
   public double getTX() {
-    return txEntry.getDouble(-1);
+    return txEntry.getDouble(0);
   }
 
   public double getTV() {
-    return tvEntry.getDouble(-1);
+    return tvEntry.getDouble(0);
   }
 
   public void limeLEDOff() {

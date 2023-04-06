@@ -32,8 +32,8 @@ public class ArmExtend extends CommandBase {
       }
 
     } else {
-      if (armMotors.getInclineAngle() < 20 && armMotors.getExtensionInches() > 65) {
-        new ArmRetract(armMotors, 60).schedule();
+      if (armMotors.getInclineAngle() < 23 && armMotors.getExtensionInches() > 65) {
+        new ArmRetract(armMotors, 64).schedule();
       } else {
         armMotors.armExtension(-speed * 0.70);
       }
