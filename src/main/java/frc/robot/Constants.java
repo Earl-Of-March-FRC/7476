@@ -42,8 +42,8 @@ public final class Constants {
     public static final double kDBalance = 0;
     public static final double dropAndLeaveSetpoint = 12;
 
-    public static double maxDriveSpeed = 1;
-    public static double maxTurnSpeed = 0.8;
+    public static double maxDriveSpeed = 0.5;
+    public static double maxTurnSpeed = 0.4;
   }
 
   public static class ArmConstants {

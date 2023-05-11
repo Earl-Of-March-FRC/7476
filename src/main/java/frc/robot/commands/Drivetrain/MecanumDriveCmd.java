@@ -1,5 +1,6 @@
 package frc.robot.commands.Drivetrain;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DrivetrainConstants;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -9,6 +10,8 @@ public class MecanumDriveCmd extends CommandBase {
 
   private DriveTrainSubsystem driveSubsystem;
   private Supplier<Double> forwardFunction, sideFunction, rotateFunction, scaleFactor;
+  SlewRateLimiter filter = new SlewRateLimiter(0.5);
+
 
   private Supplier<Boolean> limit;
 
@@ -26,6 +29,7 @@ public class MecanumDriveCmd extends CommandBase {
     this.rotateFunction = rf;
     this.scaleFactor = scaling;
     this.limit = limit;
+
 
     addRequirements(driveSubsystem);
   }
@@ -55,7 +59,8 @@ public class MecanumDriveCmd extends CommandBase {
       speedRotate = 0;
     }
 
-    driveSubsystem.setMecanum(speedSide, speedForward, speedRotate);
+    //driveSubsystem.setMecanum(speedSide, speedForward, speedRotate);
+    driveSubsystem.setMecanum(filter.calculate(speedSide), filter.calculate(speedForward), filter.calculate(speedRotate));
 
     // double speedForward;
 

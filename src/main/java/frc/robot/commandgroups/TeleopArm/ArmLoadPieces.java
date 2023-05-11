@@ -5,7 +5,6 @@
 package frc.robot.commandgroups.TeleopArm;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Arm.ArmExtendTop;
 import frc.robot.commands.Arm.ArmInclineTop;
 import frc.robot.commands.LEDGold;

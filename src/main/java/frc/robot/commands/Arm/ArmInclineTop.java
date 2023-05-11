@@ -8,6 +8,7 @@ import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
 import frc.robot.subsystems.Arm;
+import edu.wpi.first.math.MathUtil;
 
 public class ArmInclineTop extends ProfiledPIDCommand {
   public ArmInclineTop(Arm armMotors, double angleSetpoint) {
@@ -19,12 +20,16 @@ public class ArmInclineTop extends ProfiledPIDCommand {
             0,
             // The motion profile constraints
             new TrapezoidProfile.Constraints(60, 90)),
-        // This should return the measurement
-        () -> armMotors.getInclineAngle(),
-        // This should return the goal (can also be a constant)
-        () -> angleSetpoint,
-        // This uses the output
-        (output, setpoint) -> armMotors.armIncline(output));
+         // This should return the measurement
+         () -> armMotors.getInclineAngle(),
+         // This should return the goal (can also be a constant)
+         () -> angleSetpoint,
+         // This uses the output
+         (output, setpoint) -> {
+           MathUtil.clamp(output, -0.5, 0.5);
+           armMotors.armIncline(output);
+         });
+
     addRequirements(armMotors);
 
     getController().setTolerance(1);

@@ -1,5 +1,6 @@
 package frc.robot.commands.Arm;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
@@ -26,6 +27,7 @@ public class ArmExtendTop extends ProfiledPIDCommand {
         () -> extensionSetpoint,
         // This uses the output
         (output, setpoint) -> {
+          MathUtil.clamp(output, -0.5, 0.5);
           armMotors.armExtension(output);
         });
     addRequirements(armMotors);

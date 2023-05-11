@@ -5,12 +5,6 @@
 package frc.robot.commandgroups.AutoCmds;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.commands.Arm.ArmExtend;
-import frc.robot.commands.Arm.ArmExtendTop;
-import frc.robot.commands.Arm.ArmInclineTop;
-import frc.robot.commands.Arm.ArmRetract;
-import frc.robot.commands.ClawControl;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -23,12 +17,12 @@ public class ScoreTopLeaveFar extends SequentialCommandGroup {
       double angleSetpoint,
       double extensionSetpoint) {
     addCommands(
-        new ArmInclineTop(arm, angleSetpoint),
-        new WaitCommand(0.5),
-        new ArmExtendTop(arm, extensionSetpoint),
-        new WaitCommand(0.5).raceWith(new ArmExtend(arm, () -> -0.20)),
-        new ArmExtend(arm, () -> -0.2).raceWith(new ClawControl(claw, -1)).withTimeout(0.3),
-        new ArmRetract(arm, 38),
+        // new ArmInclineTop(arm, angleSetpoint),
+        // new WaitCommand(0.5),
+        // new ArmExtendTop(arm, extensionSetpoint),
+        // new WaitCommand(0.5).raceWith(new ArmExtend(arm, () -> -0.20)),
+        // new ArmExtend(arm, () -> -0.2).raceWith(new ClawControl(claw, -1)).withTimeout(0.36),
+        // new ArmRetract(arm, 38),
         new LeaveFar(drive));
   }
 }

@@ -15,7 +15,7 @@ public class GyroTurnAnglePID extends PIDCommand {
         // The controller that the command will use
         new PIDController(0.04, 0.04, GyroConstants.kDGyro),
         // This should return the measurement
-        () -> driveTrain.getYaw(),
+        () -> (driveTrain.getGyroAngle() % 360),
         // This should return the setpoint (can also be a constant)
         () -> setpoint,
         // This uses the output
@@ -23,9 +23,7 @@ public class GyroTurnAnglePID extends PIDCommand {
           driveTrain.setMecanumPermanent(0, 0, -output);
         });
     getController().setTolerance(GyroConstants.gyroTurnTolerance);
-    getController().enableContinuousInput(-180, 180);
-    // Use addRequirements() here to declare subsystem dependencies.
-    // Configure additional PID options by calling `getController` here.
+    addRequirements(driveTrain);
   }
 
   // Returns true when the command should end.

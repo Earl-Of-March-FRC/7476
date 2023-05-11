@@ -1,11 +1,11 @@
 package frc.robot;
 
-import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commandgroups.AutoCmds.ScoreTopBalance;
+// import frc.robot.commandgroups.AutoCmds.ScoreTopBalance;
 import frc.robot.commandgroups.AutoCmds.ScoreTopLeaveFar;
 
 public class Robot extends TimedRobot {
@@ -13,16 +13,21 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
 
+  private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+
   // SendableChooser<Command> auto = new SendableChooser<Command>();
 
   @Override
   public void robotInit() {
-    CameraServer.startAutomaticCapture();
+    // CameraServer.startAutomaticCapture();
     m_robotContainer = new RobotContainer();
 
     m_robotContainer.armMotors.armExtensionBrake();
     m_robotContainer.armMotors.resetEncoders();
     m_robotContainer.driveSubsystem.resetEncoders();
+    m_robotContainer.driveSubsystem.resetGyro();
+    gyro.calibrate();
+    m_robotContainer.driveSubsystem.calibrate();
 
     // auto.setDefaultOption("ScoreTopLeaveFar", new ScoreTopLeaveFar(
     //   m_robotContainer.driveSubsystem,
@@ -55,8 +60,10 @@ public class Robot extends TimedRobot {
     m_robotContainer.driveSubsystem.resetEncoders();
     m_robotContainer.driveSubsystem.resetGyro();
 
+    m_robotContainer.driveSubsystem.calibrate();
+
     m_autonomousCommand =
-        new ScoreTopBalance(
+        new ScoreTopLeaveFar(
             m_robotContainer.driveSubsystem,
             m_robotContainer.armMotors,
             m_robotContainer.claw,
@@ -92,8 +99,11 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     SmartDashboard.putNumber("TX", m_robotContainer.vision.getTX());
     SmartDashboard.putNumber("TY", m_robotContainer.vision.getTY());
-    SmartDashboard.putNumber("Yaw", m_robotContainer.driveSubsystem.getYaw());
+    // SmartDashboard.putNumber("Yaw", m_robotContainer.driveSubsystem.getYaw());
     SmartDashboard.putNumber("Pipe", m_robotContainer.vision.getPipeline());
+
+    // SmartDashboard.putData("Limelight", m_robotContainer.vision.get);
+
   }
 
   @Override

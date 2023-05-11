@@ -5,6 +5,7 @@
 package frc.robot.commandgroups.TeleopArm;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Arm.ArmExtendTop;
 import frc.robot.commands.Arm.ArmInclineTop;
 import frc.robot.commands.Arm.ArmRetract;
@@ -28,6 +29,6 @@ public class ArmPlaceLow extends SequentialCommandGroup {
       addCommands(new ArmExtendTop(arm, 40));
     }
 
-    addCommands(new ArmInclineTop(arm, 10), new LEDRainbow(led));
+    addCommands(new ArmInclineTop(arm, 10).raceWith(new WaitCommand(0.5)), new LEDRainbow(led));
   }
 }

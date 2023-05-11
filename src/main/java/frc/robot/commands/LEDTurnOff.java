@@ -5,6 +5,7 @@ import frc.robot.subsystems.LEDSubsystem;
 
 public class LEDTurnOff extends CommandBase {
   LEDSubsystem ledSubsystem;
+
   public LEDTurnOff(LEDSubsystem ledSubsystem) {
     this.ledSubsystem = ledSubsystem;
     addRequirements(ledSubsystem);
@@ -12,7 +13,7 @@ public class LEDTurnOff extends CommandBase {
 
   @Override
   public void initialize() {
-    ledSubsystem.turnOff(); 
+    ledSubsystem.turnOff();
   }
 
   @Override

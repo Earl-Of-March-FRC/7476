@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.Arm.ArmExtend;
 import frc.robot.commands.Arm.ArmExtendTop;
 import frc.robot.commands.Arm.ArmInclineTop;
-import frc.robot.commands.ClawControl;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Claw;
 
@@ -34,7 +33,7 @@ public class ArmExtensionAndInclineTop extends SequentialCommandGroup {
         new ArmInclineTop(arm, angleSetpoint),
         new WaitCommand(0.5),
         new ArmExtendTop(arm, extensionSetpoint),
-        new WaitCommand(0.5).raceWith(new ArmExtend(arm, () -> -0.20)),
-        new ArmExtend(arm, () -> -0.2).raceWith(new ClawControl(claw, -1)).withTimeout(0.3));
+        new WaitCommand(0.5).raceWith(new ArmExtend(arm, () -> -0.20)));
+    // new ArmExtend(arm, () -> -0.2).raceWith(new ClawControl(claw, -1)).withTimeout(0.3));
   }
 }

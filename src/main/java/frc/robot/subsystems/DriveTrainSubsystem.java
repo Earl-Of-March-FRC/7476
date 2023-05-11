@@ -15,7 +15,11 @@ import frc.robot.Constants.ScaleFactorConstants;
 public class DriveTrainSubsystem extends SubsystemBase {
 
   private double startTime;
-  private double driftPerSecond;
+  private double driftPerSecondAHRS;
+  private double driftPerSecondAHRS2;
+  private double driftPerSecondGyro;
+  private double driftPerSecondGyro2;
+  private double point2Timestamp;
 
   private WPI_TalonFX frontLeft = new WPI_TalonFX(DrivetrainConstants.frontLeftTalonPort);
   private WPI_TalonFX frontRight = new WPI_TalonFX(DrivetrainConstants.frontRightTalonPort);
@@ -25,7 +29,12 @@ public class DriveTrainSubsystem extends SubsystemBase {
   public MecanumDrive mecDrive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
   private AHRS ahrs = new AHRS(Port.kUSB);
-  private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  //private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+
+  // private Rotation2d rotationPose = new Rotation2d(0); // -hans
+
+  //kinematics test
+
 
   public DriveTrainSubsystem() {
     frontLeft.setNeutralMode(NeutralMode.Brake);
@@ -35,8 +44,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     frontLeft.setInverted(true);
     backLeft.setInverted(true);
-    ahrs.calibrate();
-    ahrs.reset();
+    //ahrs.calibrate();
+    //ahrs.reset();
 
     frontLeft.setSelectedSensorPosition(0);
     frontRight.setSelectedSensorPosition(0);
@@ -47,38 +56,60 @@ public class DriveTrainSubsystem extends SubsystemBase {
     calibrate();
   }
 
+  // public double getAHRSAngle() {
+  //   // double runTime = Timer.getFPGATimestamp() - startTime;
+  //   // double drift = runTime * driftPerSecondAHRS; - drift
+  //   return ahrs.getAngle();
+  // }
+
   public double getGyroAngle() {
-    double runTime = Timer.getFPGATimestamp() - startTime;
-    double drift = runTime * driftPerSecond;
-    return ahrs.getAngle() - drift;
+    // double runTime = Timer.getFPGATimestamp() - startTime;
+    // double drift = runTime * driftPerSecondGyro; - drift
+    return ahrs.getAngle();
   }
 
-  public double getGyroRate() {
-    return ahrs.getRate();
-  }
+  // public double getGyroRate() {
+  //   return ahrs.getRate();
+  // }
 
   public void resetGyro() {
+    // ahrs.reset();
     ahrs.reset();
-    gyro.reset();
-    this.startTime = Timer.getFPGATimestamp();
+    // this.startTime = Timer.getFPGATimestamp();
   }
 
   public void calibrate() {
     this.startTime = Timer.getFPGATimestamp();
-    double startAngle = ahrs.getAngle();
+    double startAHRSAngle = ahrs.getAngle();
+    //double startGyroAngle = gyro.getAngle();
     try {
-      Thread.sleep(5000);
+      Thread.sleep(2500);
     } catch (Exception e) {
       e.printStackTrace();
     }
-    this.driftPerSecond = (ahrs.getAngle() - startAngle) / (Timer.getFPGATimestamp() - startTime);
 
-    gyro.calibrate();
+    // this.driftPerSecondGyro2 =
+    //     (gyro.getAngle() - startGyroAngle) / (Timer.getFPGATimestamp() - startTime);
+    this.driftPerSecondAHRS2 = (ahrs.getAngle() - startAHRSAngle)/(Timer.getFPGATimestamp() - startTime);
+    this.point2Timestamp = Timer.getFPGATimestamp();
+
+    try {
+      Thread.sleep(2500);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    this.driftPerSecondAHRS = (ahrs.getAngle() - startAHRSAngle)/(Timer.getFPGATimestamp() - startTime);
+
+    // this.driftPerSecondGyro =
+    //     (gyro.getAngle() - startGyroAngle) / (Timer.getFPGATimestamp() - this.point2Timestamp);
+
+    this.driftPerSecondGyro = (this.driftPerSecondAHRS + this.driftPerSecondAHRS2) / 2;
   }
 
-  public void gyroOnlyCalibrate(){
-    gyro.calibrate();
-  }
+  // public void gyroOnlyCalibrate() {
+  //   gyro.calibrate();
+  // }
 
   public void resetEncoders() {
     frontLeft.setSelectedSensorPosition(0);
@@ -87,9 +118,9 @@ public class DriveTrainSubsystem extends SubsystemBase {
     backRight.setSelectedSensorPosition(0);
   }
 
-  public double getPitch() {
-    return ahrs.getPitch();
-  }
+  // public double getPitch() {
+  //   return ahrs.getPitch();
+  // }
 
   public double distanceToTicks(double distanceInches) {
     return (distanceInches / 6 * Math.PI) * 2048;
@@ -102,47 +133,67 @@ public class DriveTrainSubsystem extends SubsystemBase {
   public void setMecanum(double x, double y, double rx) {
     if (Math.abs(x) < ScaleFactorConstants.driveDeadzone) x = 0;
     // y =
-    //     -1
-    //         * (DrivetrainConstants.maxDriveSpeed * (-scaleFactor + 1) / 2)
-    //         * y;
+    // -1
+    // * (DrivetrainConstants.maxDriveSpeed * (-scaleFactor + 1) / 2)
+    // * y;
 
     if (Math.abs(y) < ScaleFactorConstants.driveDeadzone) y = 0;
 
     // rx =
-    //     -1
-    //         * (DrivetrainConstants.maxTurnSpeed * (-scaleFactor + 1) / 2)
-    //         * rx;
+    // -1
+    // * (DrivetrainConstants.maxTurnSpeed * (-scaleFactor + 1) / 2)
+    // * rx;
 
     if (Math.abs(rx) < ScaleFactorConstants.rotateDeadzone) rx = 0;
 
-    mecDrive.driveCartesian(x, y, rx, gyro.getRotation2d().times(-1));
-
-    // mecDrive.driveCartesian(x, y, rx);
-
-    // , ahrs.getRotation2d().rotateBy(Rotation2d.fromDegrees(-90))
-    // frontLeft.set(y + x + rx);
-    // backLeft.set(y - x + rx);
-    // frontRight.set(y - x - rx);
-    // backRight.set(y + x - rx);
+    // if (!ahrs.isCalibrating()) {
+    //   rotationPose = ahrs.getRotation2d(); //added by hans, this is so that we do not get the
+    // values while calibrating
+    // }
+    mecDrive.driveCartesian(x, y, rx, ahrs.getRotation2d().times(-1));
 
     SmartDashboard.putNumber("x", x);
     SmartDashboard.putNumber("y", y);
     SmartDashboard.putNumber("rx", rx);
   }
 
+  // mecDrive.driveCartesian(x, y, rx); Rotation2d.fromDegrees(getGyroAngle())
+
+  // , ahrs.getRotation2d().rotateBy(Rotation2d.fromDegrees(-90))
+  // frontLeft.set(y + x + rx);
+  // backLeft.set(y - x + rx);
+  // frontRight.set(y - x - rx);
+  // backRight.set(y + x - rx);
+
   public double getDistance() {
     return (frontLeft.getSelectedSensorPosition() * 3.55 * Math.PI / 2048) / 10.71;
   }
 
-  public double getYaw() {
-    return ahrs.getYaw();
-  }
+  
+
+
+  // public double getYaw() {
+  //   return ahrs.getYaw();
+  // }
+
+  // public double getFusedHeading() {
+  //   return ahrs.getFusedHeading(); // this is what hans added and should help with interference
+  // if the other stuff doesn't work
+  // }
 
   @Override
   public void periodic() {
+    // if (!ahrs.isCalibrating()) {
     SmartDashboard.putNumber("Front Left Encoder Distance", getDistance());
-    SmartDashboard.putNumber("Gyro Get Angle", gyro.getAngle());
-    SmartDashboard.putNumber("Gyro Get Pitch", getPitch());
+    SmartDashboard.putNumber("Gyro Get Angle", ahrs.getAngle());
+    SmartDashboard.putNumber("Gyro Yaw", (ahrs.getAngle() % 360));
+
+    // SmartDashboard.putNumber("AHRS Get Angle", ahrs.getAngle());
+    // SmartDashboard.putNumber("AHRS Get Pitch", getPitch());
+    // SmartDashboard.putNumber("AHRS Get Fused", ahrs.getFusedHeading());
+    // SmartDashboard.putNumber("rotationPose", rotationPose.getDegrees());
+
+    // }
   }
 
   @Override

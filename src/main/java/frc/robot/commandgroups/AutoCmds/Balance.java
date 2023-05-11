@@ -5,17 +5,15 @@
 package frc.robot.commandgroups.AutoCmds;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.commands.Drivetrain.MecanumDriveCmd;
-import frc.robot.commands.Drivetrain.VerticalDrivePID;
+// import frc.robot.commands.Drivetrain.VerticalDrivePID;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
 public class Balance extends SequentialCommandGroup {
   public Balance(DriveTrainSubsystem driveTrain) {
-    addCommands(
-        new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 1.0, () -> 0.0, () -> 3.0, () -> false)
-            .withTimeout(1.6), // 1.3
-        new VerticalDrivePID(driveTrain, 1),
-        new WaitCommand(1));
+    addCommands();
+    // new MecanumDriveCmd(driveTrain, () -> 0.0, () -> 1.0, () -> 0.0, () -> 3.0, () -> false)
+    //     .until(() -> driveTrain.getPitch() > 5), // 1.3
+    // new VerticalDrivePID(driveTrain, 1),
+    // new WaitCommand(1)
   }
 }
