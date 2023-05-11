@@ -3,8 +3,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -102,7 +102,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     this.driftPerSecondAHRS = (ahrs.getAngle() - startAHRSAngle)/(Timer.getFPGATimestamp() - startTime);
 
     // this.driftPerSecondGyro =
-    //     (gyro.getAngle() - startGyroAngle) / (Timer.getFPGATimestamp() - this.point2Timestamp);
+    //     (gyro.getAngle() - startGyroAngle) / (Timer.getFPGATimestamp()  - this.point2Timestamp);
 
     this.driftPerSecondGyro = (this.driftPerSecondAHRS + this.driftPerSecondAHRS2) / 2;
   }
