@@ -12,7 +12,6 @@ public class MecanumDriveCmd extends CommandBase {
   private Supplier<Double> forwardFunction, sideFunction, rotateFunction, scaleFactor;
   SlewRateLimiter filter = new SlewRateLimiter(0.5);
 
-
   private Supplier<Boolean> limit;
 
   public MecanumDriveCmd(
@@ -29,7 +28,6 @@ public class MecanumDriveCmd extends CommandBase {
     this.rotateFunction = rf;
     this.scaleFactor = scaling;
     this.limit = limit;
-
 
     addRequirements(driveSubsystem);
   }
@@ -59,8 +57,9 @@ public class MecanumDriveCmd extends CommandBase {
       speedRotate = 0;
     }
 
-    //driveSubsystem.setMecanum(speedSide, speedForward, speedRotate);
-    driveSubsystem.setMecanum(filter.calculate(speedSide), filter.calculate(speedForward), filter.calculate(speedRotate));
+    // driveSubsystem.setMecanum(speedSide, speedForward, speedRotate);
+    driveSubsystem.setMecanum(
+        filter.calculate(speedSide), filter.calculate(speedForward), filter.calculate(speedRotate));
 
     // double speedForward;
 

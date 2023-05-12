@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -29,12 +28,11 @@ public class DriveTrainSubsystem extends SubsystemBase {
   public MecanumDrive mecDrive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
 
   private AHRS ahrs = new AHRS(Port.kUSB);
-  //private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+  // private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
   // private Rotation2d rotationPose = new Rotation2d(0); // -hans
 
-  //kinematics test
-
+  // kinematics test
 
   public DriveTrainSubsystem() {
     frontLeft.setNeutralMode(NeutralMode.Brake);
@@ -44,8 +42,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     frontLeft.setInverted(true);
     backLeft.setInverted(true);
-    //ahrs.calibrate();
-    //ahrs.reset();
+    // ahrs.calibrate();
+    // ahrs.reset();
 
     frontLeft.setSelectedSensorPosition(0);
     frontRight.setSelectedSensorPosition(0);
@@ -81,7 +79,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
   public void calibrate() {
     this.startTime = Timer.getFPGATimestamp();
     double startAHRSAngle = ahrs.getAngle();
-    //double startGyroAngle = gyro.getAngle();
+    // double startGyroAngle = gyro.getAngle();
     try {
       Thread.sleep(2500);
     } catch (Exception e) {
@@ -90,7 +88,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     // this.driftPerSecondGyro2 =
     //     (gyro.getAngle() - startGyroAngle) / (Timer.getFPGATimestamp() - startTime);
-    this.driftPerSecondAHRS2 = (ahrs.getAngle() - startAHRSAngle)/(Timer.getFPGATimestamp() - startTime);
+    this.driftPerSecondAHRS2 =
+        (ahrs.getAngle() - startAHRSAngle) / (Timer.getFPGATimestamp() - startTime);
     this.point2Timestamp = Timer.getFPGATimestamp();
 
     try {
@@ -99,7 +98,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
       e.printStackTrace();
     }
 
-    this.driftPerSecondAHRS = (ahrs.getAngle() - startAHRSAngle)/(Timer.getFPGATimestamp() - startTime);
+    this.driftPerSecondAHRS =
+        (ahrs.getAngle() - startAHRSAngle) / (Timer.getFPGATimestamp() - startTime);
 
     // this.driftPerSecondGyro =
     //     (gyro.getAngle() - startGyroAngle) / (Timer.getFPGATimestamp()  - this.point2Timestamp);
@@ -168,9 +168,6 @@ public class DriveTrainSubsystem extends SubsystemBase {
   public double getDistance() {
     return (frontLeft.getSelectedSensorPosition() * 3.55 * Math.PI / 2048) / 10.71;
   }
-
-  
-
 
   // public double getYaw() {
   //   return ahrs.getYaw();
