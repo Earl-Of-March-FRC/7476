@@ -30,7 +30,7 @@ public class Arm extends SubsystemBase {
   }
 
   public double getExtensionInches() {
-    return 37 + (encoder.getRaw() / (-4100 / 51)); // change 25220 to num ticks per full extension
+    return 37.0 +(encoder.getRaw() / (-4100.0 / 51.0)); // change 25220 to num ticks per full extension
   }
 
   public void setEncoderValueIncline(double ticks) {
@@ -50,6 +50,14 @@ public class Arm extends SubsystemBase {
 
   public void armExtension(double speed) {
     extension1.set(-speed);
+  }
+
+  public double getRateExtension(){
+    return encoder.getRate();
+  }
+
+  public double getRateIncline(){
+    return incline2.getSelectedSensorVelocity();
   }
 
   public void armExtensionBrake() {
